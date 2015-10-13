@@ -15,6 +15,10 @@ section img {
     max-width: 100%;
 }
 
+.no-mg-btm {
+    margin-bottom: 0;
+}
+
 /* color overrides */
 
 hr {
@@ -28,6 +32,7 @@ hr {
 a:hover, a:focus {
     color: #BF364A;
 }
+
 
 .bg-primary {
     background-color: #A51C30;
@@ -165,12 +170,12 @@ a:hover, a:focus {
         margin: 7px 0 0 0;
     }
 
-    .navbar:not(.affix) .navbar-logo {
+    .navbar:not(.affix) .navbar-logo,
+    .navbar:not(.dark) .navbar-logo {
     background-image: url(../img/HKSlogo_ash_white.png);
     }
 
 }
-
 
 /* Header (used only on main page) */
 
