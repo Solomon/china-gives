@@ -5,9 +5,7 @@ description: > # this means to ignore newlines until "baseurl:"
   in China in the year 2015. Research was conducted by Ash Center
   at Harvard Kenndedy School.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
+url: "http://mizurnix.github.io/china-gives" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
