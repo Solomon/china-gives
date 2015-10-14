@@ -9,6 +9,17 @@ $(document).ready(equalHeight);
 $(window).resize(equalHeight);
 
 
+function rand_name()
+{
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    for( var i=0; i < 2; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
 if ($('#series_chart_div').length > 0){
 
   google.load("visualization", "1", {packages:["corechart"]});
@@ -16,24 +27,28 @@ if ($('#series_chart_div').length > 0){
 
   function drawSeriesChart() {
 
-    var data = google.visualization.arrayToDataTable([
-      ['ID', 'Life Expectancy', 'Fertility Rate', 'Region',     'Population'],
-      ['CAN',    80.66,              1.67,      'North America',  33739900],
-      ['DEU',    79.84,              1.36,      'Europe',         81902307],
-      ['DNK',    78.6,               1.84,      'Europe',         5523095],
-      ['EGY',    72.73,              2.78,      'Middle East',    79716203],
-      ['GBR',    80.05,              2,         'Europe',         61801570],
-      ['IRN',    72.49,              1.7,       'Middle East',    73137148],
-      ['IRQ',    68.09,              4.77,      'Middle East',    31090763],
-      ['ISR',    81.55,              2.96,      'Middle East',    7485600],
-      ['RUS',    68.6,               1.54,      'Europe',         141850000],
-      ['USA',    78.09,              2.05,      'North America',  307007000]
-    ]);
+
+    var rand_data = [];
+    rand_data.push(['Name', 'National Total %', 'Generosity %',  'Industry',       'Donations']);
+
+    var industry = ['IT', 'Manufacturing', 'Finances', 'Real Estate'];
+    for (var i = 0; i < 100; i++) {
+        var total = (Math.floor(Math.random() * 500) + 20) / 100;
+        var gener = (Math.floor(Math.random() * 70) + 20);
+        var ind = industry[(Math.floor(Math.random() * 4) + 0)];
+        var don = Math.floor(Math.random() * 100000000) + 100000;
+        var name = rand_name(); 
+        rand_data.push([name, total, gener, ind, don]);
+    };
+
+
+
+    var data = google.visualization.arrayToDataTable(rand_data);
 
     var options = {
-      title: 'Correlation between life expectancy, fertility rate and population of some world countries (2010)',
-      hAxis: {title: 'Life Expectancy'},
-      vAxis: {title: 'Fertility Rate'},
+     // title: 'Correlation between life expectancy, fertility rate and population of some world countries (2010)',
+      hAxis: {title: 'National Total %'},
+      vAxis: {title: 'Generosity %'},
       bubble: {textStyle: {fontSize: 11}}
     };
 
