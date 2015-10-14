@@ -26,7 +26,7 @@ layout: default
                 <hr class="">
             </div>
         </div>
-        
+        {% assign a = 0 %}
         {% for i in (1..10) %}
         <div class="row text-center">
           {% for j in (1..2) %}
@@ -34,13 +34,14 @@ layout: default
                 <div class="row no-gutter">
                   {% for k in (1..5) %}
                     <div class="col-xs-2 {% if j == 1 and k == 1 %}col-xs-offset-1 col-md-offset-2{% elsif j == 2 and k == 1 %}col-xs-offset-1 col-md-offset-0{% endif %} wow fadeIn">
-                        <div class="person">
+                        <div class="person overlay red" style="background-image: url(https://randomuser.me/api/portraits/thumb/men/{{ a }}.jpg">
                             <div class="person-wrapper">
                                 <p class="">Jack<br>Ma</p>
                             </div>
                         </div>
                         <p>$12 M</p>
                     </div>
+                    {% assign a = a | plus: 1 %}
                   {% endfor %}  
                 </div>    
             </div>
@@ -231,8 +232,18 @@ layout: default
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="section-heading">About the Research</h2>
                 <hr class="light">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-md-offset-1">
                 <p class="text-faded">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <a href="http://ash.harvard.edu/china-public-policy-postdoctoral-fellowships" class="btn btn-default btn-xl" target="_blank">ASH center website</a>
+                <p class="text-faded">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p class="text-faded">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quisLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quisLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quisLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <div class="col-md-5">
+                <p class="text-faded">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p><img src="https://c.o0bg.com/rf/image_960w/Boston/2011-2020/2015/10/07/BostonGlobe.com/EditorialOpinion/Images/Peiran-Wei.jpg"></p>
+                <p class="text-faded">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
         </div>
     </div>

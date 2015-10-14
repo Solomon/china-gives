@@ -11,6 +11,10 @@ section.bg-dark.bg-image {
     background: none;
 }
 
+section img {
+    max-width: 100%;
+}
+
 /* color overrides */
 
 hr {
@@ -200,11 +204,15 @@ footer.site-footer {
 }
 
 .rankings .person {
-    background-color: #A51C30;
     border-radius: 50%;
     min-width: 50px;
     max-width: 90%;
     margin: 0 auto;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .rankings .person-wrapper {
@@ -218,6 +226,28 @@ footer.site-footer {
     vertical-align: middle;
     color: #fff;
     margin: 10px 0 0 10px;
+    z-index: 1000;
+    position: relative;
+}
+
+.overlay {
+    position: relative;
+}
+
+.overlay:before{
+      position: absolute;
+      content:" ";
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      display: none;
+      display: block;
+      border-radius: 50%;
+}
+
+.red:before {
+    background-color: rgba(165,28,48,0.6);
 }
 
 /* Overview */
@@ -246,6 +276,9 @@ section.bg-image {
 }
 
 section.bg-image div.background-image {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     background-position: center center;
     width: 100%;
@@ -269,14 +302,6 @@ section.bg-image:hover div.background-image {
     height: 105%;
 }
 
-/*section.bg-image:hover div.background-image {
-    -moz-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    -o-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
-}*/
-
 section.bg-image.location div.background-image {
     background-image: url(../img/Guangzhou_pano.jpg);
 }
@@ -292,58 +317,6 @@ section.bg-image.hot-sector div.background-image {
 section.bg-image.government div.background-image {
     background-image: url(../img/parliament.jpg);
 }
-
-
-/*section.bg-image img.background {
-    position: absolute;
-    top: -9999px;
-    bottom: -9999px;
-    left: -9999px;
-    right: -9999px;
-    margin: auto;
-    min-height: 100%;
-    min-width: 100%;
-    -webkit-transition: all 0.4s ease-in-out;
-    -moz-transition: all 0.4s ease-in-out;
-    -ms-transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
-}
-
-section.bg-image img.background:hover {
-    -moz-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    -o-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
-}
-
-section.bg-image.sectors .row .col-md-6 {
-    position: relative;
-    overflow: hidden;
-}
-
-section.bg-image.sectors img.col-background {
-    position: absolute;
-    top: -9999px;
-    bottom: -9999px;
-    left: -9999px;
-    right: -9999px;
-    margin: auto;
-    min-height: 100%;
-    min-width: 100%;
-    -webkit-transition: all 0.4s ease-in-out;
-    -moz-transition: all 0.4s ease-in-out;
-    -ms-transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
-    z-index: -1;
-}
-*/
-/*    background: url(../img/sectors.jpg) center;
-
-
-    background: url(../img/parliament.jpg);*/
 
 /* Gender inequality */
 
