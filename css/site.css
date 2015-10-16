@@ -170,10 +170,65 @@ a:hover, a:focus {
         margin: 7px 0 0 0;
     }
 
-    .navbar:not(.affix) .navbar-logo,
-    .navbar:not(.dark) .navbar-logo {
+    .navbar:not(.affix) .navbar-logo {
     background-image: url(../img/HKSlogo_ash_white.png);
     }
+
+    .navbar.dark .navbar-logo {
+    background-image: url(../img/HKSlogo_ash.png) !important;
+    }
+
+    .navbar-nav>li>a>span.menu-btn {
+        border: 1px solid rgba(255,255,255,.7);
+        border-radius: 3px;
+        padding: 5px 7px;
+        margin: 8px 0 8px -8px;
+    }
+
+    .navbar-default.dark {
+        border-color: #e7e7e7;
+    }
+
+    .navbar-default.dark .navbar-header .navbar-brand,
+    .navbar-default.dark .nav>li>a,
+    .navbar-default.dark .nav>li>a:focus:hover {
+        color: #222;
+    }
+
+    .navbar-default.dark.affix .navbar-header .navbar-brand,
+    .navbar-default.dark .navbar-header .navbar-brand:hover,
+    .navbar-default.dark .nav>li>a:hover  {
+        color: #A51C30;;
+    }
+
+    .navbar-default.dark .nav>li>a>span.menu-btn {
+        border: 1px solid #222;
+    }
+
+        .navbar-default.dark .nav>li>a:hover>span.menu-btn {
+            border-color: #A51C30;; 
+        }
+
+    .navbar-default.dark .nav>li>a>span.menu-btn:hover {
+        border-color: #A51C30;
+    }
+
+    .navbar-default.dark.affix .nav>li>a>span.menu-btn {
+        border-color: transparent;
+    }
+
+}
+
+.navbar.dark {
+    border-color: rgba(34,34,34,.05);
+    background-color: #fff;
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(34,34,34,0.25);
+    -moz-box-shadow: 0px 1px 0px 0px rgba(34,34,34,0.25);
+    box-shadow: 0px 1px 0px 0px rgba(34,34,34,0.25);
+}
+
+@media (min-width: 768px) {
+
 
 }
 
@@ -197,7 +252,7 @@ a:hover, a:focus {
 
 footer.site-footer {
     padding: 50px 0;
-
+    background-color: #fff;
 }
 
 /* Main page sections */
@@ -337,52 +392,15 @@ section.bg-image.government div.background-image {
 
 }
 
+
+
+
+
+
+/* ---- --- --- -- */
+
 div.gender-icons-container {
     margin-top: 50px;
-}
-
-
-
-@media (min-width: 768px) {
-
-    .navbar-nav>li>a>span.menu-btn {
-        border: 1px solid rgba(255,255,255,.7);
-        border-radius: 3px;
-        padding: 5px 7px;
-        margin: 8px 0 8px -8px;
-    }
-
-    .navbar-default.pg-charts {
-        border-color: #e7e7e7;
-    }
-
-    .navbar-default.pg-charts .navbar-header .navbar-brand,
-    .navbar-default.pg-charts .nav>li>a,
-    .navbar-default.pg-charts .nav>li>a:focus:hover {
-        color: #222;
-    }
-
-    .navbar-default.pg-charts.affix .navbar-header .navbar-brand,
-    .navbar-default.pg-charts .navbar-header .navbar-brand:hover,
-    .navbar-default.pg-charts .nav>li>a:hover  {
-        color: #f05f40;
-    }
-
-    .navbar-default.pg-charts .nav>li>a>span.menu-btn {
-        border: 1px solid #222;
-    }
-
-        .navbar-default.pg-charts .nav>li>a:hover>span.menu-btn {
-            border-color: #f05f40; 
-        }
-
-    .navbar-default.pg-charts .nav>li>a>span.menu-btn:hover {
-        border-color: #f05f40;
-    }
-
-    .navbar-default.pg-charts.affix .nav>li>a>span.menu-btn {
-        border-color: transparent;
-    }
 }
 
 section.chart {

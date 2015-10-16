@@ -47,9 +47,28 @@ if ($('#series_chart_div').length > 0){
 
     var options = {
      // title: 'Correlation between life expectancy, fertility rate and population of some world countries (2010)',
-      hAxis: {title: 'National Total %'},
-      vAxis: {title: 'Generosity %'},
-      bubble: {textStyle: {fontSize: 11}}
+      bubble: {
+        textStyle: {
+          fontSize: 12,
+          fontName: 'Roboto',
+          color: '#fff',
+          bold: true,
+        }
+      },  
+      vAxis: {
+        title: 'National Total %',
+        gridlineColor: 'transparent',
+        baselineColor: 'transparent'
+      },
+      hAxis: {
+        title: 'Generosity %',
+        gridlineColor: 'transparent',
+        baselineColor: 'transparent'
+      },
+      colors: ['#368db9', '#A51C30', '#faae53', '#52854C', '#293352'],
+      chartArea:{left:50,top:20,width:'100%',height:'80%'},
+      legend: 'bottom',
+      backgroundColor: { fill:'transparent' }
     };
 
     var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
