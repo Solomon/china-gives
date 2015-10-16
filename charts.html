@@ -2,7 +2,7 @@
 layout: charts
 ---
 
-<section id="services" class="chart">
+<section id="charts" class="charts">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -11,10 +11,8 @@ layout: charts
             </div>
         </div>
     </div>
-    <div class="container" id="charts-container">
-        <div id="series_chart_div" style="width: 100%; height: 500px;"></div>
-    </div>
-    <div class="container">
+    <div class="container-fluid" id="charts-container">
+        <div id="series_chart_div"></div>
         <div class="row">
             <div class="col-xs-12">
                 <ul class="nav nav-pills nav-justified chart-options">
@@ -48,6 +46,43 @@ layout: charts
                 </ul>
             </div>
         </div>
-        
     </div>
+</section>
+
+<section id="people">
+
+    <div class="container">
+        
+        <div class="row">
+        {% assign a = 0 %}
+        {% for i in (1..100)%}
+            <div class="col-md-3 col-sm-4 col-xs-6">
+                <div class="person-info-box">
+                    <div class="person-info-box-header text-center">
+                        <img src="img/people/avatars/{{ a }}.jpg">
+                        <h4>Jack Ma</h4>
+                    </div>
+                    <div class="person-info-box-body">   
+                        <ul class="no-bullets">
+                            <li>Age: 52</li>
+                            <li>Location: Beijing</li>
+                            <li>Donations: $3.5 B</li>
+                            <li>Generosity: 12%</li>
+                            <li>Industry: Real Estate</li>
+                            <li>Focus: Education</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% if a == 9%}
+                {% assign a = 0 %}
+            {% else %}
+                {% assign a = a | plus: 1 %} 
+            {% endif %}
+        {% endfor %}
+
+        </div>
+
+    </div>
+
 </section>
