@@ -444,6 +444,10 @@ section.charts {
     padding-bottom: 0;
 }
 
+section.charts .container-fluid.charts-container {
+    overflow-x: hidden;
+}
+
 @media (min-width: 992px) and (min-height: 600px) {
 
     .fix-charts #charts-container {

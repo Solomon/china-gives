@@ -340,7 +340,7 @@ function months_options(){
         hAxis: {
           title: 'Months',
           gridlineColor: 'transparent',
-          baselineColor: 'black',
+          baselineColor: 'transparent',
           ticks: [{v: 0, f: ''}, {v: 1, f: 'Sep 14'}, {v: 2, f: 'Oct 14'},
                   {v: 3, f: 'Nov 14'},{v: 4, f: 'Dec 14'},{v: 5, f: 'Jan 15'},{v: 6, f: 'Feb 15'},
                   {v: 7, f: 'Mar 15'},{v: 8, f: 'Apr 15'},{v: 9, f: 'May 15'},{v: 10, f: 'Jun 15'},
@@ -358,7 +358,8 @@ function months_options(){
         backgroundColor: { fill:'transparent' },
         'tooltip' : {
           trigger: 'none'
-        }
+        },
+        colors: ['#293352']
       };
 }
 
@@ -451,7 +452,7 @@ function draw_age_charts(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(age_data(), options);
   init_chart_onclick();
-  //fix_chart(window);
+  fix_chart(window);
 }
 
 function draw_generousity_chart(){
@@ -462,7 +463,7 @@ function draw_generousity_chart(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(generosity_data(), options);
   init_chart_onclick();
-  //fix_chart(window);
+  fix_chart(window);
 }
 
 function draw_donation_chart(){
@@ -473,7 +474,7 @@ function draw_donation_chart(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(donation_data(), options);
   init_chart_onclick();
-  //fix_chart(window);
+  fix_chart(window);
 }
 
 function draw_industry_chart(){
@@ -484,7 +485,7 @@ function draw_industry_chart(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(industry_data(), options);
   init_chart_onclick();
-  //fix_chart(window);
+  fix_chart(window);
 }
 
 function draw_months_chart(){
@@ -495,7 +496,7 @@ function draw_months_chart(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(months_data(), options);
   init_chart_onclick();
-  //fix_chart(window);
+  fix_chart(window);
 }
 
 function draw_focus_chart(){
@@ -506,7 +507,7 @@ function draw_focus_chart(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(focus_data(), options);
   init_chart_onclick();
-  //fix_chart(window);
+  fix_chart(window);
 }
 
 function draw_alphabetical_chart() {
@@ -517,7 +518,7 @@ function draw_alphabetical_chart() {
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(alphabetical_data(), options);
   init_chart_onclick();
-  //fix_chart(window);
+  fix_chart(window);
 }
 
 function draw_charts(chart_type){
@@ -556,9 +557,8 @@ function init_chart_onclick(){
   if (!is_click_inited){
     google.visualization.events.addListener(current_chart, 'click', function(e) {
       var id = e.targetID;
-      if (str_starts(id, 'bubble')){
+      if (str_starts(id, 'bubble') && window.location.hash.substr(1) != 'months') {
         id = arr_last(id.split('#'));
-        console.log(id);
         $('html, body').animate({
           scrollTop: $('#person-container-' + id).offset().top - 425
         }, 2000);
