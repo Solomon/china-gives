@@ -84,6 +84,3 @@ DEPENDENCIES
   rake
   stringex
   thor
-
-BUNDLED WITH
-   1.10.6

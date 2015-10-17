@@ -4,8 +4,8 @@ description: > # this means to ignore newlines until "baseurl:"
   This website represents results of the research on philanthropy
   in China in the year 2015. Research was conducted by Ash Center
   at Harvard Kenndedy School.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://mizurnix.github.io/china-gives" # the base hostname & protocol for your site
+baseurl: "/china-gives" # the subpath of your site, e.g. /blog/
+url: "http://mizurnix.github.io" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
