@@ -235,12 +235,12 @@ a:hover, a:focus {
     box-shadow: 0px 1px 0px 0px rgba(34,34,34,0.25);
 }
 
-@media (min-width: 768px) {
-
-
-}
-
 /* Header (used only on main page) */
+
+header .header-content .header-content-inner p {
+    font-weight: 400;
+    color: rgba(255,255,255,.85);
+}
 
 .lrn-mr-btn {
     color: rgba(255,255,255,.7);
@@ -261,6 +261,22 @@ a:hover, a:focus {
 footer.site-footer {
     padding: 50px 0;
     background-color: #fff;
+}
+
+footer.site-footer .row {
+    text-align: center;
+}
+
+footer.site-footer .row .footer-copy-text {
+    margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+
+    footer.site-footer .row {
+        text-align: left;
+    }
+
 }
 
 /* Main page sections */
@@ -381,14 +397,13 @@ section.bg-image.location div.background-image {
 
 /* Industry, sector */
 
-.row.equalcols {
-    overflow: hidden;
-}
+@media (max-width: 768px) {
 
-.row.equalcols [class*="col-"] section {
-    margin-bottom: -99999px;
-    padding-bottom: 99999px;
-}
+    .row#equalcols [class*="col-"] {
+        height: auto !important;
+    }
+
+}    
 
 section.bg-image.top-industry div.background-image {
     background-image: url(../img/construction.jpg);

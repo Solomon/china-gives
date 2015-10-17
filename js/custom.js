@@ -21,6 +21,13 @@ function equalHeight() {
   make_routing();    
 }
 
+function equalHeightCols() {
+  var rowHeight = $('#equalcols').height();
+  $('#equalcols [class*="col-"]').css({
+      'height': rowHeight + 'px'
+  });   
+}
+
 $(document).ready(equalHeight);
 $(window).resize(equalHeight);
 
@@ -567,7 +574,7 @@ $(function (){
   $(window).scroll(function(e) {
     fix_chart(this);
   });
-
+  equalHeightCols();
   $('.chart-options a').click(function (){    
     var chart_type = $(this).data('chart-type');
     draw_charts(chart_type);
