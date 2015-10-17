@@ -488,6 +488,10 @@ section.charts {
     height: 100px;
 }
 
+.person-info-box-header .person-info-box-text {
+    padding-left: 0;
+}
+
 .person-info-box-header .person-info-box-text .text-muted {
     color: #8996A0;
 }

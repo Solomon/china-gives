@@ -23,7 +23,7 @@ var is_click_inited = false;
 
 function fix_chart(that){
   var wrap = $("#page-top");
-  if ($(that).scrollTop() > 125) {
+  if ($(that).scrollTop() > 116) {
     wrap.addClass("fix-charts");
   } else {
     wrap.removeClass("fix-charts");
