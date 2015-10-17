@@ -329,6 +329,11 @@ section.overview .metrics p.metric-lg {
     font-weight: 300;
 }
 
+section.overview .key-findings {
+    margin-top: 50px;
+    font-size: 16px;
+}
+
 /* Generous section */
 
 .service-box img.person {
@@ -374,6 +379,17 @@ section.bg-image.location div.background-image {
     background-image: url(../img/Guangzhou_pano.jpg);
 }
 
+/* Industry, sector */
+
+.row.equalcols {
+    overflow: hidden;
+}
+
+.row.equalcols [class*="col-"] section {
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
 section.bg-image.top-industry div.background-image {
     background-image: url(../img/construction.jpg);
 }
@@ -381,6 +397,8 @@ section.bg-image.top-industry div.background-image {
 section.bg-image.hot-sector div.background-image {
     background-image: url(../img/books.jpg);
 }
+
+/* Government */
 
 section.bg-image.government div.background-image {
     background-image: url(../img/parliament.jpg);
