@@ -1,3 +1,9 @@
+
+var current_chart;
+var current_data;
+var is_click_inited = false;
+var is_chart_fixed = false;
+
 function str_starts(full, str){
   return full.slice(0, str.length) == str;
 }
@@ -11,27 +17,20 @@ function equalHeight() {
 	$('div.person').css({
 	    'height': pw + 'px'
 	});
+  is_chart_fixed = false;
+  make_routing();    
 }
 
 $(document).ready(equalHeight);
 $(window).resize(equalHeight);
 
 
-var current_chart;
-var current_data;
-var is_click_inited = false;
-var is_chart_fixed = false;
-
-
 function fix_chart(that){
-  if (!is_chart_fixed) {
-    var wrap = $("#page-top");
-    if ($(that).scrollTop() > 116) {
-      wrap.addClass("fix-charts");
-    } else {
-      wrap.removeClass("fix-charts");
-    }
-    is_chart_fixed = true;
+  var wrap = $("#page-top");
+  if ($(that).scrollTop() > 116) {
+    wrap.addClass("fix-charts");
+  } else {
+    wrap.removeClass("fix-charts");
   }
 }
 
@@ -50,6 +49,8 @@ function char_to_int(chars){
 function used_letters(){
   var letters = [];
   var v_options = []
+  if (!current_data)
+    current_data = init_data();
   jQuery.each(current_data, function(index, item) {
      var int_char =  char_to_int(item[0]);
      if (!$.inArray(int_char, letters)){
@@ -58,41 +59,6 @@ function used_letters(){
      }
   });
   return v_options;
-}
-
-function generosity_options() {
-    return {
-     // title: 'Correlation between life expectancy, fertility rate and population of some world countries (2010)',
-      bubble: {
-        textStyle: {
-          fontSize: 12,
-          fontName: 'Roboto',
-          color: '#fff',
-          bold: true,
-        }
-      },  
-      vAxis: {
-        title: 'Generosity %',
-        gridlineColor: 'transparent',
-        baselineColor: 'black'
-      },
-      hAxis: {        
-        title: 'National Total %',
-        gridlineColor: 'transparent',
-        baselineColor: 'black'
-      },
-      colors: ['#368DB9', '#A51C30', '#FAAE53', '#52854C', '#293352'],
-      chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
-      legend: {
-        alignment: 'center',
-        position: 'top'
-      },
-      animation:{
-        duration: 1000,
-        easing: 'out'
-      },
-      backgroundColor: { fill:'transparent' }
-    };
 }
 
 function init_data() {
@@ -106,12 +72,12 @@ function init_data() {
       var ind_rand = (Math.floor(Math.random() * 4) + 0);
       var ind = industry[ind_rand];
       var ind_data = ind_rand + 1 + ((Math.floor(Math.random() * 4) - 2)/10);
-      var don = Math.floor(Math.random() * 100000000) + 500000;
+      var don = Math.floor(Math.random() * (100000000 - 500000 + 1)) + 500000;      
       var gener = (Math.floor(Math.random() * 70) + 20);
       var name = rand_name(); 
-      var total = Math.floor(Math.random() * 2000000000) + 10000000;
+      var total = (Math.floor(Math.random() * (2000000000 - 120000000 + 1)) + 120000000) / 1000000;
       var focus_area = (Math.floor(Math.random() * 5) + 1);
-      rand_data.push([name, national, gener, age, ind, don, total, ind_data, focus_area]);
+      rand_data.push([name, national, gener, age, ind, don, Math.round(total * 100) / 100, ind_data, focus_area]);
   };
   return rand_data;
 }
@@ -186,7 +152,6 @@ function alphabetical_data() {
      if (index > 0)
        rand_data.push([item[0], char_to_int(item[0]), item[6], item[4], item[6]]);
   });
-  console.log(rand_data);
   var data = google.visualization.arrayToDataTable(rand_data);
   return data;
 }
@@ -223,7 +188,10 @@ function age_options(){
           duration: 2000,
           easing: 'out'
         },
-        backgroundColor: { fill:'transparent' }
+        backgroundColor: { fill:'transparent' },
+        'tooltip' : {
+          trigger: 'none'
+        }
       };
 }
 
@@ -241,8 +209,8 @@ function donation_options(){
           title: 'Total Amount',
           gridlineColor: 'transparent',
           baselineColor: 'black',
-          ticks: [{v: 100000000, f: '100 m'},{v: 500000000, f: '500 m'},
-                  {v: 1000000000, f: '1 b'},{v: 2000000000, f: '2 b'},{v: 2500000000, f: '2.5 b'}]
+          ticks: [{v: 1, f: ''},{v: 5, f: ''},{v: 10, f: ''},{v: 100, f: '100 m'},{v: 500, f: '500 m'},
+                  {v: 1000, f: '1 b'},{v: 2000, f: '2 b'},{v: 2500, f: '2.5 b'}]
         },
         hAxis: {
           title: 'National Total %',
@@ -259,8 +227,49 @@ function donation_options(){
           duration: 2000,
           easing: 'out'
         },
-        backgroundColor: { fill:'transparent' }
+        backgroundColor: { fill:'transparent' },
+        'tooltip' : {
+          trigger: 'none'
+        }
       };
+}
+
+function generosity_options() {
+    return {
+     // title: 'Correlation between life expectancy, fertility rate and population of some world countries (2010)',
+      bubble: {
+        textStyle: {
+          fontSize: 12,
+          fontName: 'Roboto',
+          color: '#fff',
+          bold: true,
+        }
+      },  
+      vAxis: {
+        title: 'Generosity %',
+        gridlineColor: 'transparent',
+        baselineColor: 'black'
+      },
+      hAxis: {        
+        title: 'National Total %',
+        gridlineColor: 'transparent',
+        baselineColor: 'black'
+      },
+      colors: ['#368DB9', '#A51C30', '#FAAE53', '#52854C', '#293352'],
+      chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
+      legend: {
+        alignment: 'center',
+        position: 'top'
+      },
+      animation:{
+        duration: 1000,
+        easing: 'out'
+      },
+      backgroundColor: { fill:'transparent' },
+        'tooltip' : {
+          trigger: 'none'
+        }
+    };
 }
 
 function industry_options(){
@@ -277,8 +286,8 @@ function industry_options(){
           title: 'Total Amount',
           gridlineColor: 'transparent',
           baselineColor: 'black',
-          ticks: [{v: 100000000, f: '100 m'},{v: 500000000, f: '500 m'},
-                  {v: 1000000000, f: '1 b'},{v: 2000000000, f: '2 b'},{v: 2500000000, f: '2.5 b'}]
+          ticks: [{v: 1, f: ''},{v: 5, f: ''},{v: 10, f: ''},{v: 100, f: '100 m'},{v: 500, f: '500 m'},
+                  {v: 1000, f: '1 b'},{v: 2000, f: '2 b'},{v: 2500, f: '2.5 b'}]
         },
         hAxis: {
           title: 'Industry',
@@ -297,7 +306,10 @@ function industry_options(){
           duration: 2000,
           easing: 'out'
         },
-        backgroundColor: { fill:'transparent' }
+        backgroundColor: { fill:'transparent' },
+        'tooltip' : {
+          trigger: 'none'
+        }
       };
 }
 
@@ -336,7 +348,10 @@ function months_options(){
           duration: 2000,
           easing: 'out'
         },
-        backgroundColor: { fill:'transparent' }
+        backgroundColor: { fill:'transparent' },
+        'tooltip' : {
+          trigger: 'none'
+        }
       };
 }
 
@@ -374,7 +389,10 @@ function focus_options(){
           duration: 2000,
           easing: 'out'
         },
-        backgroundColor: { fill:'transparent' }
+        backgroundColor: { fill:'transparent' },
+        'tooltip' : {
+          trigger: 'none'
+        }
       };  
 }
 
@@ -392,11 +410,11 @@ function alphabetical_options(){
           title: 'Total Amount',
           gridlineColor: 'transparent',
           baselineColor: 'black',
-          ticks: [{v: 100000000, f: '100 m'},{v: 500000000, f: '500 m'},
-                  {v: 1000000000, f: '1 b'},{v: 2000000000, f: '2 b'},{v: 2500000000, f: '2.5 b'}]
+          ticks: [{v: 1, f: ''},{v: 5, f: ''},{v: 10, f: ''},{v: 100, f: '100 m'},{v: 500, f: '500 m'},
+                  {v: 1000, f: '1 b'},{v: 2000, f: '2 b'},{v: 2500, f: '2.5 b'}]
         },
         hAxis: {
-          title: 'Yes',
+          title: '',
           gridlineColor: 'transparent',
           baselineColor: 'black',
           ticks: used_letters()
@@ -411,7 +429,10 @@ function alphabetical_options(){
           duration: 2000,
           easing: 'out'
         },
-        backgroundColor: { fill:'transparent' }
+        backgroundColor: { fill:'transparent' },
+        'tooltip' : {
+          trigger: 'none'
+        }
       };
 }
 
@@ -423,7 +444,7 @@ function draw_age_charts(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(age_data(), options);
   init_chart_onclick();
-  fix_chart(window);
+  //fix_chart(window);
 }
 
 function draw_generousity_chart(){
@@ -434,7 +455,7 @@ function draw_generousity_chart(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(generosity_data(), options);
   init_chart_onclick();
-  fix_chart(window);
+  //fix_chart(window);
 }
 
 function draw_donation_chart(){
@@ -445,7 +466,7 @@ function draw_donation_chart(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(donation_data(), options);
   init_chart_onclick();
-  fix_chart(window);
+  //fix_chart(window);
 }
 
 function draw_industry_chart(){
@@ -456,7 +477,7 @@ function draw_industry_chart(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(industry_data(), options);
   init_chart_onclick();
-  fix_chart(window);
+  //fix_chart(window);
 }
 
 function draw_months_chart(){
@@ -467,7 +488,7 @@ function draw_months_chart(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(months_data(), options);
   init_chart_onclick();
-  fix_chart(window);
+  //fix_chart(window);
 }
 
 function draw_focus_chart(){
@@ -478,7 +499,7 @@ function draw_focus_chart(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(focus_data(), options);
   init_chart_onclick();
-  fix_chart(window);
+  //fix_chart(window);
 }
 
 function draw_alphabetical_chart() {
@@ -489,7 +510,7 @@ function draw_alphabetical_chart() {
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(alphabetical_data(), options);
   init_chart_onclick();
-  fix_chart(window);
+  //fix_chart(window);
 }
 
 function draw_charts(chart_type){
