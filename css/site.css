@@ -411,13 +411,23 @@ section.charts {
     padding-bottom: 0;
 }
 
-.fix-charts #charts-container {
-    position: fixed;
-    top: 50px;
-    padding-top: 10px;
-    z-index: 1;
-    background-color: rgba(255,255,255,0.95);
+@media (min-width: 992px) and (min-height: 600px) {
+
+    .fix-charts #charts-container {
+        position: fixed;
+        top: 50px;
+        padding-top: 10px;
+        z-index: 1;
+        background-color: rgba(255,255,255,0.95);
+    }
+
+    .fix-charts section#people {
+        margin-top: 350px;
+    }
+
 }
+
+
 
 #series_chart_div {
     width: 100%; 
@@ -429,6 +439,10 @@ section.charts {
     
 }
 
+.chart-options {
+    padding-bottom: 10px;
+}
+
 .chart-options>li>a {
     color: #222;
     border-radius: 0;
@@ -438,24 +452,20 @@ section.charts {
 .chart-options>li>a:focus,
 .chart-options>li>a:active {
     background-color: transparent;
-    color: #f05f40;
+    color: #BF364A;
 }
 
 .nav-pills.chart-options>li.active>a {
-    color: #f05f40;
+    color: #BF364A;
     background-color: transparent;
 }
 
 .nav-pills.chart-options>li.active>a>span {
-    box-shadow: 0 2px 0 #f05f40;
+    box-shadow: 0 2px 0 #BF364A;
     padding-bottom: 8px;
 }
 
 /* People */
-
-.fix-charts section#people {
-    margin-top: 300px;
-}
 
 .person-info-box {
     background-color: #fff;
@@ -463,18 +473,26 @@ section.charts {
     margin-bottom: 30px;
 }
 
+.person-info-box-title, 
 .person-info-box-header {
-    padding: 20px;
     color: #fff;
     background-color: #293352;
 }
 
-.person-info-box-header > img {
-    border-radius: 50%;
-    width: 100px;
+.person-info-box-header {
+    padding-bottom: 15px;
+}
+
+.person-info-box-image > img {
+    width: 100%;
     height: 100px;
 }
 
-.person-info-box-body {
-    padding: 20px;
+.person-info-box-header .person-info-box-text .text-muted {
+    color: #8996A0;
 }
+
+.person-info-box-details {
+    padding-top: 10px;
+}
+

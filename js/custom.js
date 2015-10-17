@@ -23,7 +23,7 @@ var is_click_inited = false;
 
 function fix_chart(that){
   var wrap = $("#page-top");
-  if ($(that).scrollTop() > 60) {
+  if ($(that).scrollTop() > 125) {
     wrap.addClass("fix-charts");
   } else {
     wrap.removeClass("fix-charts");
@@ -194,7 +194,7 @@ function init_chart_onclick(){
         id = arr_last(id.split('#'));
         console.log(id);
         $('html, body').animate({
-          scrollTop: $('#person-container-' + id).offset().top - 600
+          scrollTop: $('#person-container-' + id).offset().top - 425
         }, 2000);
         $('.person-info-box').removeClass('selected');      
         $('#person-container-' + id + ' .person-info-box').addClass('selected');

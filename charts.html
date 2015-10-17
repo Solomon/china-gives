@@ -55,22 +55,37 @@ layout: charts
         
         <div class="row">
         {% assign a = 0 %}
+        {% assign b = 1 %}
         {% for i in (0..99)%}
             <div class="col-md-3 col-sm-4 col-xs-6" id="person-container-{{ i }}">
                 <div class="person-info-box">
-                    <div class="person-info-box-header text-center">
-                        <img src="img/people/avatars/{{ a }}.jpg">
-                        <h4>Jack Ma</h4>
-                    </div>
-                    <div class="person-info-box-body">   
-                        <ul class="no-bullets">
-                            <li>Age: 52</li>
-                            <li>Location: Beijing</li>
-                            <li>Donations: $3.5 B</li>
-                            <li>Generosity: 12%</li>
-                            <li>Industry: Real Estate</li>
-                            <li>Focus: Education</li>
-                        </ul>
+                    <div class="container-fluid">
+                        <div class="row person-info-box-title">
+                            <div class="col-xs-12">
+                                <h4>{{ b }}. Jack Ma</h4>
+                            </div>
+                        </div>
+                        <div class="row person-info-box-header">    
+                            <div class="person-info-box-image col-xs-6">
+                                <img src="img/people/avatars/{{ a }}.jpg">
+                            </div>
+                            <div class="person-info-box-text col-xs-6">   
+                                <ul class="no-bullets">
+                                    <li><small class="text-muted">Donations:</small><br><big>$52 million</big></li>
+                                    <li><small class="text-muted">Generosity:</small><br><big>12%</big></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row person-info-box-details">  
+                            <div class="col-xs-12">   
+                                <ul class="no-bullets">
+                                    <li>Age: 52</li>
+                                    <li>Location: Beijing</li>
+                                    <li>Industry: Real Estate</li>
+                                    <li>Focus: Education</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -79,6 +94,7 @@ layout: charts
             {% else %}
                 {% assign a = a | plus: 1 %} 
             {% endif %}
+            {% assign b = b | plus: 1 %}
         {% endfor %}
 
         </div>
