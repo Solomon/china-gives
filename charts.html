@@ -22,11 +22,11 @@ layout: charts
                   <li role="presentation">
                     <a href="#">Gender</a>
                   </li>
-                  <li role="presentation" class="active">
-                    <a href="#"><span>Age</span></a>
-                  </li>
                   <li role="presentation">
-                    <a href="#">Donation scale</a>
+                    <a href="javascript:void(0);" data-chart-type="age"><span>Age</span></a>
+                  </li>
+                  <li role="presentation" class="active">
+                    <a href="javascript:void(0);" data-chart-type="donation"><span>Donation scale</span></a>
                   </li>
                   <li role="presentation">
                     <a href="#">Sector</a>
@@ -55,8 +55,8 @@ layout: charts
         
         <div class="row">
         {% assign a = 0 %}
-        {% for i in (1..100)%}
-            <div class="col-md-3 col-sm-4 col-xs-6">
+        {% for i in (0..99)%}
+            <div class="col-md-3 col-sm-4 col-xs-6" id="person-container-{{ i }}">
                 <div class="person-info-box">
                     <div class="person-info-box-header text-center">
                         <img src="img/people/avatars/{{ a }}.jpg">
