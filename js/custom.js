@@ -1,14 +1,10 @@
-if (typeof String.prototype.startsWith != 'function') {
-  String.prototype.startsWith = function (str){
-    return this.slice(0, str.length) == str;
-  };
+function str_starts(full, str){
+  return full.slice(0, str.length) == str;
 }
 
-if (!Array.prototype.last){
-    Array.prototype.last = function(){
-        return this[this.length - 1];
-    };
-};
+function arr_last(arr){
+  return arr[arr.length - 1];
+}
 
 function equalHeight() {
 	var pw = $('div.person').width();
@@ -171,7 +167,7 @@ function draw_generousity_chart(){
     current_data = init_data();
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
-  current_chart.draw(generosity_data(), options);  
+  current_chart.draw(generosity_data(), options);
   init_chart_onclick();
   fix_chart(window);
 }
@@ -189,6 +185,25 @@ function draw_charts(chart_type){
     }  
 }
 
+
+function init_chart_onclick(){
+  if (!is_click_inited){
+    google.visualization.events.addListener(current_chart, 'click', function(e) {
+      var id = e.targetID;
+      if (str_starts(id, 'bubble')){
+        id = arr_last(id.split('#'));
+        console.log(id);
+        $('html, body').animate({
+          scrollTop: $('#person-container-' + id).offset().top - 600
+        }, 2000);
+        $('.person-info-box').removeClass('selected');      
+        $('#person-container-' + id + ' .person-info-box').addClass('selected');
+      }
+    });
+    is_click_inited = true;
+  }
+}
+
 $(function (){
   $(window).scroll(function(e) {
     fix_chart(this);
@@ -203,22 +218,4 @@ $(function (){
 if ($('#series_chart_div').length > 0) {
   google.load("visualization", "1", {packages:["corechart"]});
   google.setOnLoadCallback(draw_generousity_chart);  
-}
-
-function init_chart_onclick(){
-  if (!is_click_inited){
-    google.visualization.events.addListener(current_chart, 'click', function(e) {
-      var id = e.targetID;
-      if (id.startsWith('bubble')){
-        id = id.split('#').last();
-        console.log(id);
-        $('html, body').animate({
-          scrollTop: $('#person-container-' + id).offset().top - 600
-        }, 2000);
-        $('.person-info-box').removeClass('selected');      
-        $('#person-container-' + id + ' .person-info-box').addClass('selected');
-      }
-    });
-    is_click_inited = true;
-  }
 }
