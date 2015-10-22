@@ -11,6 +11,7 @@ function equalHeight() {
 	$('div.person').css({
 	    'height': pw + 'px'
 	});
+  make_routing();    
 }
 
 $(document).ready(equalHeight);
@@ -189,7 +190,10 @@ function age_options(){
           duration: 2000,
           easing: 'out'
         },
-        backgroundColor: { fill:'transparent' }
+        backgroundColor: { fill:'transparent' },
+        'tooltip' : {
+          trigger: 'none'
+        }
       };
 }
 
@@ -546,9 +550,6 @@ function init_chart_onclick(){
 $(function (){
   $(window).scroll(function(e) {
     fix_chart(this);
-  });
-  $(window).on('resize', function(){
-    make_routing();    
   });
 
   $('.chart-options a').click(function (){    
