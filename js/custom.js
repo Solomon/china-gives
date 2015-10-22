@@ -105,7 +105,7 @@ function init_data() {
       var age = Math.floor(Math.random() * 50) + 25;
       var ind_rand = (Math.floor(Math.random() * 4) + 0);
       var ind = industry[ind_rand];
-      var ind_data = ind_rand + 1;
+      var ind_data = ind_rand + 1 + ((Math.floor(Math.random() * 4) - 2)/10);
       var don = Math.floor(Math.random() * 100000000) + 500000;
       var gener = (Math.floor(Math.random() * 70) + 20);
       var name = rand_name(); 
@@ -493,8 +493,7 @@ function draw_alphabetical_chart() {
 }
 
 function draw_charts(chart_type){
-    $('.chart-options li').removeClass('active');
-    $('.chart-options a[data-chart-type="' + chart_type + '"]').parents('li').first().addClass('active');
+    activate_link(chart_type);
     switch (chart_type){
       case 'age':
         draw_age_charts();
@@ -520,6 +519,10 @@ function draw_charts(chart_type){
     }  
 }
 
+function activate_link(chart_type){  
+    $('.chart-options li').removeClass('active');
+    $('.chart-options a[data-chart-type="' + chart_type + '"]').parents('li').first().addClass('active');
+}
 
 function init_chart_onclick(){
   if (!is_click_inited){
@@ -548,9 +551,79 @@ $(function (){
     var chart_type = $(this).data('chart-type');
     draw_charts(chart_type);
   });
+  make_routing();
 });
 
 if ($('#series_chart_div').length > 0) {
   google.load("visualization", "1", {packages:["corechart"]});
-  google.setOnLoadCallback(draw_donation_chart);  
+  google.setOnLoadCallback(get_chart_route);  
+}
+
+function get_chart_route(){
+  if ($('#series_chart_div').length <= 0)
+    return;
+  var type = window.location.hash.substr(1);
+
+  activate_link(type);
+  switch (type) {
+      case 'age':
+        return draw_age_charts;
+      break;
+      case 'generosity':
+        return draw_generousity_chart;
+      break;
+      case 'donation':
+        return draw_donation_chart;
+      break;  
+      case 'industry':
+        return draw_industry_chart;
+      break;  
+      case 'months':
+        return draw_months_chart;
+      break;
+      case 'focus':
+        return draw_focus_chart;
+      break;
+      case 'alphabetical':
+        return draw_alphabetical_chart;
+      break;
+      default:
+        return draw_donation_chart;
+      break;
+  }  
+
+}
+
+function make_routing(){
+  if ($('#series_chart_div').length <= 0)
+    return;
+  var type = window.location.hash.substr(1);
+  activate_link(type);
+  switch (type) {
+      case 'age':
+        draw_age_charts();
+      break;
+      case 'generosity':
+        draw_generousity_chart();
+      break;
+      case 'donation':
+        draw_donation_chart();
+      break;  
+      case 'industry':
+        draw_industry_chart();
+      break;  
+      case 'months':
+        draw_months_chart();
+      break;
+      case 'focus':
+        draw_focus_chart();
+      break;
+      case 'alphabetical':
+        draw_alphabetical_chart();
+      break;
+      default:
+        history.pushState('', 'New Page Title', window.location.href + '#donation');
+        draw_donation_chart();
+      break;
+  }  
 }
