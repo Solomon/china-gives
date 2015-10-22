@@ -229,7 +229,10 @@ function donation_options(){
           duration: 2000,
           easing: 'out'
         },
-        backgroundColor: { fill:'transparent' }
+        backgroundColor: { fill:'transparent' },
+        'tooltip' : {
+          trigger: 'none'
+        }
       };
 }
 
@@ -264,7 +267,10 @@ function generosity_options() {
         duration: 1000,
         easing: 'out'
       },
-      backgroundColor: { fill:'transparent' }
+      backgroundColor: { fill:'transparent' },
+        'tooltip' : {
+          trigger: 'none'
+        }
     };
 }
 
@@ -302,7 +308,10 @@ function industry_options(){
           duration: 2000,
           easing: 'out'
         },
-        backgroundColor: { fill:'transparent' }
+        backgroundColor: { fill:'transparent' },
+        'tooltip' : {
+          trigger: 'none'
+        }
       };
 }
 
@@ -341,7 +350,10 @@ function months_options(){
           duration: 2000,
           easing: 'out'
         },
-        backgroundColor: { fill:'transparent' }
+        backgroundColor: { fill:'transparent' },
+        'tooltip' : {
+          trigger: 'none'
+        }
       };
 }
 
@@ -379,7 +391,10 @@ function focus_options(){
           duration: 2000,
           easing: 'out'
         },
-        backgroundColor: { fill:'transparent' }
+        backgroundColor: { fill:'transparent' },
+        'tooltip' : {
+          trigger: 'none'
+        }
       };  
 }
 
@@ -416,7 +431,10 @@ function alphabetical_options(){
           duration: 2000,
           easing: 'out'
         },
-        backgroundColor: { fill:'transparent' }
+        backgroundColor: { fill:'transparent' },
+        'tooltip' : {
+          trigger: 'none'
+        }
       };
 }
 
