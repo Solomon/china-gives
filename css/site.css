@@ -11,6 +11,22 @@ section.bg-dark.bg-image {
     background: none;
 }
 
+section img {
+    max-width: 100%;
+}
+
+.no-mg-btm {
+    margin-bottom: 0;
+}
+
+ul.no-bullets {
+    padding: 0;
+}
+
+ul.no-bullets li {
+    list-style-type: none;
+}
+
 /* color overrides */
 
 hr {
@@ -24,6 +40,7 @@ hr {
 a:hover, a:focus {
     color: #BF364A;
 }
+
 
 .bg-primary {
     background-color: #A51C30;
@@ -165,10 +182,65 @@ a:hover, a:focus {
     background-image: url(../img/HKSlogo_ash_white.png);
     }
 
+    .navbar.dark .navbar-logo {
+    background-image: url(../img/HKSlogo_ash.png) !important;
+    }
+
+    .navbar-nav>li>a>span.menu-btn {
+        border: 1px solid rgba(255,255,255,.7);
+        border-radius: 3px;
+        padding: 5px 7px;
+        margin: 8px 0 8px -8px;
+    }
+
+    .navbar-default.dark {
+        border-color: #e7e7e7;
+    }
+
+    .navbar-default.dark .navbar-header .navbar-brand,
+    .navbar-default.dark .nav>li>a,
+    .navbar-default.dark .nav>li>a:focus:hover {
+        color: #222;
+    }
+
+    .navbar-default.dark.affix .navbar-header .navbar-brand,
+    .navbar-default.dark .navbar-header .navbar-brand:hover,
+    .navbar-default.dark .nav>li>a:hover  {
+        color: #A51C30;;
+    }
+
+    .navbar-default.dark .nav>li>a>span.menu-btn {
+        border: 1px solid #222;
+    }
+
+        .navbar-default.dark .nav>li>a:hover>span.menu-btn {
+            border-color: #A51C30;; 
+        }
+
+    .navbar-default.dark .nav>li>a>span.menu-btn:hover {
+        border-color: #A51C30;
+    }
+
+    .navbar-default.dark.affix .nav>li>a>span.menu-btn {
+        border-color: transparent;
+    }
+
 }
 
+.navbar.dark {
+    border-color: rgba(34,34,34,.05);
+    background-color: #fff;
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(34,34,34,0.25);
+    -moz-box-shadow: 0px 1px 0px 0px rgba(34,34,34,0.25);
+    box-shadow: 0px 1px 0px 0px rgba(34,34,34,0.25);
+}
 
-/* Header */
+@media (min-width: 768px) {
+
+
+}
+
+/* Header (used only on main page) */
 
 .lrn-mr-btn {
     color: rgba(255,255,255,.7);
@@ -184,6 +256,13 @@ a:hover, a:focus {
     color: rgba(255,255,255,1);
 }
 
+/* Footer */
+
+footer.site-footer {
+    padding: 50px 0;
+    background-color: #fff;
+}
+
 /* Main page sections */
 
 /* Rankings */
@@ -193,11 +272,15 @@ a:hover, a:focus {
 }
 
 .rankings .person {
-    background-color: #A51C30;
     border-radius: 50%;
     min-width: 50px;
     max-width: 90%;
     margin: 0 auto;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .rankings .person-wrapper {
@@ -211,6 +294,28 @@ a:hover, a:focus {
     vertical-align: middle;
     color: #fff;
     margin: 10px 0 0 10px;
+    z-index: 1000;
+    position: relative;
+}
+
+.overlay {
+    position: relative;
+}
+
+.overlay:before{
+      position: absolute;
+      content:" ";
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      display: none;
+      display: block;
+      border-radius: 50%;
+}
+
+.red:before {
+    background-color: rgba(165,28,48,0.6);
 }
 
 /* Overview */
@@ -239,6 +344,9 @@ section.bg-image {
 }
 
 section.bg-image div.background-image {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     background-position: center center;
     width: 100%;
@@ -262,14 +370,6 @@ section.bg-image:hover div.background-image {
     height: 105%;
 }
 
-/*section.bg-image:hover div.background-image {
-    -moz-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    -o-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
-}*/
-
 section.bg-image.location div.background-image {
     background-image: url(../img/Guangzhou_pano.jpg);
 }
@@ -285,58 +385,6 @@ section.bg-image.hot-sector div.background-image {
 section.bg-image.government div.background-image {
     background-image: url(../img/parliament.jpg);
 }
-
-
-/*section.bg-image img.background {
-    position: absolute;
-    top: -9999px;
-    bottom: -9999px;
-    left: -9999px;
-    right: -9999px;
-    margin: auto;
-    min-height: 100%;
-    min-width: 100%;
-    -webkit-transition: all 0.4s ease-in-out;
-    -moz-transition: all 0.4s ease-in-out;
-    -ms-transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
-}
-
-section.bg-image img.background:hover {
-    -moz-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    -o-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
-}
-
-section.bg-image.sectors .row .col-md-6 {
-    position: relative;
-    overflow: hidden;
-}
-
-section.bg-image.sectors img.col-background {
-    position: absolute;
-    top: -9999px;
-    bottom: -9999px;
-    left: -9999px;
-    right: -9999px;
-    margin: auto;
-    min-height: 100%;
-    min-width: 100%;
-    -webkit-transition: all 0.4s ease-in-out;
-    -moz-transition: all 0.4s ease-in-out;
-    -ms-transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
-    z-index: -1;
-}
-*/
-/*    background: url(../img/sectors.jpg) center;
-
-
-    background: url(../img/parliament.jpg);*/
 
 /* Gender inequality */
 
@@ -356,117 +404,43 @@ div.gender-icons-container {
     margin-top: 50px;
 }
 
+/* Charts page */
+/* Charts */
 
+section.charts {
+    padding-bottom: 0;
+}
 
-@media (min-width: 768px) {
+@media (min-width: 992px) and (min-height: 600px) {
 
-    .navbar-nav>li>a>span.menu-btn {
-        border: 1px solid rgba(255,255,255,.7);
-        border-radius: 3px;
-        padding: 5px 7px;
-        margin: 8px 0 8px -8px;
+    .fix-charts #charts-container {
+        position: fixed;
+        top: 50px;
+        padding-top: 10px;
+        z-index: 1;
+        background-color: rgba(255,255,255,0.95);
     }
 
-    .navbar-default.pg-charts {
-        border-color: #e7e7e7;
+    .fix-charts section#people {
+        margin-top: 350px;
     }
 
-    .navbar-default.pg-charts .navbar-header .navbar-brand,
-    .navbar-default.pg-charts .nav>li>a,
-    .navbar-default.pg-charts .nav>li>a:focus:hover {
-        color: #222;
-    }
-
-    .navbar-default.pg-charts.affix .navbar-header .navbar-brand,
-    .navbar-default.pg-charts .navbar-header .navbar-brand:hover,
-    .navbar-default.pg-charts .nav>li>a:hover  {
-        color: #f05f40;
-    }
-
-    .navbar-default.pg-charts .nav>li>a>span.menu-btn {
-        border: 1px solid #222;
-    }
-
-        .navbar-default.pg-charts .nav>li>a:hover>span.menu-btn {
-            border-color: #f05f40; 
-        }
-
-    .navbar-default.pg-charts .nav>li>a>span.menu-btn:hover {
-        border-color: #f05f40;
-    }
-
-    .navbar-default.pg-charts.affix .nav>li>a>span.menu-btn {
-        border-color: transparent;
-    }
 }
 
-section.chart {
-    padding-bottom: 20px;
-    min-height: 100%;
+
+
+#series_chart_div {
+    width: 100%; 
+    height: 300px;
 }
 
-div.chart {
 
-}
-
-div.chart .chart-column {
-    text-align: center;
-}
-
-div.chart .chart-column:nth-child(1) {
-    padding: 0 6%;
-}
-
-div.chart .chart-column:nth-child(2) {
-    padding: 0 4%;
-}
-
-div.chart .chart-column:nth-child(4) {
-    padding: 0 6%;
-}
-
-div.person-box {
-    position: relative;
-    display: inline-block;
-    color: #fff;
-    top: 0;
-    left: 0;
-    width: 50px;
-    height: 50px;
-}
-
-div.person-box>p {
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    padding-top: 15px !important;
-    background-color: #f05f40;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    -webkit-transition: all .15s;
-    -moz-transition: all .15s;
-    transition: all .15;
-}
-
-div.person-box>p:hover {
-    width: 60px;
-    height: 60px;
-    top: -5px;
-    left: -5px;
-    font-size: 20px;
-    background-color: #ed431f;
-    cursor: pointer;
-}
-
-.chart-column-names {
-    padding: 20px 0;
+.fix-charts #series_chart_div {
+    
 }
 
 .chart-options {
-
+    padding-bottom: 10px;
 }
 
 .chart-options>li>a {
@@ -478,25 +452,51 @@ div.person-box>p:hover {
 .chart-options>li>a:focus,
 .chart-options>li>a:active {
     background-color: transparent;
-    color: #f05f40;
+    color: #BF364A;
 }
 
 .nav-pills.chart-options>li.active>a {
-    color: #f05f40;
+    color: #BF364A;
     background-color: transparent;
 }
 
 .nav-pills.chart-options>li.active>a>span {
-    box-shadow: 0 2px 0 #f05f40;
+    box-shadow: 0 2px 0 #BF364A;
     padding-bottom: 8px;
 }
 
-.map-wrapper {
-    text-align: center;
+/* People */
+
+.person-info-box {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-bottom: 30px;
 }
 
-iframe {
-    width: 960px;
-    height: 500px;
-    border: none;
+.person-info-box-title, 
+.person-info-box-header {
+    color: #fff;
+    background-color: #293352;
 }
+
+.person-info-box-header {
+    padding-bottom: 15px;
+}
+
+.person-info-box-image > img {
+    width: 100%;
+    height: 100px;
+}
+
+.person-info-box-header .person-info-box-text {
+    padding-left: 0;
+}
+
+.person-info-box-header .person-info-box-text .text-muted {
+    color: #8996A0;
+}
+
+.person-info-box-details {
+    padding-top: 10px;
+}
+

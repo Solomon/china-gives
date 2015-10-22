@@ -1,0 +1,102 @@
+---
+layout: charts
+
+---
+
+<section id="charts" class="charts">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Philanthropists by Age!!!</h2>
+                <hr class="primary">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="charts-container">
+        <div id="series_chart_div"></div>
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="nav nav-pills nav-justified chart-options">
+                  <li role="presentation">
+                    <a href="#donation" data-chart-type="donation"><span>Donation Scale</span></a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#generosity" data-chart-type="generosity"><span>Generosity Index</span></a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#industry" data-chart-type="industry"><span>Industry</span></a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#focus" data-chart-type="focus"><span>Focus</span></a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#age" data-chart-type="age"><span>Age</span></a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#months" data-chart-type="months"><span>Months</span></a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#alphabetical" data-chart-type="alphabetical"><span>Alphabetical</span></a>
+                  </li>
+                  <li role="presentation">
+                    <a href="charts-map.html">Map</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="people">
+
+    <div class="container">
+        
+        <div class="row">
+        {% assign a = 0 %}
+        {% assign b = 1 %}
+        {% for i in (0..99)%}
+            <div class="col-md-3 col-sm-4 col-xs-6" id="person-container-{{ i }}">
+                <div class="person-info-box">
+                    <div class="container-fluid">
+                        <div class="row person-info-box-title">
+                            <div class="col-xs-12">
+                                <h4>{{ b }}. Jack Ma</h4>
+                            </div>
+                        </div>
+                        <div class="row person-info-box-header">    
+                            <div class="person-info-box-image col-xs-6">
+                                <img src="img/people/avatars/{{ a }}.jpg">
+                            </div>
+                            <div class="person-info-box-text col-xs-6">   
+                                <ul class="no-bullets">
+                                    <li><small class="text-muted">Donations:</small><br><big>$52 million</big></li>
+                                    <li><small class="text-muted">Generosity:</small><br><big>12%</big></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row person-info-box-details">  
+                            <div class="col-xs-12">   
+                                <ul class="no-bullets">
+                                    <li>Age: 52</li>
+                                    <li>Location: Beijing</li>
+                                    <li>Industry: Real Estate</li>
+                                    <li>Focus: Education</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if a == 9%}
+                {% assign a = 0 %}
+            {% else %}
+                {% assign a = a | plus: 1 %} 
+            {% endif %}
+            {% assign b = b | plus: 1 %}
+        {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
