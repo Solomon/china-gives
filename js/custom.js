@@ -1,3 +1,9 @@
+
+var current_chart;
+var current_data;
+var is_click_inited = false;
+var is_chart_fixed = false;
+
 function str_starts(full, str){
   return full.slice(0, str.length) == str;
 }
@@ -11,6 +17,7 @@ function equalHeight() {
 	$('div.person').css({
 	    'height': pw + 'px'
 	});
+  is_chart_fixed = false;
   make_routing();    
 }
 
@@ -18,21 +25,12 @@ $(document).ready(equalHeight);
 $(window).resize(equalHeight);
 
 
-var current_chart;
-var current_data;
-var is_click_inited = false;
-var is_chart_fixed = false;
-
-
 function fix_chart(that){
-  if (!is_chart_fixed) {
-    var wrap = $("#page-top");
-    if ($(that).scrollTop() > 116) {
-      wrap.addClass("fix-charts");
-    } else {
-      wrap.removeClass("fix-charts");
-    }
-    is_chart_fixed = true;
+  var wrap = $("#page-top");
+  if ($(that).scrollTop() > 116) {
+    wrap.addClass("fix-charts");
+  } else {
+    wrap.removeClass("fix-charts");
   }
 }
 
@@ -446,7 +444,7 @@ function draw_age_charts(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(age_data(), options);
   init_chart_onclick();
-  fix_chart(window);
+  //fix_chart(window);
 }
 
 function draw_generousity_chart(){
@@ -457,7 +455,7 @@ function draw_generousity_chart(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(generosity_data(), options);
   init_chart_onclick();
-  fix_chart(window);
+  //fix_chart(window);
 }
 
 function draw_donation_chart(){
@@ -468,7 +466,7 @@ function draw_donation_chart(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(donation_data(), options);
   init_chart_onclick();
-  fix_chart(window);
+  //fix_chart(window);
 }
 
 function draw_industry_chart(){
@@ -479,7 +477,7 @@ function draw_industry_chart(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(industry_data(), options);
   init_chart_onclick();
-  fix_chart(window);
+  //fix_chart(window);
 }
 
 function draw_months_chart(){
@@ -490,7 +488,7 @@ function draw_months_chart(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(months_data(), options);
   init_chart_onclick();
-  fix_chart(window);
+  //fix_chart(window);
 }
 
 function draw_focus_chart(){
@@ -501,7 +499,7 @@ function draw_focus_chart(){
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(focus_data(), options);
   init_chart_onclick();
-  fix_chart(window);
+  //fix_chart(window);
 }
 
 function draw_alphabetical_chart() {
@@ -512,7 +510,7 @@ function draw_alphabetical_chart() {
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(alphabetical_data(), options);
   init_chart_onclick();
-  fix_chart(window);
+  //fix_chart(window);
 }
 
 function draw_charts(chart_type){
