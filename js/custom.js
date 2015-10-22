@@ -547,6 +547,9 @@ $(function (){
   $(window).scroll(function(e) {
     fix_chart(this);
   });
+  $(window).on('resize', function(){
+    make_routing();    
+  });
 
   $('.chart-options a').click(function (){    
     var chart_type = $(this).data('chart-type');
