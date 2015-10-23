@@ -175,6 +175,7 @@ function age_options(){
           title: 'Age',
           gridlineColor: 'transparent',
           baselineColor: 'black',
+          baseline: 20,
           ticks: [{v: 20, f: ''},{v: 30, f: '30'},{v: 40, f: '40'},
                   {v: 50, f: '50'},{v: 60, f: '60'},{v: 70, f: '70'},{v: 85, f: ''}]
         },
@@ -209,6 +210,7 @@ function donation_options(){
           title: 'Total Amount',
           gridlineColor: 'transparent',
           baselineColor: 'black',
+          baseline: 1,
           ticks: [{v: 1, f: ''},{v: 5, f: ''},{v: 10, f: ''},{v: 100, f: '100 m'},{v: 500, f: '500 m'},
                   {v: 1000, f: '1 b'},{v: 2000, f: '2 b'},{v: 2500, f: '2.5 b'}]
         },
@@ -286,6 +288,7 @@ function industry_options(){
           title: 'Total Amount',
           gridlineColor: 'transparent',
           baselineColor: 'black',
+          baseline: 1,
           ticks: [{v: 1, f: ''},{v: 5, f: ''},{v: 10, f: ''},{v: 100, f: '100 m'},{v: 500, f: '500 m'},
                   {v: 1000, f: '1 b'},{v: 2000, f: '2 b'},{v: 2500, f: '2.5 b'}]
         },
