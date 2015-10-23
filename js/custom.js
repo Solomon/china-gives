@@ -553,7 +553,9 @@ function draw_charts(chart_type){
 
 function activate_link(chart_type){  
     $('.chart-options li').removeClass('active');
-    $('.chart-options a[data-chart-type="' + chart_type + '"]').parents('li').first().addClass('active');
+    var active_anchor = $('.chart-options a[data-chart-type="' + chart_type + '"]');
+    active_anchor.parents('li').first().addClass('active');
+    $('#charts-header .section-heading').html(active_anchor.data('chart-name'));
 }
 
 function init_chart_onclick(){
@@ -569,6 +571,26 @@ function init_chart_onclick(){
         $('#person-container-' + id + ' .person-info-box').addClass('selected');
       }
     });
+
+    // google.visualization.events.addListener(current_chart, 'onmouseover', function(e) {
+    //   console.log(e);
+    //   var data = current_data[e.row];
+    //   console.log(data);
+    //   $("circle:first").tooltip({
+    //       'container': 'body',
+    //       'placement': 'bottom',
+    //       'title': data[0]
+    //   }); //
+    //   //if (str_starts(id, 'bubble') && window.location.hash.substr(1) != 'months') {
+    //     // id = arr_last(id.split('#'));
+    //     // $('html, body').animate({
+    //     //   scrollTop: $('#person-container-' + id).offset().top - 425
+    //     // }, 2000);
+    //     // $('.person-info-box').removeClass('selected');      
+    //     // $('#person-container-' + id + ' .person-info-box').addClass('selected');
+    //   //}
+    // });
+
     is_click_inited = true;
   }
 }
