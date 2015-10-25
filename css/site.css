@@ -387,8 +387,9 @@ section.bg-image div.background-image {
 }
 
 section.bg-image:hover div.background-image {
-    width: 105%;
-    height: 105%;
+    transform: scale(1.1, 1.1);
+    -ms-transform: scale(1.1, 1.1);
+    -webkit-transform: scale(1.1, 1.1);
 }
 
 section.bg-image.location div.background-image {
@@ -448,20 +449,16 @@ section.charts .container-fluid.charts-container {
     overflow-x: hidden;
 }
 
-@media (min-width: 992px) and (min-height: 600px) {
+.fix-charts #charts-container {
+    position: fixed;
+    top: 50px;
+    padding-top: 10px;
+    z-index: 1;
+    background-color: rgba(255,255,255,0.95);
+}
 
-    .fix-charts #charts-container {
-        position: fixed;
-        top: 50px;
-        padding-top: 10px;
-        z-index: 1;
-        background-color: rgba(255,255,255,0.95);
-    }
-
-    .fix-charts section#people {
-        margin-top: 350px;
-    }
-
+.fix-charts section#people {
+    margin-top: 350px;
 }
 
 
@@ -510,14 +507,44 @@ section.charts .container-fluid.charts-container {
     margin-bottom: 30px;
 }
 
-.person-info-box-title, 
-.person-info-box-header {
+.person-info-box-header > .row {
     color: #fff;
+    background-color: #808285;
+}
+
+.person-info-box-header > .row {
+    padding-bottom: 15px;
+}
+
+.person-info-box.selected .person-info-box-header > .row{
+    margin: 0 -25px;
     background-color: #293352;
 }
 
-.person-info-box-header {
-    padding-bottom: 15px;
+.person-info-box.selected .person-info-box-header {
+    position: relative;
+}
+
+.person-info-box.selected .person-info-box-header:before,
+.person-info-box.selected .person-info-box-header:after {
+    content: '';
+    position: absolute;
+    height: 0;
+    width: 0;
+}
+
+.person-info-box.selected .person-info-box-header:before {
+  top: 100%;
+  left: -25px;
+  border-top: 10px solid #1E1E1E;
+  border-left: 10px solid transparent;
+}
+
+.person-info-box.selected .person-info-box-header:after {
+  top: 100%;
+  right: -25px;
+  border-top: 10px solid #1E1E1E;
+  border-right: 10px solid transparent;
 }
 
 .person-info-box-image > img {
@@ -525,13 +552,22 @@ section.charts .container-fluid.charts-container {
     height: 100px;
 }
 
+.person-info-box.selected .person-info-box-image {
+    padding-right: 25px;
+}
+
 .person-info-box-header .person-info-box-text {
     padding-left: 0;
 }
 
 .person-info-box-header .person-info-box-text .text-muted {
-    color: #8996A0;
+    color: #DEDEDE;
 }
+
+    .person-info-box.selected .person-info-box-header .person-info-box-text .text-muted {
+        color: #8996A0;
+    }
+
 
 .person-info-box-details {
     padding-top: 10px;

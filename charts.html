@@ -45,9 +45,6 @@ layout: charts
                   <li role="presentation">
                     <a href="#months" data-chart-name="Donations by months" data-chart-type="months"><span>Months</span></a>
                   </li>
-                  <li role="presentation">
-                    <a href="charts-map.html">Map</a>
-                  </li>
                 </ul>
             </div>
         </div>
@@ -71,22 +68,22 @@ layout: charts
             <div class="col-md-3 col-sm-4 col-xs-6" id="person-container-{{ i }}">
                 <div class="person-info-box">
                     <div class="container-fluid">
-                        <div class="row person-info-box-title">
-                            <div class="col-xs-12">
-                                <h4>{{ b }}. Jack Ma</h4>
+                        <div class="person-info-box-header">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h4>{{ b }}. Jack Ma</h4>
+                                </div>
+                                <div class="person-info-box-image col-xs-6">
+                                    <img src="img/people/avatars/{{ a }}.jpg">
+                                </div>
+                                <div class="person-info-box-text col-xs-6">   
+                                    <ul class="no-bullets">
+                                        <li><small class="text-muted">Donations:</small><br><big>$52 million</big></li>
+                                        <li><small class="text-muted">Generosity:</small><br><big>12%</big></li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row person-info-box-header">    
-                            <div class="person-info-box-image col-xs-6">
-                                <img src="img/people/avatars/{{ a }}.jpg">
-                            </div>
-                            <div class="person-info-box-text col-xs-6">   
-                                <ul class="no-bullets">
-                                    <li><small class="text-muted">Donations:</small><br><big>$52 million</big></li>
-                                    <li><small class="text-muted">Generosity:</small><br><big>12%</big></li>
-                                </ul>
-                            </div>
-                        </div>
+                        </div>    
                         <div class="row person-info-box-details">  
                             <div class="col-xs-12">   
                                 <ul class="no-bullets">

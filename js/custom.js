@@ -34,7 +34,7 @@ $(window).resize(equalHeight);
 
 function fix_chart(that){
   var wrap = $("#page-top");
-  if ($(that).scrollTop() > 116) {
+  if ($(that).scrollTop() > 116 && $(window).height() >= 600) {
     wrap.addClass("fix-charts");
   } else {
     wrap.removeClass("fix-charts");
@@ -564,9 +564,16 @@ function init_chart_onclick(){
       var id = e.targetID;
       if (str_starts(id, 'bubble') && window.location.hash.substr(1) != 'months') {
         id = arr_last(id.split('#'));
-        $('html, body').animate({
-          scrollTop: $('#person-container-' + id).offset().top - 425
-        }, 2000);
+        if ($('#page-top').hasClass('fix-charts')) {
+          $('html, body').animate({
+            scrollTop: $('#person-container-' + id).offset().top - 425
+          }, 2000);
+        }
+        else {
+          $('html, body').animate({
+            scrollTop: $('#person-container-' + id).offset().top - 65
+          }, 2000);
+        }
         $('.person-info-box').removeClass('selected');      
         $('#person-container-' + id + ' .person-info-box').addClass('selected');
       }
