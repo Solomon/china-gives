@@ -3,7 +3,7 @@ var current_chart;
 var current_data;
 var is_click_inited = false;
 var is_chart_fixed = false;
-
+var is_chart_closed = false;
 function str_starts(full, str){
   return full.slice(0, str.length) == str;
 }
@@ -31,13 +31,28 @@ function equalHeightCols() {
 $(document).ready(equalHeight);
 $(window).resize(equalHeight);
 
+function must_fix(that){
+  return $(that).scrollTop() > 116 && $(window).height() >= 600;
+}
+
+function will_fix(that){
+  return $(that).scrollTop() <= 116 && $(window).height() >= 600;
+}
+
 
 function fix_chart(that){
   var wrap = $("#page-top");
-  if ($(that).scrollTop() > 116 && $(window).height() >= 600) {
+  if (must_fix(that)) {
     wrap.addClass("fix-charts");
   } else {
     wrap.removeClass("fix-charts");
+  }
+  if (is_chart_closed) {
+    var chart_container = $('#charts-container');
+    if ($(that).scrollTop() <= 116 && chart_container.hasClass('closed'))
+        chart_container.removeClass('closed');
+    else if ($(that).scrollTop() > 116 && !chart_container.hasClass('closed'))
+        chart_container.addClass('closed');
   }
 }
 
@@ -564,7 +579,8 @@ function init_chart_onclick(){
       var id = e.targetID;
       if (str_starts(id, 'bubble') && window.location.hash.substr(1) != 'months') {
         id = arr_last(id.split('#'));
-        if ($('#page-top').hasClass('fix-charts')) {
+        var chart_container = $('#charts-container');
+        if (($('#page-top').hasClass('fix-charts') || will_fix(window)) && !is_chart_closed) {
           $('html, body').animate({
             scrollTop: $('#person-container-' + id).offset().top - 425
           }, 2000);
@@ -612,11 +628,20 @@ $(function (){
     draw_charts(chart_type);
   });
   make_routing();
+
+  $('#chart-toggle').click(function (){
+    var chart_container = $('#charts-container');
+    is_chart_closed = !chart_container.hasClass('closed'); 
+    if (!is_chart_closed)
+      chart_container.removeClass('closed');
+    else
+      chart_container.addClass('closed');
+  });
 });
 
 if ($('#series_chart_div').length > 0) {
   google.load("visualization", "1", {packages:["corechart"]});
-  google.setOnLoadCallback(get_chart_route);  
+  google.setOnLoadCallback(get_chart_route);
 }
 
 function get_chart_route(){

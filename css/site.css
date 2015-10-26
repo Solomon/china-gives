@@ -61,7 +61,6 @@ a:hover, a:focus {
     background-color: #BF364A;
 }
 
-
 .navbar-default {
     border-color: rgba(34,34,34,.05);
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
@@ -455,19 +454,52 @@ section.charts .container-fluid.charts-container {
     padding-top: 10px;
     z-index: 1;
     background-color: rgba(255,255,255,0.95);
+    -webkit-box-shadow: 0px 2px 0px 0px rgba(34,34,34,0.15);
+    -moz-box-shadow: 0px 2px 0px 0px rgba(34,34,34,0.15);
+    box-shadow: 0px 2px 0px 0px rgba(34,34,34,0.15);
+}
+
+.fix-charts #charts-container.closed {
+    top: -310px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.charts-toggle {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    width: 30px;
+    text-align: center;
+    display: none;
+}
+
+.fix-charts .charts-toggle {
+    display: block;
+} 
+
+.charts-toggle > a {
+    color: #808285;
+    font-size: 30px;
+}
+
+.charts-toggle > a:hover,
+.charts-toggle > a:focus,
+.charts-toggle > a:active {
+    color: #BF364A;
+    text-decoration: none;
 }
 
 .fix-charts section#people {
     margin-top: 350px;
 }
 
-
-
 #series_chart_div {
     width: 100%; 
     height: 300px;
 }
-
 
 .fix-charts #series_chart_div {
     
@@ -476,6 +508,21 @@ section.charts .container-fluid.charts-container {
 .chart-options {
     padding-bottom: 10px;
 }
+
+/* In bootstrap.css, this was applied after 768px, we need this from all the way down to ensure chart nav does nor go vertical*/
+  
+.nav-justified.chart-options > li {
+    display: table-cell !important;
+    width: 1% !important;
+}
+.nav-justified.chart-options > li > a {
+    margin-bottom: 0 !important;
+    /* add custom padding*/
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/*end*/
 
 .chart-options>li>a {
     color: #222;
@@ -567,7 +614,6 @@ section.charts .container-fluid.charts-container {
     .person-info-box.selected .person-info-box-header .person-info-box-text .text-muted {
         color: #8996A0;
     }
-
 
 .person-info-box-details {
     padding-top: 10px;
