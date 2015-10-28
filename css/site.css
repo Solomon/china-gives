@@ -19,6 +19,15 @@ section img {
     margin-bottom: 0;
 }
 
+.mg-top-25 {
+    margin-top: 25px;
+}
+
+
+.mg-top-50 {
+    margin-top: 50px;
+}
+
 ul.no-bullets {
     padding: 0;
 }
@@ -335,17 +344,12 @@ footer.site-footer .row .footer-copy-text {
 
 /* Overview */
 
-section.overview .metrics div {
-    margin-top: 50px;
-}
-
 section.overview .metrics p.metric-lg {
     font-size: 5rem;
     font-weight: 300;
 }
 
 section.overview .key-findings {
-    margin-top: 50px;
     font-size: 16px;
 }
 
@@ -403,7 +407,7 @@ section.bg-image.location div.background-image {
         height: auto !important;
     }
 
-}    
+}
 
 section.bg-image.top-industry div.background-image {
     background-image: url(../img/construction.jpg);
@@ -431,10 +435,6 @@ section.bg-image.government div.background-image {
         align-self: flex-end;
     }
 
-}
-
-div.gender-icons-container {
-    margin-top: 50px;
 }
 
 /* Charts page */
@@ -541,9 +541,13 @@ section.charts .container-fluid.charts-container {
     background-color: transparent;
 }
 
-.nav-pills.chart-options>li.active>a>span {
-    box-shadow: 0 2px 0 #BF364A;
-    padding-bottom: 8px;
+@media(min-width:768px) {
+
+    .nav-pills.chart-options>li.active>a>span {
+        box-shadow: 0 2px 0 #BF364A;
+        padding-bottom: 8px;
+    }
+
 }
 
 /* People */
@@ -556,16 +560,13 @@ section.charts .container-fluid.charts-container {
 
 .person-info-box-header > .row {
     color: #fff;
-    background-color: #808285;
-}
-
-.person-info-box-header > .row {
+    background-color: #293352;
     padding-bottom: 15px;
 }
 
-.person-info-box.selected .person-info-box-header > .row{
+.person-info-box.selected .person-info-box-header > .row {
     margin: 0 -25px;
-    background-color: #293352;
+    background-color: #A51C30;
 }
 
 .person-info-box.selected .person-info-box-header {
@@ -578,20 +579,18 @@ section.charts .container-fluid.charts-container {
     position: absolute;
     height: 0;
     width: 0;
+    top: 100%;
+    border-top: 10px solid #860e1f;
 }
 
 .person-info-box.selected .person-info-box-header:before {
-  top: 100%;
-  left: -25px;
-  border-top: 10px solid #1E1E1E;
-  border-left: 10px solid transparent;
+    left: -25px;
+    border-left: 10px solid transparent;
 }
 
 .person-info-box.selected .person-info-box-header:after {
-  top: 100%;
-  right: -25px;
-  border-top: 10px solid #1E1E1E;
-  border-right: 10px solid transparent;
+    right: -25px;
+    border-right: 10px solid transparent;
 }
 
 .person-info-box-image > img {
@@ -608,14 +607,29 @@ section.charts .container-fluid.charts-container {
 }
 
 .person-info-box-header .person-info-box-text .text-muted {
-    color: #DEDEDE;
+    color: #8996A0;
 }
 
     .person-info-box.selected .person-info-box-header .person-info-box-text .text-muted {
-        color: #8996A0;
+        color: #DEDEDE;
     }
 
 .person-info-box-details {
     padding-top: 10px;
 }
 
+/* Peerson-info-box modifications for front page*/
+
+.rankings .person-info-box {
+    background-color: transparent;
+    border: 1px solid #8996A0;
+}
+
+.rankings .person-info-box-header > .row {
+    color: #fff;
+    background-color: transparent;
+}
+
+.rankings .person-info-box-header .person-info-box-text .text-muted {
+    color: #8996A0;
+}
