@@ -460,12 +460,16 @@ section.charts .container-fluid.charts-container {
     box-shadow: 0px 2px 0px 0px rgba(34,34,34,0.15);
 }
 
-.fix-charts #charts-container.closed {
-    top: -310px;
+.fix-charts #charts-container.closed,
+.fix-charts #charts-container.reopened {
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+}
+
+.fix-charts #charts-container.closed {
+    top: -310px;
 }
 
 .charts-toggle {

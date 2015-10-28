@@ -58,8 +58,16 @@ function fix_chart(that){
 
 function auto_hide_fixed_charts() {
   var maps_position = $("#maps").offset().top;
-  if ( $(document).scrollTop() >= maps_position - 1000) {
-    alert('dadaaam');
+    
+  if ($('#page-top').hasClass('fix-charts') && !is_chart_closed) {
+    if ( $(document).scrollTop() >= maps_position - 400) {
+      $('#charts-container').addClass('closed');
+      console.log('dadaam');
+    }
+    else if ($(document).scrollTop() < maps_position - 400 && is_click_inited) {
+      $('#charts-container').removeClass('closed');
+      $('#charts-container').addClass('reopened');
+    }
   }
 }
 
@@ -609,6 +617,7 @@ function init_chart_onclick(){
 $(function (){
   $(window).scroll(function(e) {
     fix_chart(this);
+    auto_hide_fixed_charts();
   });
   equalHeightCols();
   $('.chart-options a').click(function (){    
