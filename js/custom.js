@@ -56,6 +56,20 @@ function fix_chart(that){
   }
 }
 
+function auto_hide_fixed_charts() {
+  var maps_position = $("#maps").offset().top;
+    
+  if ($('#page-top').hasClass('fix-charts') && !is_chart_closed) {
+    if ( $(document).scrollTop() >= maps_position - 400) {
+      $('#charts-container').addClass('closed');
+    }
+    else if ($(document).scrollTop() < maps_position - 400 && is_click_inited) {
+      $('#charts-container').removeClass('closed');
+      $('#charts-container').addClass('reopened');
+    }
+  }
+}
+
 function rand_name() {
     var text = '';
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -603,6 +617,7 @@ $(function (){
   var base_url = get_base_url();
   $(window).scroll(function(e) {
     fix_chart(this);
+    auto_hide_fixed_charts();
   });
   equalHeightCols();
   $('.chart-options a').click(function (event){    
@@ -621,6 +636,9 @@ $(function (){
     else
       chart_container.addClass('closed');
   });
+
+  auto_hide_fixed_charts();
+
 });
 
 if ($('#series_chart_div').length > 0) {
@@ -707,3 +725,4 @@ function make_routing(){
       break;
   }  
 }
+
