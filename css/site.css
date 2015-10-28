@@ -634,3 +634,23 @@ section.charts .container-fluid.charts-container {
 .rankings .person-info-box-header .person-info-box-text .text-muted {
     color: #8996A0;
 }
+
+
+.map svg {
+    display: block;
+    margin: 0 auto;
+}
+
+.mapTooltip {
+    position : fixed;
+    background-color : #474c4b;
+    moz-opacity:0.70;
+    opacity: 0.70;
+    filter:alpha(opacity=70);
+    border-radius:10px;
+    padding : 10px;
+    z-index: 1000;
+    max-width: 200px;
+    display:none;
+    color:#fff;
+}
