@@ -62,7 +62,6 @@ function auto_hide_fixed_charts() {
   if ($('#page-top').hasClass('fix-charts') && !is_chart_closed) {
     if ( $(document).scrollTop() >= maps_position - 400) {
       $('#charts-container').addClass('closed');
-      console.log('dadaam');
     }
     else if ($(document).scrollTop() < maps_position - 400 && is_click_inited) {
       $('#charts-container').removeClass('closed');
