@@ -186,7 +186,7 @@ a:hover, a:focus {
         margin: 7px 0 0 0;
     }
 
-    .navbar:not(.affix) .navbar-logo {
+    .navbar:not(.affix):not(.dark)  .navbar-logo {
         background-image: url(../img/HKSlogo_ash_white_test.png);
         height: 88px;
     }
