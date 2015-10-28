@@ -12,8 +12,8 @@
 		{
 			maps :{
 				china_map : {
-					width : 857,
-					height : 699,
+					width : 645,
+					height : 480,
 					getCoords : function (lat, lon) {
 						// todo
 						console.log(lat,lon);
