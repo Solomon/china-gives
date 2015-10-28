@@ -56,6 +56,13 @@ function fix_chart(that){
   }
 }
 
+function auto_hide_fixed_charts() {
+  var maps_position = $("#maps").offset().top;
+  if ( $(document).scrollTop() >= maps_position - 1000) {
+    alert('dadaaam');
+  }
+}
+
 function rand_name() {
     var text = '';
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -618,6 +625,9 @@ $(function (){
     else
       chart_container.addClass('closed');
   });
+
+  auto_hide_fixed_charts();
+
 });
 
 if ($('#series_chart_div').length > 0) {
@@ -693,3 +703,4 @@ function make_routing(){
       break;
   }  
 }
+
