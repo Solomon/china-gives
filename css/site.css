@@ -635,10 +635,16 @@ section.charts .container-fluid.charts-container {
     color: #8996A0;
 }
 
+/* maps */
 
 .map svg {
     display: block;
     margin: 0 auto;
+}
+
+.map svg.lean-back {
+    transform: matrix3d(1,0,0.00,0,0.00,0.64,0.77,-0.001,0,-0.77,0.64,0,0,0,0,1);
+    -webkit-transform: matrix3d(1,0,0.00,0,0.00,0.64,0.77,-0.001,0,-0.77,0.64,0,0,0,0,1);
 }
 
 .mapTooltip {
@@ -653,4 +659,29 @@ section.charts .container-fluid.charts-container {
     max-width: 200px;
     display:none;
     color:#fff;
+}
+
+.maps .chart-options>li>a {
+    color: #fff;
+}
+
+.maps .chart-options>li>a:hover,
+.maps .chart-options>li>a:focus,
+.maps .chart-options>li>a:active {
+    background-color: transparent;
+    color: #fff;
+}
+
+.maps .nav-pills.chart-options>li.active>a {
+    color: #fff;
+    background-color: transparent;
+}
+
+@media(min-width:768px) {
+
+    .maps .nav-pills.chart-options>li.active>a>span {
+        box-shadow: 0 2px 0 #fff;
+        padding-bottom: 8px;
+    }
+
 }
