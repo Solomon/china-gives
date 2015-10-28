@@ -595,25 +595,6 @@ function init_chart_onclick(){
       }
     });
 
-    // google.visualization.events.addListener(current_chart, 'onmouseover', function(e) {
-    //   console.log(e);
-    //   var data = current_data[e.row];
-    //   console.log(data);
-    //   $("circle:first").tooltip({
-    //       'container': 'body',
-    //       'placement': 'bottom',
-    //       'title': data[0]
-    //   }); //
-    //   //if (str_starts(id, 'bubble') && window.location.hash.substr(1) != 'months') {
-    //     // id = arr_last(id.split('#'));
-    //     // $('html, body').animate({
-    //     //   scrollTop: $('#person-container-' + id).offset().top - 425
-    //     // }, 2000);
-    //     // $('.person-info-box').removeClass('selected');      
-    //     // $('#person-container-' + id + ' .person-info-box').addClass('selected');
-    //   //}
-    // });
-
     is_click_inited = true;
   }
 }
