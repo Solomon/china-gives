@@ -600,13 +600,16 @@ function init_chart_onclick(){
 }
 
 $(function (){
+  var base_url = get_base_url();
   $(window).scroll(function(e) {
     fix_chart(this);
   });
   equalHeightCols();
-  $('.chart-options a').click(function (){    
+  $('.chart-options a').click(function (event){    
     var chart_type = $(this).data('chart-type');
     draw_charts(chart_type);
+    history.pushState('', '', base_url + $(this).attr('href'));
+    event.preventDefault();
   });
   make_routing();
 
@@ -628,8 +631,7 @@ if ($('#series_chart_div').length > 0) {
 function get_chart_route(){
   if ($('#series_chart_div').length <= 0)
     return;
-  var type = window.location.hash.substr(1);
-
+  var type = get_param();
   activate_link(type);
   switch (type) {
       case 'age':
@@ -660,10 +662,22 @@ function get_chart_route(){
 
 }
 
+function get_param(){
+   return window.location.href.indexOf("?") > -1 ? without_hash(window.location.href.split('?')[1]) : '';
+}
+
+function without_hash(str){
+   return str.indexOf("#") > -1 ? str.split('#')[0] : str;
+}
+
+function get_base_url(){
+  return window.location.href.indexOf("?") > -1 ? window.location.href.split('?')[0] : window.location.href;
+}
+
 function make_routing(){
   if ($('#series_chart_div').length <= 0)
     return;
-  var type = window.location.hash.substr(1);
+  var type = get_param(1);
   activate_link(type);
   switch (type) {
       case 'age':
@@ -688,7 +702,7 @@ function make_routing(){
         draw_alphabetical_chart();
       break;
       default:
-        history.pushState('', 'New Page Title', window.location.href + '#donation');
+        history.pushState('', '', get_base_url() + '?donation');
         draw_donation_chart();
       break;
   }  

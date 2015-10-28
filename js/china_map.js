@@ -16,7 +16,6 @@
 					height : 520,
 					getCoords : function (lat, lon) {
 						// todo
-						console.log(lat,lon);
 						return {"x" : lat, "y" : lon};
 					},
 					elems : {
