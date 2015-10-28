@@ -43,11 +43,11 @@ hr {
 }
 
 .text-primary, a {
-    color: #A51C30;
+    color: #BF364A;
 }
 
 a:hover, a:focus {
-    color: #BF364A;
+    color: #A51C30;
 }
 
 
@@ -117,7 +117,7 @@ a:hover, a:focus {
 
 @media(min-width:768px) {
     .navbar-default {
-        border-color: rgba(255,255,255,.3);
+        border-color: transparent;
         background-color: transparent;
     }
 
@@ -172,7 +172,7 @@ a:hover, a:focus {
 /* Navbar */
 
 .navbar-logo {
-    background-image: url(../img/HKSlogo_ash.png);
+    background-image: url(../img/HKSlogo_ash_test.png);
     background-repeat: no-repeat;
     width: 191px;
     height: 36px;
@@ -187,11 +187,12 @@ a:hover, a:focus {
     }
 
     .navbar:not(.affix) .navbar-logo {
-    background-image: url(../img/HKSlogo_ash_white.png);
+        background-image: url(../img/HKSlogo_ash_white_test.png);
+        height: 88px;
     }
 
     .navbar.dark .navbar-logo {
-    background-image: url(../img/HKSlogo_ash.png) !important;
+        background-image: url(../img/HKSlogo_ash_test.png) !important;
     }
 
     .navbar-nav>li>a>span.menu-btn {
