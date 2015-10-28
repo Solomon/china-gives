@@ -580,7 +580,7 @@ section.charts .container-fluid.charts-container {
     height: 0;
     width: 0;
     top: 100%;
-    border-top: 10px solid #860e1f;
+    border-top: 10px solid #6D0006;
 }
 
 .person-info-box.selected .person-info-box-header:before {
@@ -611,7 +611,7 @@ section.charts .container-fluid.charts-container {
 }
 
     .person-info-box.selected .person-info-box-header .person-info-box-text .text-muted {
-        color: #DEDEDE;
+        color: #D6B2B2;
     }
 
 .person-info-box-details {
