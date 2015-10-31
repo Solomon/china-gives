@@ -12,15 +12,6 @@ function arr_last(arr){
   return arr[arr.length - 1];
 }
 
-function equalHeight() {
-	var pw = $('div.person').width();
-	$('div.person').css({
-	    'height': pw + 'px'
-	});
-  is_chart_fixed = false;
-  make_routing();    
-}
-
 function equalHeightCols() {
   var rowHeight = $('#equalcols').height();
   $('#equalcols [class*="col-"]').css({
@@ -28,8 +19,17 @@ function equalHeightCols() {
   });   
 }
 
-$(document).ready(equalHeight);
-$(window).resize(equalHeight);
+function resize_charts() {
+  is_chart_fixed = false;
+  make_routing();    
+}
+
+function map_height() {
+  var map_width = $('#map').width();
+  $('#map > svg').css({
+    'max-height': (map_width/1.25) + 'px'
+  });
+}
 
 function must_fix(that){
   return $(that).scrollTop() > 116 && $(window).height() >= 600;
@@ -638,6 +638,17 @@ $(function (){
   });
 
   auto_hide_fixed_charts();
+
+  resize_charts();
+
+  map_height();
+
+});
+
+$(window).on('resize', function(){
+
+  resize_charts();
+  map_height();
 
 });
 

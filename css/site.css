@@ -644,6 +644,8 @@ section.charts .container-fluid.charts-container {
 .map svg {
     display: block;
     margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .map svg.lean-back {
@@ -688,8 +690,4 @@ section.charts .container-fluid.charts-container {
         padding-bottom: 8px;
     }
 
-}
-
-.maps svg {
-    max-width: 100%;
 }
