@@ -149,7 +149,7 @@ function init_map(plots) {
 	$(".mapcontainer").mapael({
 		map : {            
 			name : "china_map",
-			width: 645,
+			width: 750,
 			defaultArea: {
 				attrs : {
 					fill : "#8996A0"
