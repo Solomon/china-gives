@@ -581,8 +581,8 @@ function draw_charts(chart_type){
 }
 
 function activate_link(chart_type){  
-    $('.chart-options li').removeClass('active');
-    var active_anchor = $('.chart-options a[data-chart-type="' + chart_type + '"]');
+    $('#charts-container .chart-options li').removeClass('active');
+    var active_anchor = $('#charts-container .chart-options a[data-chart-type="' + chart_type + '"]');
     active_anchor.parents('li').first().addClass('active');
     $('#charts-header .section-heading').html(active_anchor.data('chart-name'));
 }
@@ -620,7 +620,7 @@ $(function (){
     auto_hide_fixed_charts();
   });
   equalHeightCols();
-  $('.chart-options a').click(function (event){    
+  $('#charts-container .chart-options a').click(function (event){    
     var chart_type = $(this).data('chart-type');
     draw_charts(chart_type);
     history.pushState('', '', base_url + $(this).attr('href'));

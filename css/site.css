@@ -689,3 +689,7 @@ section.charts .container-fluid.charts-container {
     }
 
 }
+
+.maps svg {
+    max-width: 100%;
+}
