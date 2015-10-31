@@ -1,5 +1,30 @@
+var map_inited = false;
+
 $(function(){
 
+    $('.maps .chart-options a').click(function (){
+		var type = $(this).data('map-type');
+		$('.maps .chart-options li').removeClass('active');
+		$(this).parents('li').first().addClass('active');
+		switch (type) {
+	      case 'philanthropists':
+	        load_map_philanthropists_data();
+	      break;
+	      case 'donations':
+	        load_map_donatoin_data();
+	      break;
+	      case 'movement':
+	        //draw_donation_chart();
+	      break;  
+	      default:
+	      break;
+  		}  
+	});
+
+	load_map_philanthropists_data();
+});
+
+function load_map_philanthropists_data(){
 	var plots = {
             "Xinjiang_Info": {
                 value: "1",
@@ -66,30 +91,37 @@ $(function(){
                     content: "<b>Fujian:</b> 8"
                 }
             }
-        };      
-
-
-        $('.maps .chart-options a').click(function (){
-			var type = $(this).data('map-type');
-			switch (type) {
-		      case 'philanthropists':
-		        //draw_age_charts();
-		      break;
-		      case 'donations':
-		        load_map_donatoin_data();
-		      break;
-		      case 'movement':
-		        //draw_donation_chart();
-		      break;  
-		      default:
-		        //history.pushState('', '', get_base_url() + '?donation');
-		        //draw_donation_chart();
-		      break;
-	  		}  
-		});
-
-	init_map(plots);
-});
+        };
+    if (!map_inited)
+		init_map(plots);
+	else {
+		var updatedOptions = {
+			plots: plots,
+			areas: map_areas()			
+		};
+		var opt = {
+				animDuration: 600,
+				deletedLinks: ['beijingguandong']
+			};
+		var newPlots = {
+				"Beijing_Info": {
+	                value: "16",
+	                latitude: 455.5,
+	                longitude: 190.5,
+	                size: 25,
+	                attrs: {
+		            	fill: "#fffd72"
+		            },
+	                href: "javascript:void(0);",
+	                tooltip: {
+	                    content: "<b>Beijing:</b> 16"
+	                }
+	            }
+			};
+		var deletedPlots = ["Sichuan_Info"];	
+		$(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, opt]);
+	}
+}
 
 function load_map_donatoin_data() {
 	var updatedOptions = {
@@ -120,7 +152,15 @@ function load_map_donatoin_data() {
 	                    content: "<b>Guandong:</b> 21"
 	                }
 	            }
-			}
+			},
+			areas: {
+				"Beijing": {
+					tooltip: {content : "<b>Beijing</b>"},
+					attrs: {
+			        	fill: "#89ff72"
+			        }
+			    }    
+			}	
 	};
 	var newPlots = {
 		"Sichuan_Info": {
@@ -140,29 +180,41 @@ function load_map_donatoin_data() {
 
 	var deletedPlots = ["Beijing_Info"];
 	var opt = {
-		animDuration: 600
+		animDuration: 600,
+		newLinks: {
+	            'beijingguandong' : {
+	                factor : 0.2, 
+	                between : [{latitude : 435.5, longitude : 450.5}, {latitude : 455.5, longitude : 190.5}], 
+	                attrs : {
+	                	stroke: "#89ff72",
+	                    "stroke-width" : 2
+	                }, 
+	                tooltip: {content : "Beijing - Guandong"}
+            	}
+        	}
 	};
 	$(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, opt]);
 }
 
 function init_map(plots) {
+	map_inited = true;
 	$(".mapcontainer").mapael({
 		map : {            
 			name : "china_map",
 			width: 645,
 			defaultArea: {
 				attrs : {
-					fill : "#8996A0"
-					, stroke: "#FFFFFF"
-				}
-				, attrsHover : {
+					fill : "#8996A0", 
+					stroke: "#FFFFFF"
+				}, 
+				attrsHover : {
 					fill: "#BAC5C6"
-				}
-				, text : {
+				}, 
+				text : {
 					attrs : {
 						fill : "#505444"
-					}
-					, attrsHover : {
+					}, 
+					attrsHover : {
 						fill : "#000"
 					}
 				}
@@ -272,6 +324,6 @@ function map_areas(){
 			},
 			"Shanghai":{
 				tooltip: {content : "<b>Shanghai</b>"}
-			},
+			}
 		};
 }
