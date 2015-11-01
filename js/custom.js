@@ -591,7 +591,7 @@ function init_chart_onclick(){
   if (!is_click_inited){
     google.visualization.events.addListener(current_chart, 'click', function(e) {
       var id = e.targetID;
-      if (str_starts(id, 'bubble') && window.location.hash.substr(1) != 'months') {
+      if (str_starts(id, 'bubble') && get_param() != 'months') {
         id = arr_last(id.split('#'));
         var chart_container = $('#charts-container');
         if (($('#page-top').hasClass('fix-charts') || will_fix(window)) && !is_chart_closed) {
@@ -702,7 +702,7 @@ function get_base_url(){
 function make_routing(){
   if ($('#series_chart_div').length <= 0)
     return;
-  var type = get_param(1);
+  var type = get_param();
   activate_link(type);
   switch (type) {
       case 'age':
