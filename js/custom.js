@@ -641,15 +641,11 @@ $(function (){
 
   resize_charts();
 
-  map_height();
-
 });
 
 $(window).on('resize', function(){
-
   resize_charts();
   map_height();
-
 });
 
 if ($('#series_chart_div').length > 0) {

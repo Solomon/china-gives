@@ -22,6 +22,8 @@ $(function(){
 	});
 
 	load_map_philanthropists_data();
+
+	map_height();
 });
 
 function load_map_philanthropists_data(){
