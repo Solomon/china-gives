@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{% if page.language == 'en' %}en{% elsif page.language == 'cn' %}zh-Hans{% endif %}">
 
   {% include head.html %}
 
@@ -11,7 +11,7 @@
 
     {% include footer.html %}
 
-<!-- jQuery -->
+    <!-- jQuery -->
     <script src="{{ "/js/jquery.js" | prepend: site.baseurl }}"></script>
 
     <!-- Bootstrap Core JavaScript -->
