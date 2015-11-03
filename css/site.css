@@ -172,7 +172,7 @@ a:hover, a:focus {
 /* Navbar */
 
 .navbar-logo {
-    background-image: url(../img/HKSlogo_ash_test.png);
+    background-image: url(../img/logo/HKSlogo_ash_test.png);
     background-repeat: no-repeat;
     width: 191px;
     height: 36px;
@@ -187,12 +187,12 @@ a:hover, a:focus {
     }
 
     .navbar:not(.affix):not(.dark)  .navbar-logo {
-        background-image: url(../img/HKSlogo_ash_white_test.png);
+        background-image: url(../img/logo/HKSlogo_ash_white_test.png);
         height: 88px;
     }
 
     .navbar.dark .navbar-logo {
-        background-image: url(../img/HKSlogo_ash_test.png) !important;
+        background-image: url(../img/logo/HKSlogo_ash_test.png) !important;
     }
 
     .navbar-nav>li>a>span.menu-btn {
@@ -245,6 +245,10 @@ a:hover, a:focus {
 }
 
 /* Header (used only on main page) */
+
+header {
+    background-image: url(../img/home/temple_of_heaven.jpg);
+}
 
 header .header-content .header-content-inner p {
     font-weight: 400;
@@ -354,6 +358,10 @@ section.overview .key-findings {
     font-size: 16px;
 }
 
+section.bg-image.overview div.background-image {
+    background-image: url(../img/home/shanghai.jpg);
+}
+
 /* Generous section */
 
 .service-box img.person {
@@ -390,14 +398,14 @@ section.bg-image div.background-image {
 
 }
 
-section.bg-image:hover div.background-image {
+section.bg-image:hover div.background-image.zoomable {
     transform: scale(1.1, 1.1);
     -ms-transform: scale(1.1, 1.1);
     -webkit-transform: scale(1.1, 1.1);
 }
 
 section.bg-image.location div.background-image {
-    background-image: url(../img/guangzhou_pano.jpg);
+    background-image: url(../img/home/east_pacific.jpg);
 }
 
 /* Industry, sector */
@@ -411,17 +419,17 @@ section.bg-image.location div.background-image {
 }
 
 section.bg-image.top-industry div.background-image {
-    background-image: url(../img/construction.jpg);
+    background-image: url(../img/home/construction.jpg);
 }
 
 section.bg-image.hot-sector div.background-image {
-    background-image: url(../img/books.jpg);
+    background-image: url(../img/home/university.jpg);
 }
 
 /* Government */
 
 section.bg-image.government div.background-image {
-    background-image: url(../img/parliament.jpg);
+    background-image: url(../img/home/national_congress.jpg);
 }
 
 /* Gender inequality */

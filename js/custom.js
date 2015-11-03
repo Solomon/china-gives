@@ -2,7 +2,6 @@
 var current_chart;
 var current_data;
 var is_click_inited = false;
-var is_chart_fixed = false;
 var is_chart_closed = false;
 function str_starts(full, str){
   return full.slice(0, str.length) == str;
@@ -20,8 +19,7 @@ function equalHeightCols() {
 }
 
 function resize_charts() {
-  is_chart_fixed = false;
-  make_routing();    
+  make_routing();   
 }
 
 function map_height() {
@@ -641,11 +639,15 @@ $(function (){
 
   resize_charts();
 
+  map_height();
+
 });
 
 $(window).on('resize', function(){
+
   resize_charts();
   map_height();
+
 });
 
 if ($('#series_chart_div').length > 0) {
