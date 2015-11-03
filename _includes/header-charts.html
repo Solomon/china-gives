@@ -14,15 +14,33 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                {% if page.language == 'en' %}
                 <li>
-                    <a href="#charts" class="page-scroll"><span>Charts & Top 100</span></a>
+                    <a href="#charts" class="page-scroll">Charts <i class="fa fa-bar-chart"></i></a>
                 </li>
                 <li>
-                    <a href="#maps" class="page-scroll"><span>Maps</span></a>
+                    <a href="#maps" class="page-scroll">Maps <i class="fa fa-globe"></i></a>
                 </li>
                 <li>
-                    <a href="{{ site.baseurl | append: "/"}}"><span class="menu-btn">Project Home</span></a>
+                    <a href="{{ site.baseurl | append: "/"}}">Project Home <i class="fa fa-home"></i></a>
                 </li>
+                <li>
+                    <a href="{{ page.url | prepend:'cn' }}"><span class="menu-btn">中文版</span></a>
+                </li>
+                {% elsif page.language == 'cn' %}
+                <li>
+                    <a href="#charts" class="page-scroll">排行榜 <i class="fa fa-bar-chart"></i></a>
+                </li>
+                <li>
+                    <a href="#maps" class="page-scroll">地图 <i class="fa fa-globe"></i></a>
+                </li>
+                <li>
+                    <a href="{{ site.baseurl | append: "/"}}">主页 <i class="fa fa-home"></i></a>
+                </li>
+                <li>
+                    <a href="../{{ page.url | remove:'/cn/' }}"><span class="menu-btn">En</span></a>
+                </li>
+                {% endif %}
             </ul>
         </div>
         <!-- /.navbar-collapse -->

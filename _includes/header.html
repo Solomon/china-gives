@@ -14,6 +14,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                {% if page.language == 'en' %}
                 <li>
                     <a class="page-scroll" href="#overview">Overview</a>
                 </li>
@@ -24,8 +25,34 @@
                     <a class="page-scroll" href="#about">About</a>
                 </li>
                 <li>
-                    <a href="charts.html"><span class="menu-btn">Charts</span></a>
+                    <a href="charts.html">Charts <i class="fa fa-bar-chart"></i></a>
                 </li>
+                <li>
+                    <a href="charts.html?donation#maps">Maps <i class="fa fa-globe"></i></a>
+                </li>
+                <li>
+                    <a href="{{ page.url | prepend:'cn' }}"><span class="menu-btn">中文版</span></a>
+                </li>
+                {% elsif page.language == 'cn' %}
+                <li>
+                    <a class="page-scroll" href="#overview">概观</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#rankings">亮点</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#about">大约</a>
+                </li>
+                <li>
+                    <a href="charts.html">排行榜 <i class="fa fa-bar-chart"></i></a>
+                </li>
+                <li>
+                    <a href="charts.html?donation#maps">地图 <i class="fa fa-globe"></i></a>
+                </li>
+                <li>
+                    <a href="../{{ page.url | remove:'/cn/' }}"><span class="menu-btn">En</span></a>
+                </li>
+                {% endif %}
             </ul>
         </div>
         <!-- /.navbar-collapse -->
