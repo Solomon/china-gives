@@ -1,6 +1,11 @@
 var map_inited = false;
+var maps_helper;
+
+var current_map_data = -1;
 
 $(function(){
+
+	maps_helper = maps_helper();
 
     $('.maps .chart-options a').click(function (){
 		var type = $(this).data('map-type');
@@ -14,7 +19,7 @@ $(function(){
 	        load_map_donatoin_data();
 	      break;
 	      case 'movement':
-	        //draw_donation_chart();
+	        load_map_movement_data();
 	      break;  
 	      default:
 	      break;
@@ -27,179 +32,91 @@ $(function(){
 });
 
 function load_map_philanthropists_data(){
-	var plots = {
-            "Xinjiang_Info": {
-                value: "1",
-                latitude: 122.5,
-                longitude: 167.5,
-                size: 15,
-                attrs: {
-	            	fill: "#89ff72"
-	            },
-                href: "javascript:void(0);",
-                tooltip: {
-                    content: "<b>Xinjiang:</b> 1"
-                }
-            },
-            "Guandong_Info": {
-                value: "21",
-                latitude: 435.5,
-                longitude: 450.5,
-                size: 50,
-                attrs: {
-	            	fill: "#ff5454"
-	            },
-                href: "javascript:void(0);",
-                tooltip: {
-                    content: "<b>Guandong:</b> 21"
-                }
-            },
-            "Beijing_Info": {
-                value: "16",
-                latitude: 455.5,
-                longitude: 190.5,
-                size: 25,
-                attrs: {
-	            	fill: "#fffd72"
-	            },
-                href: "javascript:void(0);",
-                tooltip: {
-                    content: "<b>Beijing:</b> 16"
-                }
-            },
-            "Zhejiang_Info": {
-                value: "11",
-                latitude: 520.5,
-                longitude: 341.5,
-                size: 25,
-                attrs: {
-	            	fill: "#fffd72"
-	            },
-                href: "javascript:void(0);",
-                tooltip: {
-                    content: "<b>Zhejiang:</b> 11"
-                }
-            },
-            "Fujian_Info": {
-                value: "8",
-                latitude: 496.5,
-                longitude: 398.5,
-                size: 15,
-                attrs: {
-                    fill: "#89ff72"
-            	},
-                href: "javascript:void(0);",
-                tooltip: {
-                    content: "<b>Fujian:</b> 8"
-                }
-            }
-        };
     if (!map_inited)
-		init_map(plots);
-	else {
+		init_map(maps_helper.plots_philantropists());
+	else {		
+		var new_data = maps_helper.plots_philantropists();
+		var new_areas = maps_helper.areas_philantropists();
+		var new_links = {};
+		var diff_res = maps_helper.diff_plots(current_map_data.plots, new_data);
+		var diff_areas = maps_helper.diff_areas(current_map_data.areas, new_areas);
+		var diff_links = maps_helper.diff_links(current_map_data.links, new_links);
+
+		current_map_data.plots = new_data;
+		current_map_data.areas = new_areas;
+		current_map_data.links = new_links;
+
 		var updatedOptions = {
-			plots: plots,
-			areas: map_areas()			
+			plots: diff_res.updated_plots,
+			areas: diff_areas			
 		};
 		var opt = {
 				animDuration: 600,
-				deletedLinks: ['beijingguandong']
-			};
-		var newPlots = {
-				"Beijing_Info": {
-	                value: "16",
-	                latitude: 455.5,
-	                longitude: 190.5,
-	                size: 25,
-	                attrs: {
-		            	fill: "#fffd72"
-		            },
-	                href: "javascript:void(0);",
-	                tooltip: {
-	                    content: "<b>Beijing:</b> 16"
-	                }
-	            }
+				newLinks: diff_links.new_links,
+				deletedLinks: diff_links.deleted_links
 			};
 		var deletedPlots = ["Sichuan_Info"];	
-		$(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, opt]);
+		$(".mapcontainer").trigger('update', [updatedOptions, diff_res.new_plots, diff_res.deleted_plots, opt]);
 	}
 }
 
 function load_map_donatoin_data() {
+	var new_data = maps_helper.plots_donations();
+	var new_areas = maps_helper.areas_donations();
+	var new_links = {};
+	var diff_res = maps_helper.diff_plots(current_map_data.plots, new_data);
+	var diff_areas = maps_helper.diff_areas(current_map_data.areas, new_areas);
+	var diff_links = maps_helper.diff_links(current_map_data.links, new_links);
+
+	current_map_data.plots = new_data;
+	current_map_data.areas = new_areas;
+	current_map_data.links = new_links;
+
 	var updatedOptions = {
-			plots: {
-				"Xinjiang_Info": {
-	                value: "9",
-	                latitude: 152.5,
-	                longitude: 167.5,
-	                size: 15,
-	                attrs: {
-		            	fill: "#89ff72"
-		            },
-	                href: "javascript:void(0);",
-	                tooltip: {
-	                    content: "<b>Xinjiang:</b> 1"
-	                }
-	            },
-	            "Guandong_Info": {
-	                value: "7",
-	                latitude: 100.5,
-	                longitude: 410.5,
-	                size: 15,
-	                attrs: {
-		            	fill: "#89ff72"
-		            },
-	                href: "javascript:void(0);",
-	                tooltip: {
-	                    content: "<b>Guandong:</b> 21"
-	                }
-	            }
-			},
-			areas: {
-				"Beijing": {
-					tooltip: {content : "<b>Beijing</b>"},
-					attrs: {
-			        	fill: "#89ff72"
-			        }
-			    }    
-			}	
+			plots: diff_res.updated_plots,
+			areas: diff_areas
 	};
-	var newPlots = {
-		"Sichuan_Info": {
-                value: "18",
-                latitude: 306.5,
-                longitude: 315.5,
-                size: 25,
-                attrs: {
-	            	fill: "#fffd72"
-	            },
-                href: "javascript:void(0);",
-                tooltip: {
-                    content: "<b>Sichuan:</b> 18"
-                }
-            }
+	var opt = {
+		animDuration: 600,
+		newLinks: diff_links.new_links,
+		deletedLinks: diff_links.deleted_links
+	};
+	$(".mapcontainer").trigger('update', [updatedOptions, diff_res.new_plots, diff_res.deleted_plots, opt]);
+}
+
+function load_map_movement_data() {
+	var new_data = maps_helper.plots_movements();
+	var new_areas = maps_helper.areas_movements();
+	var new_links = maps_helper.links_movements();
+	var diff_res = maps_helper.diff_plots(current_map_data.plots, new_data);
+	var diff_areas = maps_helper.diff_areas(current_map_data.areas, new_areas);
+	var diff_links = maps_helper.diff_links(current_map_data.links, new_links);
+
+	current_map_data.plots = new_data;
+	current_map_data.areas = new_areas;
+	current_map_data.links = new_links;
+
+	var updatedOptions = {
+		plots: diff_res.updated_plots,
+		areas: diff_areas
 	};
 
 	var deletedPlots = ["Beijing_Info"];
 	var opt = {
 		animDuration: 600,
-		newLinks: {
-	            'beijingguandong' : {
-	                factor : 0.2, 
-	                between : [{latitude : 435.5, longitude : 450.5}, {latitude : 455.5, longitude : 190.5}], 
-	                attrs : {
-	                	stroke: "#89ff72",
-	                    "stroke-width" : 2
-	                }, 
-	                tooltip: {content : "Beijing - Guandong"}
-            	}
-        	}
+		newLinks: diff_links.new_links,
+		deletedLinks: diff_links.deleted_links
 	};
-	$(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, opt]);
+	$(".mapcontainer").trigger('update', [updatedOptions, diff_res.new_plots, diff_res.deleted_plots, opt]);
 }
 
 function init_map(plots) {
 	map_inited = true;
+	current_map_data = {
+		plots: plots,    
+		areas: maps_helper.areas_philantropists(),
+		links: {}
+	}
 	$(".mapcontainer").mapael({
 		map : {            
 			name : "china_map",
@@ -222,110 +139,8 @@ function init_map(plots) {
 				}
 			}
 		},
-		plots: plots,    
-		areas: map_areas()
+		plots: current_map_data.plots,    
+		areas: current_map_data.areas
 	});	
 	$('.maps svg')[0].setAttribute("preserveAspectRatio","xMidYMid");
-}
-
-
-function map_areas(){
-	return {
-			"Xinjiang":{
-				tooltip: {content : "<b>Xinjiang</b>"}				
-			},
-			"Guandong":{
-				tooltip: {content : "<b>Guandong</b>"}				
-			},
-			"Beijing": {
-				tooltip: {content : "<b>Beijing</b>"}	
-			},
-			"Zhejiang": {
-				tooltip: {content : "<b>Zhejiang</b>"}	
-			},
-			"Fujian": {
-				tooltip: {content : "<b>Fujian</b>"}	
-			},
-			"Xizang": {
-				tooltip: {content : "<b>Xizang</b>"}
-			},
-			"Qinghai": {
-				tooltip: {content : "<b>Qinghai</b>"}
-			},
-			"Gansu": {
-				tooltip: {content : "<b>Gansu</b>"}
-			},
-			"Sichuan": {
-				tooltip: {content : "<b>Sichuan</b>"}
-			},
-			"Yunnan": {
-				tooltip: {content : "<b>Yunnan</b>"}
-			},
-			"Guizhou": {
-				tooltip: {content : "<b>Guizhou</b>"}
-			},
-			"Guangxi": {
-				tooltip: {content : "<b>Guangxi</b>"}
-			},
-			"Hainan": {
-				tooltip: {content : "<b>Hainan</b>"}
-			},
-			"Hunan": {
-				tooltip: {content : "<b>Hunan</b>"}
-			},
-			"Jiangxi": {
-				tooltip: {content : "<b>Jiangxi</b>"}
-			},
-			"Hubei": {
-				tooltip: {content : "<b>Hubei</b>"}
-			},
-			"Chongqing": {
-				tooltip: {content : "<b>Chongqing</b>"}
-			},
-			"Anhui": {
-				tooltip: {content : "<b>Anhui</b>"}
-			},
-			"Jiangsu": {
-				tooltip: {content : "<b>Jiangsu</b>"}
-			},
-			"Shandong": {
-				tooltip: {content : "<b>Shandong</b>"}
-			},
-			"Henan": {
-				tooltip: {content : "<b>Henan</b>"}
-			},
-			"Shanxi": {
-				tooltip: {content : "<b>Shanxi</b>"}
-			},
-			"Shaanxi": {
-				tooltip: {content : "<b>Shaanxi</b>"}
-			},
-			"Ningxia": {
-				tooltip: {content : "<b>Ningxia</b>"}
-			},
-			"Ningxia": {
-				tooltip: {content : "<b>Ningxia</b>"}
-			},
-			"Nei Mongol":{
-				tooltip: {content : "<b>Nei Mongol</b>"}
-			},
-			"Heilongjiang":{
-				tooltip: {content : "<b>Heilongjiang</b>"}
-			},
-			"Jilin":{
-				tooltip: {content : "<b>Jilin</b>"}
-			},
-			"Liaoning":{
-				tooltip: {content : "<b>Liaoning</b>"}
-			},
-			"Hebei":{
-				tooltip: {content : "<b>Hebei</b>"}
-			},
-			"Tianjin":{
-				tooltip: {content : "<b>Tianjin</b>"}
-			},
-			"Shanghai":{
-				tooltip: {content : "<b>Shanghai</b>"}
-			}
-		};
 }

@@ -534,8 +534,8 @@ function draw_focus_chart(){
   if (!current_data)
     current_data = init_data();
   if (!current_chart)
-    current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
-  current_chart.draw(focus_data(), options);
+    current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));  
+  current_chart.draw(focus_data(), options);  
   init_chart_onclick();
   fix_chart(window);
 }
