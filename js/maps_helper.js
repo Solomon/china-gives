@@ -353,6 +353,9 @@ function maps_helper(){
 					},
 					"Shanghai":{
 						tooltip: {content : "<b>Shanghai</b>"}
+					},
+					"Taiwan":{
+						tooltip: {content : "<b>Taiwan</b>"}				
 					}
 				};
 		},
@@ -458,6 +461,9 @@ function maps_helper(){
 					},
 					"Shanghai":{
 						tooltip: {content : "<b>Shanghai</b>"}
+					},
+					"Taiwan":{
+						tooltip: {content : "<b>Taiwan</b>"}				
 					}
 				};
 		},
@@ -562,6 +568,9 @@ function maps_helper(){
 					},
 					"Shanghai":{
 						tooltip: {content : "<b>Shanghai</b>"}
+					},
+					"Taiwan":{
+						tooltip: {content : "<b>Taiwan</b>"}				
 					}
 				};
 		}
