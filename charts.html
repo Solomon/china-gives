@@ -6,13 +6,17 @@ layout: charts
     <div class="container" id="charts-header">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading"></h2>
+                <h2 class="section-heading">&nbsp;</h2>
                 <hr class="">
             </div>
         </div>
     </div>
     <div class="container-fluid charts-container" id="charts-container">
-        <div id="series_chart_div"></div>
+        <div id="series_chart_div">
+            <div>
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xs-12">
                 <ul class="nav nav-pills nav-justified chart-options">
@@ -119,31 +123,33 @@ layout: charts
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Maps</h2>
+                <h2 class="section-heading">Donations Produced</h2>
                 <hr class="light">
             </div>
         </div>        
         <div class="row mapcontainer mg-top-25">
             <div class="col-lg-12 text-center map" id="map">
-                <span>Loading map ...</span>
+                <div>
+                    <i class="fa fa-spinner fa-spin"></i>
+                </div>    
             </div>
         </div>
         <div class="row mg-top-50">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <ul class="nav nav-pills nav-justified chart-options map-chart">
                   <li role="presentation" class="active">
-                    <a href="javascript:void(0);" data-map-name="" data-map-type="philanthropists">
-                        <span>Philanthropists</span>
+                    <a href="javascript:void(0);" data-map-name="Donations Produced" data-map-type="philanthropists">
+                        <span>Donations Produced</span>
                     </a>
                   </li>
                   <li role="presentation">
-                    <a href="javascript:void(0);" data-map-name="" data-map-type="donations">
-                        <span>Donations</span>
+                    <a href="javascript:void(0);" data-map-name="Donations Received" data-map-type="donations">
+                        <span>Donations Received</span>
                     </a>
                   </li>
                   <li role="presentation">
-                    <a href="javascript:void(0);" data-map-name="" data-map-type="movement">
-                        <span>Money Movement</span>
+                    <a href="javascript:void(0);" data-map-name="Donations Flow" data-map-type="movement">
+                        <span>Donations Flow</span>
                     </a>
                 </ul>
             </div>
