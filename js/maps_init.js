@@ -1,6 +1,8 @@
 var map_inited = false;
 var maps_helper;
 
+var current_data = -1;
+
 $(function(){
 
 	maps_helper = maps_helper();
@@ -32,53 +34,89 @@ $(function(){
 function load_map_philanthropists_data(){
     if (!map_inited)
 		init_map(maps_helper.plots_philantropists());
-	else {
+	else {		
+		var new_data = maps_helper.plots_philantropists();
+		var new_areas = maps_helper.areas_philantropists();
+		var new_links = {};
+		var diff_res = maps_helper.diff_plots(current_data.plots, new_data);
+		var diff_areas = maps_helper.diff_areas(current_data.areas, new_areas);
+		var diff_links = maps_helper.diff_links(current_data.links, new_links);
+
+		current_data.plots = new_data;
+		current_data.areas = new_areas;
+		current_data.links = new_links;
+
 		var updatedOptions = {
-			plots: plots,
-			areas: areas_philantropists()			
+			plots: diff_res.updated_plots,
+			areas: diff_areas			
 		};
 		var opt = {
 				animDuration: 600,
-				deletedLinks: ['beijingguandong']
+				newLinks: diff_links.new_links,
+				deletedLinks: diff_links.deleted_links
 			};
-		//var newPlots = !!!!!!;
 		var deletedPlots = ["Sichuan_Info"];	
-		$(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, opt]);
+		$(".mapcontainer").trigger('update', [updatedOptions, diff_res.new_plots, diff_res.deleted_plots, opt]);
 	}
 }
 
 function load_map_donatoin_data() {
-	var updatedOptions = {
-			//plots: !!!!!!!!!,
-			areas: areas_donations()
-	};
-	//var newPlots = !!!!!!;
+	var new_data = maps_helper.plots_donations();
+	var new_areas = maps_helper.areas_donations();
+	var new_links = {};
+	var diff_res = maps_helper.diff_plots(current_data.plots, new_data);
+	var diff_areas = maps_helper.diff_areas(current_data.areas, new_areas);
+	var diff_links = maps_helper.diff_links(current_data.links, new_links);
 
-	var deletedPlots = ["Beijing_Info"];
+	current_data.plots = new_data;
+	current_data.areas = new_areas;
+	current_data.links = new_links;
+
+	var updatedOptions = {
+			plots: diff_res.updated_plots,
+			areas: diff_areas
+	};
 	var opt = {
 		animDuration: 600,
-		//newLinks: !!!!!!!!!!!
+		newLinks: diff_links.new_links,
+		deletedLinks: diff_links.deleted_links
 	};
-	$(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, opt]);
+	$(".mapcontainer").trigger('update', [updatedOptions, diff_res.new_plots, diff_res.deleted_plots, opt]);
 }
 
 function load_map_movement_data() {
+	var new_data = maps_helper.plots_movements();
+	var new_areas = maps_helper.areas_movements();
+	var new_links = maps_helper.links_movements();
+	var diff_res = maps_helper.diff_plots(current_data.plots, new_data);
+	var diff_areas = maps_helper.diff_areas(current_data.areas, new_areas);
+	var diff_links = maps_helper.diff_links(current_data.links, new_links);
+
+	current_data.plots = new_data;
+	current_data.areas = new_areas;
+	current_data.links = new_links;
+
 	var updatedOptions = {
-			//plots: !!!!!!!!!,
-			areas: areas_movements()
+		plots: diff_res.updated_plots,
+		areas: diff_areas
 	};
-	//var newPlots = !!!!!!;
 
 	var deletedPlots = ["Beijing_Info"];
 	var opt = {
 		animDuration: 600,
-		//newLinks: !!!!!!!!!!!
+		newLinks: diff_links.new_links,
+		deletedLinks: diff_links.deleted_links
 	};
-	$(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, opt]);
+	$(".mapcontainer").trigger('update', [updatedOptions, diff_res.new_plots, diff_res.deleted_plots, opt]);
 }
 
 function init_map(plots) {
 	map_inited = true;
+	current_data = {
+		plots: plots,    
+		areas: maps_helper.areas_philantropists(),
+		links: {}
+	}
 	$(".mapcontainer").mapael({
 		map : {            
 			name : "china_map",
@@ -101,8 +139,8 @@ function init_map(plots) {
 				}
 			}
 		},
-		plots: plots,    
-		areas: maps_helper.areas_philantropists()
+		plots: current_data.plots,    
+		areas: current_data.areas
 	});	
 	$('.maps svg')[0].setAttribute("preserveAspectRatio","xMidYMid");
 }

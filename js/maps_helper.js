@@ -1,11 +1,71 @@
 function maps_helper(){
 
 	var mapsHelper = {	
+
 		diff_plots: function(current_plots, new_plots) {
+			var deleted_plots = [];
+			var updated_plots = {};
+			var same_plots = [];
+			var add_plots = {};
 
+			$.each(current_plots, function(name, obj){
+				if (!new_plots[name])
+					deleted_plots.push(name);
+				else {
+					var isSame = JSON.stringify(obj) === JSON.stringify(new_plots[name]);
+					if (!isSame){
+						updated_plots[name] = new_plots[name];
+					} else {
+						same_plots.push([name, new_plots[name]]);
+					}
+				}
+			});
+			$.each(new_plots, function(name, obj){
+				if (!current_plots[name])
+					add_plots[name] = obj;
+			});
+			
+			var res = {
+				new_plots: add_plots,
+				updated_plots: updated_plots,
+				deleted_plots: deleted_plots,
+				same_plots: same_plots
+			};
 
+			return res;
+		},
+		diff_areas: function(current_areas, new_areas) {
+			var updated_areas = {};
+			$.each(current_areas, function(name, obj){
+				if (new_areas[name]) {
+					var isSame = JSON.stringify(obj) === JSON.stringify(new_areas[name]);
+					if (!isSame){
+						updated_areas[name] = new_areas[name];
+					}
+				}
+			});		
+			return updated_areas;
+		},
 
+		diff_links: function(current_links, new_links) {
+			var deleted_links = [];
+			var add_links = {};
 
+			$.each(current_links, function(name, obj){
+				if (!new_links[name])
+					deleted_links.push(name);
+			});
+			$.each(new_links, function(name, obj){
+				if (!current_links[name])
+					add_links[name] = obj;
+			});
+			
+			var res = {
+				new_links: add_links,
+				deleted_links: deleted_links
+			};
+
+			return res;
 		},
 
 		plots_philantropists: function (){
@@ -117,6 +177,19 @@ function maps_helper(){
 		            tooltip: {
 		                content: "<b>Sichuan:</b> 18"
 		            }
+		        },
+		        "Fujian_Info": {
+		            value: "8",
+		            latitude: 496.5,
+		            longitude: 398.5,
+		            size: 15,
+		            attrs: {
+		                fill: "#89ff72"
+		        	},
+		            href: "javascript:void(0);",
+		            tooltip: {
+		                content: "<b>Fujian:</b> 8"
+		            }
 		        }
 			};
 		},
@@ -188,7 +261,11 @@ function maps_helper(){
 						tooltip: {content : "<b>Guandong</b>"}				
 					},
 					"Beijing": {
-						tooltip: {content : "<b>Beijing</b>"}	
+						tooltip: {content : "<b>Beijing</b>"},
+						attrs : {
+							fill : "#8996A0", 
+							stroke: "#FFFFFF"
+						}	
 					},
 					"Zhejiang": {
 						tooltip: {content : "<b>Zhejiang</b>"}	
@@ -289,7 +366,11 @@ function maps_helper(){
 						tooltip: {content : "<b>Guandong</b>"}				
 					},
 					"Beijing": {
-						tooltip: {content : "<b>Beijing</b>"}	
+						tooltip: {content : "<b>Beijing</b>"},
+						attrs : {
+							fill : "#8996A0", 
+							stroke: "#FFFFFF"
+						}	
 					},
 					"Zhejiang": {
 						tooltip: {content : "<b>Zhejiang</b>"}	
