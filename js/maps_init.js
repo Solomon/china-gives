@@ -1,7 +1,7 @@
 var map_inited = false;
 var maps_helper;
 
-var current_data = -1;
+var current_map_data = -1;
 
 $(function(){
 
@@ -38,13 +38,13 @@ function load_map_philanthropists_data(){
 		var new_data = maps_helper.plots_philantropists();
 		var new_areas = maps_helper.areas_philantropists();
 		var new_links = {};
-		var diff_res = maps_helper.diff_plots(current_data.plots, new_data);
-		var diff_areas = maps_helper.diff_areas(current_data.areas, new_areas);
-		var diff_links = maps_helper.diff_links(current_data.links, new_links);
+		var diff_res = maps_helper.diff_plots(current_map_data.plots, new_data);
+		var diff_areas = maps_helper.diff_areas(current_map_data.areas, new_areas);
+		var diff_links = maps_helper.diff_links(current_map_data.links, new_links);
 
-		current_data.plots = new_data;
-		current_data.areas = new_areas;
-		current_data.links = new_links;
+		current_map_data.plots = new_data;
+		current_map_data.areas = new_areas;
+		current_map_data.links = new_links;
 
 		var updatedOptions = {
 			plots: diff_res.updated_plots,
@@ -64,13 +64,13 @@ function load_map_donatoin_data() {
 	var new_data = maps_helper.plots_donations();
 	var new_areas = maps_helper.areas_donations();
 	var new_links = {};
-	var diff_res = maps_helper.diff_plots(current_data.plots, new_data);
-	var diff_areas = maps_helper.diff_areas(current_data.areas, new_areas);
-	var diff_links = maps_helper.diff_links(current_data.links, new_links);
+	var diff_res = maps_helper.diff_plots(current_map_data.plots, new_data);
+	var diff_areas = maps_helper.diff_areas(current_map_data.areas, new_areas);
+	var diff_links = maps_helper.diff_links(current_map_data.links, new_links);
 
-	current_data.plots = new_data;
-	current_data.areas = new_areas;
-	current_data.links = new_links;
+	current_map_data.plots = new_data;
+	current_map_data.areas = new_areas;
+	current_map_data.links = new_links;
 
 	var updatedOptions = {
 			plots: diff_res.updated_plots,
@@ -88,13 +88,13 @@ function load_map_movement_data() {
 	var new_data = maps_helper.plots_movements();
 	var new_areas = maps_helper.areas_movements();
 	var new_links = maps_helper.links_movements();
-	var diff_res = maps_helper.diff_plots(current_data.plots, new_data);
-	var diff_areas = maps_helper.diff_areas(current_data.areas, new_areas);
-	var diff_links = maps_helper.diff_links(current_data.links, new_links);
+	var diff_res = maps_helper.diff_plots(current_map_data.plots, new_data);
+	var diff_areas = maps_helper.diff_areas(current_map_data.areas, new_areas);
+	var diff_links = maps_helper.diff_links(current_map_data.links, new_links);
 
-	current_data.plots = new_data;
-	current_data.areas = new_areas;
-	current_data.links = new_links;
+	current_map_data.plots = new_data;
+	current_map_data.areas = new_areas;
+	current_map_data.links = new_links;
 
 	var updatedOptions = {
 		plots: diff_res.updated_plots,
@@ -112,7 +112,7 @@ function load_map_movement_data() {
 
 function init_map(plots) {
 	map_inited = true;
-	current_data = {
+	current_map_data = {
 		plots: plots,    
 		areas: maps_helper.areas_philantropists(),
 		links: {}
@@ -139,9 +139,8 @@ function init_map(plots) {
 				}
 			}
 		},
-		plots: current_data.plots,    
-		areas: current_data.areas
+		plots: current_map_data.plots,    
+		areas: current_map_data.areas
 	});	
 	$('.maps svg')[0].setAttribute("preserveAspectRatio","xMidYMid");
 }
-
