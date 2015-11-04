@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{% if page.language == 'en' %}en{% elsif page.language == 'cn' %}zh-Hans{% endif %}">
 
   {% include head.html %}
 
@@ -12,20 +12,20 @@
     {% include footer.html %}
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="{{ "/js/jquery.js" | prepend: site.baseurl }}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ "/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/jquery.fittext.js"></script>
-    <script src="js/wow.min.js"></script>
+    <script src="{{ "/js/jquery.easing.min.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/js/jquery.fittext.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/js/wow.min.js" | prepend: site.baseurl }}"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="js/creative.js"></script>
+    <script src="{{ "/js/creative.js" | prepend: site.baseurl }}"></script>
 
-    <script src="js/custom.js"></script>
+    <script src="{{ "/js/custom.js" | prepend: site.baseurl }}"></script>
 
   </body>
 </html>
