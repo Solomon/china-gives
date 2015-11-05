@@ -273,8 +273,8 @@ function maps_helper(){
 					"Fujian": {
 						tooltip: {content : "<b>Fujian</b>"}	
 					},
-					"Xizang": {
-						tooltip: {content : "<b>Xizang</b>"}
+					"Tibet": {
+						tooltip: {content : "<b>Tibet</b>"}
 					},
 					"Qinghai": {
 						tooltip: {content : "<b>Qinghai</b>"}
@@ -333,8 +333,8 @@ function maps_helper(){
 					"Ningxia": {
 						tooltip: {content : "<b>Ningxia</b>"}
 					},
-					"Nei Mongol":{
-						tooltip: {content : "<b>Nei Mongol</b>"}
+					"Inner Mongolia":{
+						tooltip: {content : "<b>Inner Mongolia</b>"}
 					},
 					"Heilongjiang":{
 						tooltip: {content : "<b>Heilongjiang</b>"}
@@ -381,8 +381,8 @@ function maps_helper(){
 					"Fujian": {
 						tooltip: {content : "<b>Fujian</b>"}	
 					},
-					"Xizang": {
-						tooltip: {content : "<b>Xizang</b>"}
+					"Tibet": {
+						tooltip: {content : "<b>Tibet</b>"}
 					},
 					"Qinghai": {
 						tooltip: {content : "<b>Qinghai</b>"}
@@ -441,8 +441,8 @@ function maps_helper(){
 					"Ningxia": {
 						tooltip: {content : "<b>Ningxia</b>"}
 					},
-					"Nei Mongol":{
-						tooltip: {content : "<b>Nei Mongol</b>"}
+					"Inner Mongolia":{
+						tooltip: {content : "<b>Inner Mongolia</b>"}
 					},
 					"Heilongjiang":{
 						tooltip: {content : "<b>Heilongjiang</b>"}
@@ -488,8 +488,8 @@ function maps_helper(){
 					"Fujian": {
 						tooltip: {content : "<b>Fujian</b>"}	
 					},
-					"Xizang": {
-						tooltip: {content : "<b>Xizang</b>"}
+					"Tibet": {
+						tooltip: {content : "<b>Tibet</b>"}
 					},
 					"Qinghai": {
 						tooltip: {content : "<b>Qinghai</b>"}
@@ -548,8 +548,8 @@ function maps_helper(){
 					"Ningxia": {
 						tooltip: {content : "<b>Ningxia</b>"}
 					},
-					"Nei Mongol":{
-						tooltip: {content : "<b>Nei Mongol</b>"}
+					"Inner Mongolia":{
+						tooltip: {content : "<b>Inner Mongolia</b>"}
 					},
 					"Heilongjiang":{
 						tooltip: {content : "<b>Heilongjiang</b>"}
