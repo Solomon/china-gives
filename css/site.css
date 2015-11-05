@@ -518,45 +518,6 @@ section#people .container {
     overflow: hidden;
 }
 
-.person-info-box {
-    background-color: #fff;
-    border: 1px solid #d4dfe0;
-    margin-bottom: 30px;
-}
-
-.person-info-box-header > .row {
-    padding-bottom: 15px;
-}
-
-.person-info-box.selected .person-info-box-header > .row {
-    margin: 0 -25px;
-    background-color: #A51C30;
-}
-
-.person-info-box.selected .person-info-box-header {
-    position: relative;
-}
-
-.person-info-box.selected .person-info-box-header:before,
-.person-info-box.selected .person-info-box-header:after {
-    content: '';
-    position: absolute;
-    height: 0;
-    width: 0;
-    top: 100%;
-    border-top: 10px solid #6D0006;
-}
-
-.person-info-box.selected .person-info-box-header:before {
-    left: -25px;
-    border-left: 10px solid transparent;
-}
-
-.person-info-box.selected .person-info-box-header:after {
-    right: -25px;
-    border-right: 10px solid transparent;
-}
-
 .circle {
     width: 160px;
     height: 160px;
@@ -567,16 +528,20 @@ section#people .container {
 .circle-text {
     width: 100%;
     position: absolute;
-    z-index: -9999;
+    z-index: -75;
     top: 0;
     right: 0;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
 }
 
 .circle-text:after {
     content: "";
     display: block;
     width: 100%;
-    height:0;
+    height: 0;
     padding-bottom: 100%;
     background: #4679BD; 
     -moz-border-radius: 50%; 
@@ -585,55 +550,63 @@ section#people .container {
 }
 
 .circle-text > div {
-    float:left;
-    width:100%;
-    padding-top:50%;
-    line-height:1.5em;
-    margin-top:-3.0em;
-    text-align:center;
-    color:white;
+    float: left;
+    width: 100%;
+    padding-top: 50%;
+    line-height: 1.5em;
+    margin-top: -3.0em;
+    text-align: center;
+    color: white;
 }
 
-.circle:hover .circle-text, .circle-text.spin-right {
-    right: -200px;
-    -webkit-transition: right 1s ease-in-out;
-    -moz-transition: right 1s ease-in-out;
-    -o-transition: right 1s ease-in-out;
-    transition: right 1s ease-in-out;
+.circle-text.spin,
+.person-box .circle:hover .circle-text {
+    z-index: -1; 
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
 
-    z-index: -1;
-
-    -webkit-animation-name: spin;
     -webkit-animation-duration: 1s;
     -webkit-animation-iteration-count: 1;
     -webkit-animation-timing-function: ease-in-out;
-    -moz-animation-name: spin;
+
     -moz-animation-duration: 1s;
     -moz-animation-iteration-count: 1;
     -moz-animation-timing-function: ease-in-out;
-    -ms-animation-name: spin;
+
     -ms-animation-duration: 1s;
     -ms-animation-iteration-count: 1;
     -ms-animation-timing-function: ease-in-out;
     
-    animation-name: spin;
     animation-duration: 1s;
     animation-iteration-count: 1;
     animation-timing-function: ease-in-out;
 }
-@-ms-keyframes spin {
+
+.circle-text.spin.right,
+.person-box:nth-child(4n+1) .circle:hover .circle-text,
+.person-box:nth-child(4n+2) .circle:hover .circle-text {
+    right: -200px;
+    -webkit-animation-name: spinRight;
+    -moz-animation-name: spinRight;
+    -ms-animation-name: spinRight;
+    animation-name: spinRight;
+}
+
+@-ms-keyframes spinRight {
     from { -ms-transform: rotate(0deg); }
     to { -ms-transform: rotate(360deg); }
 }
-@-moz-keyframes spin {
+@-moz-keyframes spinRight {
     from { -moz-transform: rotate(0deg); }
     to { -moz-transform: rotate(360deg); }
 }
-@-webkit-keyframes spin {
+@-webkit-keyframes spinRight {
     from { -webkit-transform: rotate(0deg); }
     to { -webkit-transform: rotate(360deg); }
 }
-@keyframes spin {
+@keyframes spinRight {
     from {
         transform:rotate(0deg);
     }
@@ -642,48 +615,84 @@ section#people .container {
     }
 }
 
+.circle-text.spin.left, 
+.person-box:nth-child(4n+3) .circle:hover .circle-text,
+.person-box:nth-child(4n+4) .circle:hover .circle-text {
+    right: 200px;
+    -webkit-animation-name: spinLeft;
+    -moz-animation-name: spinLeft;
+    -ms-animation-name: spinLeft;
+    animation-name: spinLeft;
+}
+
+@-ms-keyframes spinLeft {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(-360deg); }
+}
+@-moz-keyframes spinLeft {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(-360deg); }
+}
+@-webkit-keyframes spinLeft {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(-360deg); }
+}
+@keyframes spinLeft {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(-360deg);
+    }
+}
+
 .circle .details {
     visibility: hidden;
     position: absolute;
-    z-index: -2;
+    z-index: -100;
     width: 100%;
-    -webkit-transition: all 1s ease-in-out;
-    -moz-transition: all 1s ease-in-out;
-    -o-transition: all 1s ease-in-out;
-    transition: all 1s ease-in-out;
+    left: 0;
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    transition: all .4s ease;
 }
 
 .circle:hover .details {
     width: 300px;
     background-color: white;
     visibility: visible;
-
-} 
-
-.person-info-box-image > img {
-    width: 100%;
-    height: 100px;
+    -webkit-transition: all 1.15s ease-in-out;
+    -moz-transition: all 1.15s ease-in-out;
+    -o-transition: all 1.15s ease-in-out;
+    transition: all 1.15s ease-in-out;
+    z-index: -50;
 }
 
-.person-info-box.selected .person-info-box-image {
-    padding-right: 25px;
+.person-box:nth-child(4n+3) .circle .details,
+.person-box:nth-child(4n+4) .circle .details {
+    text-align: right;
 }
 
-.person-info-box-header .person-info-box-text {
-    padding-left: 0;
+.person-box:nth-child(4n+3) .circle:hover .details,
+.person-box:nth-child(4n+4) .circle:hover .details {
+    left: -140px;
 }
 
-.person-info-box-header .person-info-box-text .text-muted {
-    color: #8996A0;
+.circle .details .content {
+    visibility: hidden;
+    -webkit-transition: all .25s ease-in-out 0s;
+    -moz-transition: all .25s ease-in-out 0s;
+    -o-transition: all .25s ease-in-out 0s;
+    transition: all .25s ease-in-out 0s;
 }
 
-    .person-info-box.selected .person-info-box-header .person-info-box-text .text-muted {
-        color: #D6B2B2;
-    }
-
-.person-info-box-details {
-    padding-top: 10px;
-    display: none;
+.circle:hover .details .content {
+    visibility: visible;
+    -webkit-transition: all 1s ease-in-out .5s;
+    -moz-transition: all 1s ease-in-out .5s;
+    -o-transition: all 1s ease-in-out .5s;
+    transition: all 1s ease-in-out .5s;
 }
 
 /* maps */
