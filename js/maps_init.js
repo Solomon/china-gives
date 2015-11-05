@@ -11,6 +11,7 @@ $(function(){
 		var type = $(this).data('map-type');
 		$('.maps .chart-options li').removeClass('active');
 		$(this).parents('li').first().addClass('active');
+		$('#maps h2.section-heading').html($(this).data('map-name'));
 		switch (type) {
 	      case 'philanthropists':
 	        load_map_philanthropists_data();
