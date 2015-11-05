@@ -2,6 +2,7 @@ var national_total = 104226;
 var current_chart;
 var current_data;
 var chart_data_res;
+var chart_data_months_res;
 var is_click_inited = false;
 var is_chart_closed = false;
 
@@ -69,35 +70,6 @@ function auto_hide_fixed_charts() {
       $('#charts-container').addClass('reopened');
     }
   }
-}
-
-function rand_name() {
-    var text = '';
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    for (var i = 0; i < 2; i++)
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-    return text;
-}
-
-function init_data() {
-  var rand_data = [];
-  rand_data.push(['Name', 'National Total %', 'Generosity %', 'Age', 'Industry', 'Donations', 'Total Amount', 'Industry Data', 'Focus Areas']);
-
-  var industry = ['IT', 'Manufacturing', 'Finances', 'Real Estate'];
-  for (var i = 0; i < 100; i++) {
-      var national = (Math.floor(Math.random() * 500) + 20) / 100;
-      var age = Math.floor(Math.random() * 50) + 25;
-      var ind_rand = (Math.floor(Math.random() * 4) + 0);
-      var ind = industry[ind_rand];
-      var ind_data = ind_rand + 1 + ((Math.floor(Math.random() * 4) - 2)/10);
-      var don = Math.floor(Math.random() * (100000000 - 500000 + 1)) + 500000;      
-      var gener = (Math.floor(Math.random() * 70) + 20);
-      var name = rand_name(); 
-      var total = (Math.floor(Math.random() * (2000000000 - 120000000 + 1)) + 120000000) / 1000000;
-      var focus_area = (Math.floor(Math.random() * 5) + 1);
-      rand_data.push([name, national, gener, age, ind, don, Math.round(total * 100) / 100, ind_data, focus_area]);
-  };
-  return rand_data;
 }
 
 function generosity_data() {
@@ -179,15 +151,13 @@ function get_initals(name){
 }
 
 function months_data() {
+  if (!chart_data_months_res)
+    chart_data_months_res = chart_month_data();
   var rand_data = [];
-
   rand_data.push(['test', 'test1', 'test2', 'test3', 'Total Amount']);
-  for (var i = 1; i <= 12; i++) {
-    var don = Math.floor((Math.floor(Math.random() * 100000000) + 500000)/12);
-    var naming = (don / 1000000).toFixed(2) + '';
-    rand_data.push([naming, i, 1, 1, don]);
-  }
-
+  jQuery.each(chart_data_months_res, function(index, item) {    
+      rand_data.push([item['Amount'] + '', index + 1, 1, 1, item['Amount']]);
+  });
   var data = google.visualization.arrayToDataTable(rand_data);
   return data;
 }
@@ -455,8 +425,6 @@ function draw_industry_chart(){
 
 function draw_months_chart(){
   var options = months_options();
-  if (!current_data)
-    current_data = init_data();
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(months_data(), options);

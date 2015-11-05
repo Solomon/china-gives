@@ -1490,3 +1490,59 @@ function chart_data(){
 ]
     return chart_data;    
 }
+
+function chart_month_data(){
+
+    var chart_month_data = 
+    [
+      {
+        "Month": "Sep 14",
+        "Amount": 393
+      },
+      {
+        "Month": "Oct 14",
+        "Amount": 1402
+      },
+      {
+        "Month": "Nov 14",
+        "Amount": 250
+      },
+      {
+        "Month": "Dec 14",
+        "Amount": 966
+      },
+      {
+        "Month": "Jan 15",
+        "Amount": 107
+      },
+      {
+        "Month": "Feb 15",
+        "Amount": 43
+      },
+      {
+        "Month": "Mar 15",
+        "Amount": 157
+      },
+      {
+        "Month": "Apr 15",
+        "Amount": 380
+      },
+      {
+        "Month": "May 15",
+        "Amount": 335
+      },
+      {
+        "Month": "Jun 15",
+        "Amount": 428
+      },
+      {
+        "Month": "Jul 15",
+        "Amount": 574
+      },
+      {
+        "Month": "Aug 15",
+        "Amount": 111
+      }
+    ];
+    return chart_month_data;
+}
