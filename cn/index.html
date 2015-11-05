@@ -1,19 +1,20 @@
 ---
 layout: default
-excerpt: Top 100 Chinese philanthropists between Sep 2014 and Aug 2015. Research by The Ash Center for Democratic Governance and Innovation, Harvard Kennedy School
+title: 中国慈善--艾什民主治理与创新中心
+excerpt: 在2014年9月至2015年8月之间中国大陆前100名慈善家。哈佛肯尼迪学院艾什民主治理与创新中心研究。
 language: cn
 ---
    
 <header class="">
     <div class="header-content">
         <div class="header-content-inner">
-            <h1>慈善事业在中国</h1>
+            <h1>中国慈善</h1>
             <hr>
-            <p>The Ash Center for Democratic Governance and Innovation releases its inaugural annual report on 100 most generous Chinese philanthropists</p>
+            <p>哈佛大学艾什民主治理与创新中心首次发布2015年度中国大陆前100名慈善家报告。</p>
             <a href="charts.html" class="btn btn-primary btn-xl">View Charts</a>
             <br>
             <a href="#overview" class="lrn-mr-btn page-scroll">
-                Learn More<br>
+                浏览更多<br>
                 <i class="fa fa-angle-down"></i>
             </a>
         </div>
@@ -25,118 +26,93 @@ language: cn
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">2015 Overview</h2>
+                <h2 class="section-heading">2015年回顾</h2>
                 <hr class="light">
             </div>
         </div>
         <div class="row text-center">
             <div class="col-md-8 col-md-offset-2 wow fadeIn">
-                <p>The systematic and rigorous database includes each philanthropist’s giving levels between September 2014 and August 2015, recipient organizations, and a host of other research variables related to philanthropists and recipients.</p>
+                <p>T本报告力图以全面严谨的方式，对中国大陆前100名慈善家在2014年9月至2015年8月间的捐赠数量、对象、方式及其他一系列研究指标进行梳理和研究。</p>
             </div>
         </div>
         <div class="row text-center metrics mg-top-50">
             <div class="col-sm-4 wow zoomIn">
                 <p class="metric-lg">100</p>
-                <p>People</p>
+                <p>位个人</p>
             </div>
             <div class="col-sm-4 wow zoomIn">
-                <p class="metric-lg">¥24 Billion</p>
-                <p>Donated</p>
+                <p class="metric-lg">24亿</p>
+                <p>捐赠总额</p>
             </div>
             <div class="col-sm-4 wow zoomIn">
                 <p class="metric-lg">0.03%</p>
-                <p>Of 2014 China’s GDP</p>
+                <p>2014年中国GDP占比</p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <ul class="key-findings mg-top-50">
-                    <li class="wow fadeIn" data-wow-delay="0s">Total giving from Top 100 accounts for a quarter of China’s national donation in 2014</li>
-                    <li class="wow fadeIn" data-wow-delay=".1s">22 individuals make it into China’s Top 100 donors for the first time</li>
-                    <li class="wow fadeIn" data-wow-delay=".19s">Mean is 241 million Yuan ($38 million); median is 30 million Yuan ($4.7 million)</li>
-                    <li class="wow fadeIn" data-wow-delay=".265s">Real estate produces the most philanthropists, but none of the top 4 are in property</li>
-                    <li class="wow fadeIn" data-wow-delay=".32s">Four donors give their stocks/options, including the most generous one: Jack Ma</li>
-                    <li class="wow fadeIn" data-wow-delay=".35s">10 philanthropists donate overseas; more than a quarter have set up own foundations (27)</li>
+                    <li class="wow fadeIn" data-wow-delay="0s">前100位慈善家捐赠总量占2014年全国捐赠总额的四分之一。</li>
+                    <li class="wow fadeIn" data-wow-delay=".1s">22位个人首次进入中国慈善前100名。</li>
+                    <li class="wow fadeIn" data-wow-delay=".19s">平均捐赠额为XXX元；中位数是XXX元。</li>
+                    <li class="wow fadeIn" data-wow-delay=".265s">房地产业产生的慈善家数量最多</li>
+                    <li class="wow fadeIn" data-wow-delay=".32s">四位个人捐赠股票或期权，包括承诺捐赠数量最多的两位：马云和何巧女。</li>
+                    <li class="wow fadeIn" data-wow-delay=".35s">十位慈善家在海外进行捐助；超过四分之一的慈善家拥有自己的基金会</li>
+                    <li class="wow fadeIn" data-wow-delay=".37s">前百位慈善家平均年龄为54岁。</li>
                 </ul>
             </div>
         </div>      
     </div> 
 </section>
 
-<section id="rankings" class="rankings bg-dark">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Top Philanthropists</h2>
-                <hr class="light">
-            </div>
-        </div>
-        <div class="row mg-top-25">
-            {% assign a = 1 %}
-            {% assign b = 0 %}
-            {% for i in (1..12) %}
-            <div class="col-md-3 col-sm-4 col-xs-6" id="person-container-{{ i }}">
-                <div class="person-info-box wow fadeIn">
-                    <div class="container-fluid">
-                        <div class="person-info-box-header">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <h4>{{ a }}. Jack Ma</h4>
-                                </div>
-                                <div class="person-info-box-image col-xs-6">
-                                    <img src="img/people/avatars/{{ b }}.jpg">
-                                </div>
-                                <div class="person-info-box-text col-xs-6">   
-                                    <ul class="no-bullets">
-                                        <li><small class="text-muted">Donations:</small><br><big>$52 million</big></li>
-                                        <li><small class="text-muted">Generosity:</small><br><big>12%</big></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% assign a = a | plus: 1 %}
-            {% if b == 9%}
-                    {% assign b = 0 %}
-                {% else %}
-                    {% assign b = b | plus: 1 %} 
-                {% endif %}
-            {% endfor %}
-        </div>
-        <div class="row">
-            <div class="col-xs-12 text-center mg-top-25">
-                <a href="charts.html" class="btn btn-default btn-xl">View All</a>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section id="most-generous">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Most Generous</h2>
+                <h2 class="section-heading">最慷慨个人</h2>
                 <hr class="">
             </div>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 text-center">
+            <div class="col-md-3 col-xs-6 text-center">
                 <div class="service-box">
-                    <h3>Jack Ma</h3>
-                    <img src="img/people/jack_ma.jpg" class="person wow fadeIn" alt="Jack Ma">
-                    <p class="text-muted">Jack Ma made the largest donation pledge by a Chinese individual in September 2014. The pledged amount equals to XX percent of what all his Alibaba shares are worth.</p>
+                    <h3>何享健</h3>
+                    <img src="{{ "/img/people/he_xiangjian.jpg" | prepend: site.baseurl }}" class="person wow fadeIn" alt="He Xiangjian">
+                    <p class="text-muted">常年热衷慈善的何享健以4亿元人民币的捐赠额位居榜首。何享健通过以他命名的基金会为家乡顺德捐建了一所敬老院和一个公园，相当于其持有的美的集团市值的1%。</p>
                 </div>
             </div>
-            <div class="col-md-6 text-center">
+            <div class="col-md-3 col-xs-6 text-center">
                 <div class="service-box">
-                    <h3>He Qiaonv</h3>
-                    <img src="img/people/he_qiaonv.jpg" class="person wow fadeIn" alt="He Qiaonv">
-                    <p class="text-muted">He Qiaonv has highest generosity index - she donated 183 million USD, which was 6.3 % of her net worth</p>
+                    <h3>王苗通</h3>
+                    <img src="{{ "/img/people/wang_miaotong.jpg" | prepend: site.baseurl }}" class="person wow fadeIn" alt="Wang Miaotong" style="object-fit: cover;">
+                    <p class="text-muted">浙江华通控股董事长王苗通在慷慨指数上名列榜首。他捐资1亿元人民币为家乡浙江上虞新建一座体育场，捐资额占其持有世纪华通股份的5.61%。 </p>
                 </div>
+            </div>
+            <div class="col-md-3 col-xs-6 text-center">
+                <div class="service-box">
+                    <h3>马云</h3>
+                    <img src="{{ "/img/people/jack_ma.jpg" | prepend: site.baseurl }}" class="person wow fadeIn" alt="Jack Ma">
+                    <p class="text-muted">马云于2014年9月作出中国慈善史上最大一笔个人捐赠承诺，约合阿里巴巴上市时其持有股份数的18%。</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-6 text-center">
+                <div class="service-box">
+                    <h3>何巧女</h3>
+                    <img src="{{ "/img/people/he_qiaonv.jpg" | prepend: site.baseurl }}" class="person wow fadeIn" alt="He Qiaonv">
+                    <p class="text-muted">东方园林董事长何巧女承诺捐出其持有的东方园林价值29亿元的股票，占她持有股票总数的26%，成为以捐赠承诺计最慷慨的慈善家。</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center mg-top-25">
+                <a href="charts.html?generosity" class="btn btn-primary btn-xl">查看全部</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-muted mg-top-50">
+                <p><small>注：出于计算精确度考虑，慷慨指数目前只纳入拥有上市公司资产的慈善家。持股情况以及股价以2014财年最后一个交易日为准。</small></p>
             </div>
         </div>
     </div>
@@ -147,10 +123,10 @@ language: cn
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center">
-                <h2 class="section-heading wow bounce" data-wow-delay=".1s"><i class="fa fa-map-marker"></i> Guangdong – Land of Charity</h2>
+                <h2 class="section-heading wow bounce" data-wow-delay=".1s"><i class="fa fa-map-marker"></i> 广东 ：慈善之乡</h2>
                 <hr class="light">
                 <div class="wow zoomIn" data-wow-delay=".1s">
-                    <p>The southern province is home to 21 philanthropists, making it the most generous region. He Xiangjian, founder of electrical appliance manufacturer Midea, leads with 410 million donation in the 12 months period. Top 100 philanthropists are located in 21 municipalities/provinces. Guangdong is followed by Beijing (16), Zhejiang (11) and Fujian (8).</p>
+                    <p>广东产生了21位上榜慈善家，因而成为最慷慨的省份。家电生产商美的集团创始人何享健在12个月时间里，共实际捐赠4亿元，引领各路群英。上榜100名慈善家共分布在21个省市。排在广东之后的是北京（16人）、浙江（11人）和福建（8人）。</p>
                 </div>
             </div>
         </div>
@@ -165,9 +141,9 @@ language: cn
                 <div class="container-fluid text-center">
                     <div class="row">
                         <div class="col-lg-10 col-lg-offset-1">
-                            <h2 class="section-heading wow bounce"><i class="fa fa-building"></i> Real Estate Gives</h2>
+                            <h2 class="section-heading wow bounce"><i class="fa fa-building"></i> 房地产：贡献最大</h2>
                             <hr class="light">
-                            <p class="wow zoomIn">China’s booming property market has minted the most philanthropists. There are 32 individuals whose core business is building houses, nearly twice as the next most generous sector: manufacturing (18). Consumer (15) and technology (14) sector rank the third and fourth, respectively.</p>
+                            <p class="wow zoomIn">中国蓬勃发展的房地产行业造就了最多的慈善家。32位上榜慈善家的核心业务是房地产，几乎是第二多行业制造业（18人）的两倍。消费（15人）和科技（14人）领域涌现的慈善家分列第三和第四位。</p>
                         </div>
                     </div>
                 </div>
@@ -179,9 +155,9 @@ language: cn
                 <div class="container-fluid text-center">
                     <div class="row">
                         <div class="col-lg-10 col-lg-offset-1">
-                            <h2 class="section-heading wow bounce"><i class="fa fa-graduation-cap"></i> Education Takes</h2>
+                            <h2 class="section-heading wow bounce"><i class="fa fa-graduation-cap"></i> 教育：受益最多</h2>
                             <hr class="light">
-                            <p class="wow zoomIn">Education gets the lion’s share with 81 individuals giving to schools or students. Eight Chinese universities received donations of at least 100 million yuan. Poverty alleviation and social welfare is the second most active sector (62), followed by disaster relief (35).</p>
+                            <p class="wow zoomIn">教育是受捐赠最多的领域，共有81人捐赠给各类学校及学生，共有八所大学收到至少1亿元的捐赠。扶贫及社会福利是受益第二多的领域（62人），再次是救灾（35人）。</p>
                         </div>
                     </div>
                 </div>
@@ -195,10 +171,10 @@ language: cn
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center">
-                <h2 class="section-heading wow bounce" data-wow-delay=".1s"><i class="fa fa-university"></i> Government</h2>
+                <h2 class="section-heading wow bounce" data-wow-delay=".1s"><i class="fa fa-university"></i> 政府：受信任</h2>
                 <hr class="light">
                 <div class="wow zoomIn" data-wow-delay=".1s">
-                    <p>Two out of five philanthropists (41) donate to government or government-backed charities, highlighting the trust donors put in government, despite a series of scandal that undermined the credibility of the country’s governmental charity several years ago.</p>
+                    <p>虽然近年来与政府相关的慈善机构频现丑闻，其公信力受损，但仍有40%的慈善家选择对政府或政府支持的公益机构进行捐赠，体现了慈善家对政府的信赖。</p>
                 </div>
             </div>
         </div>
@@ -209,7 +185,7 @@ language: cn
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Gender Inequality</h2>
+                <h2 class="section-heading">性别不平衡</h2>
                 <hr class="">
             </div>
         </div>
@@ -232,7 +208,7 @@ language: cn
 
                   {% endfor %}
 
-                    <h3>89 male philanthropists</h3>
+                    <h3>89位慈善家为男性</h3>
                 </div>
             </div>
             <div class="col-md-6 text-center pull-down">
@@ -246,7 +222,7 @@ language: cn
 
                   {% endfor %}
 
-                  <h3>11 female philanthropists</h3>
+                  <h3>11为慈善家为女性</h3>
                 </div>
             </div>
         </div>
@@ -257,18 +233,18 @@ language: cn
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">About the Research</h2>
+                <h2 class="section-heading">关于本研究</h2>
                 <hr class="light">
             </div>
         </div>
         <div class="row">
             <div class="col-md-5 col-md-offset-1 wow fadeIn">
-                <p>The rise of private wealth is one of the most important developments in modern China, with implications for the country’s social, economic, and political arenas. How individuals choose to deploy such resources will shape the relationships between the individual and the state, between the state and business, and between the state and the social sector.</p>
-                <p>The research aims to provide a holistic view of China’s philanthropic landscape by analyzing specific givings of China’s most generous individuals. The findings are based on a variety of sources, including media reports, company websites, corporate filings and trade journals and most of them they are verified by each philanthropist or his or her representative and recipients of the funds. All information is separately verified by China Charity & Donation Information Center, an affiliation of China’s Ministry of Civil Affairs.</p>
-                <p>We believe that an independent, verified, and research-oriented design of a Chinese giving database will enable much-needed quantitative research and will also result in indices that can be used by a range of government, academic, media, and non-profit organizations.</p>
+                <p>私人财富的快速增长是现代中国最为重要的成就之一，并对社会、经济和政治等方面产生深远影响。富有人群如何选择配置他们的财富，将会改变个人与国家、国家与企业以及国家与社会部门之间的种种关系。</p>
+                <p>本研究旨在通过分析中国最富有阶层的捐赠行为，来提供对中国慈善领域研究的一个全新视角。研究结果来源于各种公开信源，包括媒体报道、公司网站、企业公告和行业刊物，绝大多数获得捐赠人或其代表，以及受助方和独立第三方机构的核实。</p>
+                <p>我们相信，建立起一个独立、准确、为研究所用的中国慈善数据库，将有助于对行业进行量化研究，并产生可被政府、学界、媒体和非盈利组织广泛运用的一系列指标。</p>
             </div>
             <div class="col-md-5 wow fadeIn">
-                <p>This website will be updated every year. The 2015 report is compiled by: Peiran Wei (MC MPA '15, Harvard Kennedy School),  Zijia Guo (MIB '15, The Fletcher School of Tufts University), Qinqin Wu (MDes '15, Harvard Graduate School of Design), Cuimei Zhang (Ed.M '15, Harvard Graduate School of Education) and Evan Kornbluh (MPP/MBA Candidate, Harvard Kennedy School/Harvard Business School).</p>
+                <p>本网站今后将每年进行更新。2015年报告由以下人员完成：魏沛然（哈佛大学肯尼迪政府学院，2015级公共管理硕士）、郭紫佳（塔夫茨大学弗莱彻学院，2015级国际商业硕士）、吴沁沁（哈佛大学设计学院，2015级设计学硕士）、张翠梅（哈佛大学教育学院，2015级教育硕士）和Evan Kornbluh（哈佛大学肯尼迪政府学院／哈佛商学院，公共政策硕士／工商管理硕士在读）。</p>
                 <img src="{{ "/img/john-harvard-statue.jpg" || prepend: site.baseurl }}" alt="Research team">
             </div>
         </div>

@@ -57,60 +57,11 @@ language: en
                     <li class="wow fadeIn" data-wow-delay=".265s">Real estate produces the most philanthropists, but none of the top 4 are in property</li>
                     <li class="wow fadeIn" data-wow-delay=".32s">Four donors give their stocks/options, including the most generous one: Jack Ma</li>
                     <li class="wow fadeIn" data-wow-delay=".35s">10 philanthropists donate overseas; more than a quarter have set up own foundations (27)</li>
+                    <li class="wow fadeIn" data-wow-delay=".37s">Average age of the top 100 philanthropists is 54.</li>
                 </ul>
             </div>
         </div>      
     </div> 
-</section>
-
-<section id="rankings" class="rankings bg-dark">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Top Philanthropists</h2>
-                <hr class="light">
-            </div>
-        </div>
-        <div class="row mg-top-25">
-            {% assign a = 1 %}
-            {% assign b = 0 %}
-            {% for i in (1..12) %}
-            <div class="col-md-3 col-sm-4 col-xs-6" id="person-container-{{ i }}">
-                <div class="person-info-box wow fadeIn">
-                    <div class="container-fluid">
-                        <div class="person-info-box-header">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <h4>{{ a }}. Jack Ma</h4>
-                                </div>
-                                <div class="person-info-box-image col-xs-6">
-                                    <img src="img/people/avatars/{{ b }}.jpg">
-                                </div>
-                                <div class="person-info-box-text col-xs-6">   
-                                    <ul class="no-bullets">
-                                        <li><small class="text-muted">Donations:</small><br><big>$52 million</big></li>
-                                        <li><small class="text-muted">Generosity:</small><br><big>12%</big></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% assign a = a | plus: 1 %}
-            {% if b == 9%}
-                    {% assign b = 0 %}
-                {% else %}
-                    {% assign b = b | plus: 1 %} 
-                {% endif %}
-            {% endfor %}
-        </div>
-        <div class="row">
-            <div class="col-xs-12 text-center mg-top-25">
-                <a href="charts.html" class="btn btn-default btn-xl">View All</a>
-            </div>
-        </div>
-    </div>
 </section>
 
 <section id="most-generous">
@@ -124,19 +75,43 @@ language: en
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 text-center">
+            <div class="col-md-3 col-xs-6 text-center">
                 <div class="service-box">
-                    <h3>Jack Ma</h3>
-                    <img src="img/people/jack_ma.jpg" class="person wow fadeIn" alt="Jack Ma">
-                    <p class="text-muted">Jack Ma made the largest donation pledge by a Chinese individual in September 2014. The pledged amount equals to XX percent of what all his Alibaba shares are worth.</p>
+                    <h3>He Xiangjian</h3>
+                    <img src="{{ "/img/people/he_xiangjian.jpg" | prepend: site.baseurl }}" class="person wow fadeIn" alt="He Xiangjian">
+                    <p class="text-muted">Long-time philanthropist He Xiangjian tops the list with 400 million yuan donation made via his namesake foundation.</p>
                 </div>
             </div>
-            <div class="col-md-6 text-center">
+            <div class="col-md-3 col-xs-6 text-center">
+                <div class="service-box">
+                    <h3>Wang Miaotong</h3>
+                    <img src="{{ "/img/people/wang_miaotong.jpg" | prepend: site.baseurl }}" class="person wow fadeIn" alt="Wang Miaotong" style="object-fit: cover;">
+                    <p class="text-muted">Wang Miaotong, founder of an auto-parts maker in Zhejiang, ranks the first on Generosity Index, which compares an individual’s donation with the value of his shares.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-6 text-center">
+                <div class="service-box">
+                    <h3>Jack Ma</h3>
+                    <img src="{{ "/img/people/jack_ma.jpg" | prepend: site.baseurl }}" class="person wow fadeIn" alt="Jack Ma">
+                    <p class="text-muted">Jack Ma made the largest donation pledge by a Chinese individual in September 2014. The pledged amount equals to 18 percent of his stake in Alibaba at the time of the company’s IPO.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-6 text-center">
                 <div class="service-box">
                     <h3>He Qiaonv</h3>
-                    <img src="img/people/he_qiaonv.jpg" class="person wow fadeIn" alt="He Qiaonv">
-                    <p class="text-muted">He Qiaonv has highest generosity index - she donated 183 million USD, which was 6.3 % of her net worth</p>
+                    <img src="{{ "/img/people/he_qiaonv.jpg" | prepend: site.baseurl }}" class="person wow fadeIn" alt="He Qiaonv">
+                    <p class="text-muted">He Qiaonv pledged to donate 2.9 billion yuan of her shares in Oriental Landscape, or 26 percent of her stake in the company, making her the most generous philanthropist by pledge amount.</p>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center mg-top-50">
+                <a href="charts.html?generosity" class="btn btn-primary btn-xl">View All</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-muted mg-top-50">
+                <p><small>Note: Due to accuracy consideration, only individuals with shares in publicly traded companies are included in Generosity Index. The cut-off date for shareholding and stock price is the last trading day of Fiscal Year 2014.</small></p>
             </div>
         </div>
     </div>

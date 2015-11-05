@@ -55,6 +55,10 @@ function fix_chart(that){
 }
 
 function auto_hide_fixed_charts() {
+
+  if ($("#maps").length <= 0)
+    return;
+
   var maps_position = $("#maps").offset().top;
     
   if ($('#page-top').hasClass('fix-charts') && !is_chart_closed) {
@@ -640,6 +644,8 @@ $(function (){
   resize_charts();
 
   map_height();
+
+  $('[data-toggle="tooltip"]').tooltip();
 
 });
 
