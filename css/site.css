@@ -585,8 +585,7 @@ section#people .container {
 }
 
 .circle-text.spin.right,
-.person-box:nth-child(4n+1) .circle:hover .circle-text,
-.person-box:nth-child(4n+2) .circle:hover .circle-text {
+.person-box:nth-child(2n+1) .circle:hover .circle-text {
     right: -200px;
     -webkit-animation-name: spinRight;
     -moz-animation-name: spinRight;
@@ -615,9 +614,7 @@ section#people .container {
     }
 }
 
-.circle-text.spin.left, 
-.person-box:nth-child(4n+3) .circle:hover .circle-text,
-.person-box:nth-child(4n+4) .circle:hover .circle-text {
+.person-box:nth-child(2n) .circle:hover .circle-text {
     right: 200px;
     -webkit-animation-name: spinLeft;
     -moz-animation-name: spinLeft;
@@ -646,6 +643,71 @@ section#people .container {
     }
 }
 
+@media(min-width:768px) {
+
+    .person-box:nth-child(4n+1) .circle:hover .circle-text,
+    .person-box:nth-child(4n+2) .circle:hover .circle-text {
+        right: -200px;
+        -webkit-animation-name: spinRight;
+        -moz-animation-name: spinRight;
+        -ms-animation-name: spinRight;
+        animation-name: spinRight;
+    }
+
+    @-ms-keyframes spinRight {
+        from { -ms-transform: rotate(0deg); }
+        to { -ms-transform: rotate(360deg); }
+    }
+    @-moz-keyframes spinRight {
+        from { -moz-transform: rotate(0deg); }
+        to { -moz-transform: rotate(360deg); }
+    }
+    @-webkit-keyframes spinRight {
+        from { -webkit-transform: rotate(0deg); }
+        to { -webkit-transform: rotate(360deg); }
+    }
+    @keyframes spinRight {
+        from {
+            transform:rotate(0deg);
+        }
+        to {
+            transform:rotate(360deg);
+        }
+    }
+
+    .circle-text.spin.left, 
+    .person-box:nth-child(4n+3) .circle:hover .circle-text,
+    .person-box:nth-child(4n+4) .circle:hover .circle-text {
+        right: 200px;
+        -webkit-animation-name: spinLeft;
+        -moz-animation-name: spinLeft;
+        -ms-animation-name: spinLeft;
+        animation-name: spinLeft;
+    }
+
+    @-ms-keyframes spinLeft {
+        from { -ms-transform: rotate(0deg); }
+        to { -ms-transform: rotate(-360deg); }
+    }
+    @-moz-keyframes spinLeft {
+        from { -moz-transform: rotate(0deg); }
+        to { -moz-transform: rotate(-360deg); }
+    }
+    @-webkit-keyframes spinLeft {
+        from { -webkit-transform: rotate(0deg); }
+        to { -webkit-transform: rotate(-360deg); }
+    }
+    @keyframes spinLeft {
+        from {
+            transform:rotate(0deg);
+        }
+        to {
+            transform:rotate(-360deg);
+        }
+    }
+
+}
+
 .circle .details {
     visibility: hidden;
     position: absolute;
@@ -669,14 +731,34 @@ section#people .container {
     z-index: -50;
 }
 
-.person-box:nth-child(4n+3) .circle .details,
-.person-box:nth-child(4n+4) .circle .details {
+.person-box:nth-child(2n+1) .circle .details {
+    text-align: left;
+}
+
+.person-box:nth-child(2n) .circle:hover .details {
+    left: 0;
+}
+
+.person-box:nth-child(2n) .circle .details {
     text-align: right;
 }
 
-.person-box:nth-child(4n+3) .circle:hover .details,
-.person-box:nth-child(4n+4) .circle:hover .details {
+.person-box:nth-child(2n) .circle:hover .details {
     left: -140px;
+}
+
+@media(min-width:768px) {
+
+    .person-box:nth-child(4n+3) .circle .details,
+    .person-box:nth-child(4n+4) .circle .details {
+        text-align: right;
+    }
+
+    .person-box:nth-child(4n+3) .circle:hover .details,
+    .person-box:nth-child(4n+4) .circle:hover .details {
+        left: -140px;
+    }
+
 }
 
 .circle .details .content {
