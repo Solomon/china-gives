@@ -550,10 +550,53 @@ section#people .container {
     border-radius: 50%;
 }
 
-.person-box.selected .circle-text:after {
-    -webkit-box-shadow: 0px 0px 1px 2px rgba(137,150,160,.5);
-    -moz-box-shadow: 0px 0px 1px 2px rgba(137,150,160,.5);
-    box-shadow: 0px 0px 0px 4px rgba(137,150,160,.5);
+.person-box.selected .circle-text:before {
+    content: "";
+    display: block;
+    width: 168px;
+    height: 168px;
+    background: transparent; 
+    -moz-border-radius: 50%; 
+    -webkit-border-radius: 50%; 
+    border-radius: 50%;
+    border: 1px solid #333;
+    top: -4px;
+    left: -4px;
+    position: absolute;
+    -webkit-box-shadow: 0px 0px 1px 0px rgba(51,51,51,0.5);
+    -moz-box-shadow: 0px 0px 1px 0px rgba(51,51,51,0.5);
+    box-shadow: 0px 0px 1px 0px rgba(51,51,51,0.5);
+}
+
+.person-box.manufacturing.selected .circle-text:before {
+    border-color: #368db9; 
+}
+.person-box.real-estate.selected .circle-text:before {
+    border-color: #a51c30; 
+}
+.person-box.energy.selected .circle-text:before {
+    border-color: #faae53; 
+}
+.person-box.consumer.selected .circle-text:before {
+    border-color: #52854c; 
+}
+.person-box.tech-it.selected .circle-text:before {
+    border-color: #293352; 
+}
+.person-box.finance.selected .circle-text:before {
+    border-color: #48c4b7; 
+}
+.person-box.education.selected .circle-text:before {
+    border-color: #861657; 
+}
+.person-box.healthcare.selected .circle-text:before {
+    border-color: #CED665; 
+}
+.person-box.transportation.selected .circle-text:before {
+    border-color: #8C8179; 
+}
+.person-box.other.selected .circle-text:before {
+    border-color: #80475E; 
 }
 
 .person-box.selected .circle-text div,
@@ -860,19 +903,19 @@ section#people .container {
     background: #293352; 
 }
 .person-box.finance .circle-text:after {
-    background: #36b9a4; 
+    background: #48c4b7; 
 }
 .person-box.education .circle-text:after {
-    background: #a51c75; 
+    background: #861657; 
 }
 .person-box.healthcare .circle-text:after {
-    background: #53faae; 
+    background: #CED665; 
 }
 .person-box.transportation .circle-text:after {
-    background: #857f4c; 
+    background: #8C8179; 
 }
 .person-box.other .circle-text:after {
-    background: #7b8280; 
+    background: #80475E; 
 }
 
 /* maps */
