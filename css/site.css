@@ -36,6 +36,12 @@ ul.no-bullets li {
     list-style-type: none;
 }
 
+.chart-loader {
+    width: 50px;
+    margin: 0 auto;
+    text-align: center;
+}
+
 /* color overrides */
 
 hr {
