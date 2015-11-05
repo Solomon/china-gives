@@ -486,8 +486,8 @@ function init_chart_onclick(){
             scrollTop: $('#person-container-' + id).offset().top - 70
           }, 2000);
         }
-        $('.person-info-box').removeClass('selected');      
-        $('#person-container-' + id + ' .person-info-box').addClass('selected');
+        $('.person-box').removeClass('selected');      
+        $('#person-container-' + id + ' .person-box').addClass('selected');
       }
     });
 
