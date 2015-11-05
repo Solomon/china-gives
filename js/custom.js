@@ -478,12 +478,12 @@ function init_chart_onclick(){
         var chart_container = $('#charts-container');
         if (($('#page-top').hasClass('fix-charts') || will_fix(window)) && !is_chart_closed) {
           $('html, body').animate({
-            scrollTop: $('#person-container-' + id).offset().top - 425
+            scrollTop: $('#person-container-' + id).offset().top - 430
           }, 2000);
         }
         else {
           $('html, body').animate({
-            scrollTop: $('#person-container-' + id).offset().top - 65
+            scrollTop: $('#person-container-' + id).offset().top - 70
           }, 2000);
         }
         $('.person-info-box').removeClass('selected');      
