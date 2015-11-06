@@ -524,7 +524,7 @@ ul.chart-options li:not(.active) small i {
 
 section#people .container {
     overflow: hidden;
-    padding-bottom: 1px; /* to make box shadow and outlines possible on last rows elements */
+    padding-bottom: 5px; /* to make box shadow and outlines possible on last rows elements */
 }
 
 .circle {
