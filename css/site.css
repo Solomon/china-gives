@@ -475,6 +475,10 @@ section.charts .container-fluid.charts-container {
     padding-bottom: 10px;
 }
 
+ul.chart-options li:not(.active) small i {
+    visibility: hidden;
+}
+
 /* In bootstrap.css, this was applied after 768px, we need this from all the way down to ensure chart nav does nor go vertical*/
   
 .nav-justified.chart-options > li {
