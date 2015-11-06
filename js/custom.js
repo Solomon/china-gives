@@ -134,7 +134,7 @@ function focus_data() {
 
 function get_focus(item){
   var i = 0;
-  var focuses = ["Education", "Environment", "Healthcare", "Poverty, Welfare", "Disaster Relief", "Culture"];
+  var focuses = ["Education", "Environment", "Healthcare", "Social Welfare", "Disaster Relief", "Culture"];
   jQuery.each(focuses, function(index, focus) {     
     if (item[focus] > 0)
       i++;

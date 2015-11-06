@@ -12,7 +12,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 400,
+    "Social Welfare": 400,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -27,7 +27,7 @@ function chart_data(){
     "Education": 100,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 210,
+    "Social Welfare": 210,
     "Disaster Relief": 5,
     "Culture": 0
   },
@@ -42,7 +42,7 @@ function chart_data(){
     "Education": 315,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -57,7 +57,7 @@ function chart_data(){
     "Education": 310,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -72,7 +72,7 @@ function chart_data(){
     "Education": 301,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 2,
     "Culture": 0
   },
@@ -87,7 +87,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 279,
+    "Social Welfare": 279,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -102,7 +102,7 @@ function chart_data(){
     "Education": 220,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -117,7 +117,7 @@ function chart_data(){
     "Education": 150,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -132,7 +132,7 @@ function chart_data(){
     "Education": 26,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 100,
+    "Social Welfare": 100,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -147,7 +147,7 @@ function chart_data(){
     "Education": 112,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -162,7 +162,7 @@ function chart_data(){
     "Education": 102,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -177,7 +177,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 101,
+    "Social Welfare": 101,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -192,7 +192,7 @@ function chart_data(){
     "Education": 100,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -207,7 +207,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 100,
+    "Social Welfare": 100,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -222,7 +222,7 @@ function chart_data(){
     "Education": 100,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -237,7 +237,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 100,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -252,7 +252,7 @@ function chart_data(){
     "Education": 100,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -267,7 +267,7 @@ function chart_data(){
     "Education": 100,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -282,7 +282,7 @@ function chart_data(){
     "Education": 80,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 2
   },
@@ -297,7 +297,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 70,
+    "Social Welfare": 70,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -312,7 +312,7 @@ function chart_data(){
     "Education": 67,
     "Environment": 1,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -327,7 +327,7 @@ function chart_data(){
     "Education": 62,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -342,7 +342,7 @@ function chart_data(){
     "Education": 60,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -357,7 +357,7 @@ function chart_data(){
     "Education": 6,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 50,
+    "Social Welfare": 50,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -372,7 +372,7 @@ function chart_data(){
     "Education": 5,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 50,
+    "Social Welfare": 50,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -387,7 +387,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 50,
-    "Poverty, Welfare": 3,
+    "Social Welfare": 3,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -402,7 +402,7 @@ function chart_data(){
     "Education": 1,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 51,
+    "Social Welfare": 51,
     "Disaster Relief": 1,
     "Culture": 0
   },
@@ -417,7 +417,7 @@ function chart_data(){
     "Education": 51,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -432,7 +432,7 @@ function chart_data(){
     "Education": 1,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 50,
+    "Social Welfare": 50,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -447,7 +447,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 1,
-    "Poverty, Welfare": 1,
+    "Social Welfare": 1,
     "Disaster Relief": 49,
     "Culture": 0
   },
@@ -462,7 +462,7 @@ function chart_data(){
     "Education": 50,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -477,7 +477,7 @@ function chart_data(){
     "Education": 10,
     "Environment": 0,
     "Healthcare": 20,
-    "Poverty, Welfare": 20,
+    "Social Welfare": 20,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -492,7 +492,7 @@ function chart_data(){
     "Education": 5,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 33,
+    "Social Welfare": 33,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -507,7 +507,7 @@ function chart_data(){
     "Education": 50,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -522,7 +522,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 50,
+    "Social Welfare": 50,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -537,7 +537,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 50
   },
@@ -552,7 +552,7 @@ function chart_data(){
     "Education": 50,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -567,7 +567,7 @@ function chart_data(){
     "Education": 40,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -583,7 +583,7 @@ function chart_data(){
     "Education": 36,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -598,7 +598,7 @@ function chart_data(){
     "Education": 20,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 5,
+    "Social Welfare": 5,
     "Disaster Relief": 6,
     "Culture": 0
   },
@@ -613,7 +613,7 @@ function chart_data(){
     "Education": 31,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -628,7 +628,7 @@ function chart_data(){
     "Education": 20,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 11,
+    "Social Welfare": 11,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -643,7 +643,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 30
   },
@@ -658,7 +658,7 @@ function chart_data(){
     "Education": 30,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -673,7 +673,7 @@ function chart_data(){
     "Education": 30,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -688,7 +688,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 25,
+    "Social Welfare": 25,
     "Disaster Relief": 3,
     "Culture": 0
   },
@@ -703,7 +703,7 @@ function chart_data(){
     "Education": 15,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 10,
+    "Social Welfare": 10,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -718,7 +718,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 21,
+    "Social Welfare": 21,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -733,7 +733,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 20,
+    "Social Welfare": 20,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -748,7 +748,7 @@ function chart_data(){
     "Education": 20,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -763,7 +763,7 @@ function chart_data(){
     "Education": 20,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -778,7 +778,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 20,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -793,7 +793,7 @@ function chart_data(){
     "Education": 20,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -808,7 +808,7 @@ function chart_data(){
     "Education": 20,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -823,7 +823,7 @@ function chart_data(){
     "Education": 20,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -838,7 +838,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 10,
     "Healthcare": 0,
-    "Poverty, Welfare": 8,
+    "Social Welfare": 8,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -853,7 +853,7 @@ function chart_data(){
     "Education": 15,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -868,7 +868,7 @@ function chart_data(){
     "Education": 13,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 1,
+    "Social Welfare": 1,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -883,7 +883,7 @@ function chart_data(){
     "Education": 10,
     "Environment": 0,
     "Healthcare": 2,
-    "Poverty, Welfare": 1,
+    "Social Welfare": 1,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -898,7 +898,7 @@ function chart_data(){
     "Education": 13,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -913,7 +913,7 @@ function chart_data(){
     "Education": 13,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -928,7 +928,7 @@ function chart_data(){
     "Education": 3,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 8,
+    "Social Welfare": 8,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -943,7 +943,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 11,
+    "Social Welfare": 11,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -958,7 +958,7 @@ function chart_data(){
     "Education": 10,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 1,
     "Culture": 0
   },
@@ -973,7 +973,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 10,
+    "Social Welfare": 10,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -988,7 +988,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 10,
+    "Social Welfare": 10,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1003,7 +1003,7 @@ function chart_data(){
     "Education": 10,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1018,7 +1018,7 @@ function chart_data(){
     "Education": 10,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1033,7 +1033,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 10,
+    "Social Welfare": 10,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1048,7 +1048,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 10,
+    "Social Welfare": 10,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1063,7 +1063,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 10,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1078,7 +1078,7 @@ function chart_data(){
     "Education": 10,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1093,7 +1093,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 10,
+    "Social Welfare": 10,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1108,7 +1108,7 @@ function chart_data(){
     "Education": 10,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1123,7 +1123,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 10,
+    "Social Welfare": 10,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1138,7 +1138,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 10,
+    "Social Welfare": 10,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1153,7 +1153,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 10,
+    "Social Welfare": 10,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1168,7 +1168,7 @@ function chart_data(){
     "Education": 10,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1183,7 +1183,7 @@ function chart_data(){
     "Education": 6,
     "Environment": 0,
     "Healthcare": 3,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1198,7 +1198,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 4,
-    "Poverty, Welfare": 5,
+    "Social Welfare": 5,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1213,7 +1213,7 @@ function chart_data(){
     "Education": 1,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 5,
+    "Social Welfare": 5,
     "Disaster Relief": 0,
     "Culture": 2
   },
@@ -1228,7 +1228,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 8,
+    "Social Welfare": 8,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1243,7 +1243,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 2,
+    "Social Welfare": 2,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1258,7 +1258,7 @@ function chart_data(){
     "Education": 1,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 5,
+    "Social Welfare": 5,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1273,7 +1273,7 @@ function chart_data(){
     "Education": 6,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1288,7 +1288,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 5,
+    "Social Welfare": 5,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1303,7 +1303,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 5,
+    "Social Welfare": 5,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1318,7 +1318,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 5,
+    "Social Welfare": 5,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1333,7 +1333,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 5,
+    "Social Welfare": 5,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1348,7 +1348,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 4,
+    "Social Welfare": 4,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1363,7 +1363,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 4,
+    "Social Welfare": 4,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1378,7 +1378,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 4,
+    "Social Welfare": 4,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1393,7 +1393,7 @@ function chart_data(){
     "Education": 2,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 1,
+    "Social Welfare": 1,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1408,7 +1408,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 3,
+    "Social Welfare": 3,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1423,7 +1423,7 @@ function chart_data(){
     "Education": 3,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1438,7 +1438,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 2,
+    "Social Welfare": 2,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1453,7 +1453,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 2,
     "Culture": 0
   },
@@ -1468,7 +1468,7 @@ function chart_data(){
     "Education": 0,
     "Environment": 1000,
     "Healthcare": 0,
-    "Poverty, Welfare": 1,
+    "Social Welfare": 1,
     "Disaster Relief": 0,
     "Culture": 0
   },
@@ -1483,7 +1483,7 @@ function chart_data(){
     "Education": 1,
     "Environment": 0,
     "Healthcare": 0,
-    "Poverty, Welfare": 0,
+    "Social Welfare": 0,
     "Disaster Relief": 0,
     "Culture": 0
   }

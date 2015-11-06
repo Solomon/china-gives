@@ -3,6 +3,7 @@ layout: charts
 title: 统计数据 | 中国慈善--艾什民主治理与创新中心
 excerpt: 2015年中国前100名慈善家数据。哈佛肯尼迪学院艾什民主治理与创新中心研究。
 language: cn
+
 ---
 
 <section id="charts" class="charts">
@@ -76,22 +77,22 @@ language: cn
 
             {% assign focuses = "a|b" | split: "|" %}
             {% if person.['Education'] > 0 %}
-                 {% assign focuses = focuses | push: "Education" %}
+                 {% assign focuses = focuses | push: "教育" %}
             {% endif %}
             {% if person.['Environment'] > 0 %}
-                 {% assign focuses = focuses | push: "Environment" %}
+                 {% assign focuses = focuses | push: "环保" %}
             {% endif %}
             {% if person.['Healthcare'] > 0 %}
-                 {% assign focuses = focuses | push: "Healthcare" %}
+                 {% assign focuses = focuses | push: "医疗" %}
             {% endif %}
-            {% if person.['Poverty, Welfare'] > 0 %}
-                 {% assign focuses = focuses | push: "Poverty, Welfare" %}
+            {% if person.['Social Welfare'] > 0 %}
+                 {% assign focuses = focuses | push: "社会福利" %}
             {% endif %}
             {% if person.['Disaster Relief'] > 0 %}
-                 {% assign focuses = focuses | push: "Disaster Relief" %}
+                 {% assign focuses = focuses | push: "赈灾" %}
             {% endif %}
             {% if person.['Culture'] > 0 %}
-                 {% assign focuses = focuses | push: "Culture" %}
+                 {% assign focuses = focuses | push: "文化" %}
             {% endif %}
 
             {% assign focuses = focuses | array_to_sentence_string %}
@@ -107,8 +108,22 @@ language: cn
                         <div class="circle-text">
                             <div>
                                 <div>{{ b }}</div>
-                                <h4>{{ person.['Name CN'] }}</h4>
-                                <div>¥{{ person.['Total Amount (million Yuan)'] }} Milion</div>
+                                <h4>{{ person.['Name CN'] }} </h4>
+                                {% if person.['Total Amount (million Yuan)'] < 100 %}
+                                    <div>{{ person.['Total Amount (million Yuan)'] }}00万元</div>
+                                {% else %}
+                                    {% assign base_amount = person.['Total Amount (million Yuan)'] | divided_by: 100 %}
+                                    {% assign base_hun = base_amount | times: 100 %}
+                                    {% assign mod_amount = person.['Total Amount (million Yuan)'] | minus: base_hun %}
+                                    {% if mod_amount == 0%}                                        
+                                        <div>{{ base_amount }}亿元</div>
+                                    {% elsif mod_amount < 10 %}
+                                        <div>{{ base_amount }}.0{{ mod_amount }}亿元</div>
+                                    {% endif %}    
+                                    {% if mod_amount >= 10 %}
+                                        <div>{{ base_amount }}.{{ mod_amount }}亿元</div>
+                                    {% endif %}   
+                                {% endif %}                                
                             </div>
                         </div>
                         <div class="details">
@@ -120,8 +135,10 @@ language: cn
                                     {% if person.['Generosity'] != 0 %}                           
                                         <li><span class="text-muted">慷慨指数</span> {{person.['Generosity']}}</li>
                                     {% endif %}     
-                                    <li><span class="text-muted">位置</span> {{ person.['From Province'] }}</li>
-                                    <li><span class="text-muted">行业</span> {{ person.['Industry'] }}</li>
+                                    {% if person.['From Province'] != 0 %}  
+                                        <li><span class="text-muted">位置</span> {{ person.['Province CN'] }}</li>
+                                    {% endif %} 
+                                    <li><span class="text-muted">行业</span> {{ person.['Industry CN'] }}</li>
                                     <li><span class="text-muted">关注领域</span> {{ focuses }}</li>
                                 </ul>
                             </div>
