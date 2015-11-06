@@ -261,6 +261,10 @@ header .header-content .header-content-inner p {
     color: rgba(255,255,255,.85);
 }
 
+header .header-content a.btn {
+    margin: 0 20px;
+}
+
 .lrn-mr-btn {
     color: rgba(255,255,255,.7);
     font-size: 14px;
