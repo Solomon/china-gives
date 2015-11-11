@@ -1,6 +1,7 @@
-
+var national_total = 104226;
 var current_chart;
 var current_data;
+var chart_data_res;
 var is_click_inited = false;
 var is_chart_closed = false;
 function str_starts(full, str){
@@ -131,30 +132,73 @@ function generosity_data() {
 }
 
 function donation_data() {
+  if (!chart_data_res)
+    chart_data_res = chart_data();
+  console.log(chart_data_res);
   var rand_data = [];
-  jQuery.each(current_data, function(index, item) {
-     rand_data.push([item[0], item[1], item[6], item[4], item[6]]);
+  rand_data.push(["Name Eng", "National Total", "Total Amount (million Yuan)", "Industry", "Total Amount (million Yuan)"]);
+  jQuery.each(chart_data_res, function(index, item) {
+    console.log(item["Total Amount (million Yuan)"]);
+     rand_data.push([item["Name Eng"], (item["Total Amount (million Yuan)"] / national_total) * 100, item["Total Amount (million Yuan)"], item["Industry"], item["Total Amount (million Yuan)"]]);
   });
   var data = google.visualization.arrayToDataTable(rand_data);
   return data;
 }
 
+function industry_list(){
+  return ['Manufacturing', 'Real Estate', 'Energy', 'Consumer', 'Tech/IT', 'Finance', 'Education', 'Healthcare', 'Transportation', 'Other'];
+}
+
+function map_colors(){
+  return ['#368DB9', '#A51C30', '#FAAE53', '#52854C', '#293352', '#36B9A4', '#a51c75', '#53faae', '#857f4c', '#7b8280'];
+}
+
+function randomize_axis(){
+  return ((Math.floor(Math.random() * 4) - 2)/10);
+}
+
 function industry_data() {
+  if (!chart_data_res)
+    chart_data_res = chart_data();
   var rand_data = [];
-  jQuery.each(current_data, function(index, item) {
-     rand_data.push([item[0], item[7], item[6], item[4], item[6]]);
+  rand_data.push(["Name Eng", "Industry Int", "Total Amount (million Yuan)", "Industry", "Total Amount (million Yuan)"]);
+  var industries = industry_list();
+  jQuery.each(chart_data_res, function(index, item) {
+     rand_data.push([get_initals(item["Name Eng"]), industries.indexOf(item["Industry"]) + 1 + randomize_axis(), item["Total Amount (million Yuan)"], item["Industry"], item["Total Amount (million Yuan)"]]);
   });
   var data = google.visualization.arrayToDataTable(rand_data);
   return data;
 }
 
 function focus_data() {
+  if (!chart_data_res)
+    chart_data_res = chart_data();
   var rand_data = [];
-  jQuery.each(current_data, function(index, item) {
-     rand_data.push([item[0], item[1], item[8], item[4], item[6]]);
+  rand_data.push(["Name Eng", "National Total", "Focus", "Industry", "Total Amount (million Yuan)"]);
+  jQuery.each(chart_data_res, function(index, item) {
+     rand_data.push([get_initals(item["Name Eng"]), (item["Total Amount (million Yuan)"] / national_total) * 100, get_focus(item), item["Industry"], item["Total Amount (million Yuan)"]]);
   });
   var data = google.visualization.arrayToDataTable(rand_data);
   return data;
+}
+
+function get_focus(item){
+  var i = 0;
+  var focuses = ["Education", "Environment","Healthcare", "Poverty, Welfare", "Disaster Relief", "Culture"];
+  jQuery.each(focuses, function(index, focus) {     
+    if (item[focus] > 0)
+      i++;
+  });
+  return i;
+}
+
+function get_initals(name){
+  var res = '';
+  jQuery.each(name.split(' '), function(index, splitted) {
+      if (splitted[0])
+        res += splitted[0];
+  });
+  return res;
 }
 
 function months_data() {
@@ -217,7 +261,7 @@ function age_options(){
           ticks: [{v: 20, f: ''},{v: 30, f: '30'},{v: 40, f: '40'},
                   {v: 50, f: '50'},{v: 60, f: '60'},{v: 70, f: '70'},{v: 85, f: ''}]
         },
-        colors: ['#368DB9', '#A51C30', '#FAAE53', '#52854C', '#293352'],
+        colors: map_colors(),
         chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
         legend: {
           alignment: 'center',
@@ -249,15 +293,15 @@ function donation_options(){
           gridlineColor: 'transparent',
           baselineColor: 'black',
           baseline: 1,
-          ticks: [{v: 1, f: ''},{v: 5, f: ''},{v: 10, f: ''},{v: 100, f: '100 m'},{v: 500, f: '500 m'},
-                  {v: 1000, f: '1 b'},{v: 2000, f: '2 b'},{v: 2500, f: '2.5 b'}]
+          ticks: [{v: 1, f: ''},{v: 5, f: ''},{v: 10, f: ''},{v: 100, f: '100 m'},
+                  {v: 200, f: '200 m'},{v: 400, f: '400 m'},{v: 430, f: ''}]
         },
         hAxis: {
           title: 'National Total %',
           gridlineColor: 'transparent',
           baselineColor: 'black'
         },
-        colors: ['#368DB9', '#A51C30', '#FAAE53', '#52854C', '#293352'],
+        colors: map_colors(),
         chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
         legend: {
           alignment: 'center',
@@ -276,7 +320,6 @@ function donation_options(){
 
 function generosity_options() {
     return {
-     // title: 'Correlation between life expectancy, fertility rate and population of some world countries (2010)',
       bubble: {
         textStyle: {
           fontSize: 12,
@@ -295,7 +338,7 @@ function generosity_options() {
         gridlineColor: 'transparent',
         baselineColor: 'black'
       },
-      colors: ['#368DB9', '#A51C30', '#FAAE53', '#52854C', '#293352'],
+      colors: map_colors(),
       chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
       legend: {
         alignment: 'center',
@@ -313,6 +356,13 @@ function generosity_options() {
 }
 
 function industry_options(){
+  var h_ticks = [];
+  var industries = industry_list();  
+  h_ticks.push({v: 0, f: ''});
+  jQuery.each(industries, function(index, item) {
+     h_ticks.push({v: index + 1, f: item});
+  });
+  h_ticks.push({v: industries.length + 1, f: ''});
   return {
         bubble: {
           textStyle: {
@@ -326,18 +376,17 @@ function industry_options(){
           title: 'Total Amount',
           gridlineColor: 'transparent',
           baselineColor: 'black',
-          baseline: 1,
-          ticks: [{v: 1, f: ''},{v: 5, f: ''},{v: 10, f: ''},{v: 100, f: '100 m'},{v: 500, f: '500 m'},
-                  {v: 1000, f: '1 b'},{v: 2000, f: '2 b'},{v: 2500, f: '2.5 b'}]
+          baseline: 0,
+          ticks: [{v: 0, f: ''},{v: 5, f: '5 m'},{v: 10, f: ''},{v: 20, f: ''},{v: 30, f: ''},{v: 50, f: '50 m'},{v: 100, f: '100 m'},
+                  {v: 200, f: '200 m'},{v: 300, f: '300 m'},{v: 400, f: '400 m'},{v: 500, f: '500 m'}]
         },
         hAxis: {
           title: 'Industry',
           gridlineColor: 'transparent',
           baselineColor: 'black',
-          ticks: [{v: 0, f: ''},{v: 1, f: 'IT'},
-                  {v: 2, f: 'Manufacturing'},{v: 3, f: 'Finances'},{v: 4, f: 'Real Estate'},{v: 5, f: ''}]
+          ticks: h_ticks
         },
-        colors: ['#368DB9', '#A51C30', '#FAAE53', '#52854C', '#293352'],
+        colors: map_colors(),
         chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
         legend: {
           alignment: 'center',
@@ -413,15 +462,17 @@ function focus_options(){
           baselineColor: 'black',
           ticks: [{v: 0, f: ''},{v: 1, f: '1'},
                   {v: 2, f: '2'},{v: 3, f: '3'},
-                  {v: 4, f: '4'},{v: 5, f: '5'},
-                  {v: 6, f: '6'}]
+                  {v: 4, f: ''}]
         },
         hAxis: {
           title: 'National Total %',
           gridlineColor: 'transparent',
-          baselineColor: 'black'
+          baselineColor: 'black',
+          ticks: [{v: 0, f: '0.0'}, {v: 0.1, f: '0.1'},
+                  {v: 0.2, f: '0.2'},{v: 0.3, f: '0.3'},
+                  {v: 0.4, f: '0.4'},{v: 0.5, f: '0.5'}]
         },
-        colors: ['#368DB9', '#A51C30', '#FAAE53', '#52854C', '#293352'],
+        colors: map_colors(),
         chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
         legend: {
           alignment: 'center',
@@ -646,14 +697,13 @@ $(function (){
   map_height();
 
   $('[data-toggle="tooltip"]').tooltip();
-
+  if (!chart_data_res)
+    chart_data_res = chart_data();
 });
 
 $(window).on('resize', function(){
-
   resize_charts();
   map_height();
-
 });
 
 if ($('#series_chart_div').length > 0) {
