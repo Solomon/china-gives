@@ -4,6 +4,7 @@ var current_data;
 var chart_data_res;
 var is_click_inited = false;
 var is_chart_closed = false;
+
 function str_starts(full, str){
   return full.slice(0, str.length) == str;
 }
@@ -56,12 +57,9 @@ function fix_chart(that){
 }
 
 function auto_hide_fixed_charts() {
-
   if ($("#maps").length <= 0)
     return;
-
-  var maps_position = $("#maps").offset().top;
-    
+  var maps_position = $("#maps").offset().top;    
   if ($('#page-top').hasClass('fix-charts') && !is_chart_closed) {
     if ( $(document).scrollTop() >= maps_position - 400) {
       $('#charts-container').addClass('closed');
@@ -79,25 +77,6 @@ function rand_name() {
     for (var i = 0; i < 2; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     return text;
-}
-
-function char_to_int(chars){
-  return chars[chars.length - 1].charCodeAt(0);
-}
-
-function used_letters(){
-  var letters = [];
-  var v_options = []
-  if (!current_data)
-    current_data = init_data();
-  jQuery.each(current_data, function(index, item) {
-     var int_char =  char_to_int(item[0]);
-     if (!$.inArray(int_char, letters)){
-       letters.push(int_char);
-       v_options.push({v: int_char, f: arr_last(item[0])});
-     }
-  });
-  return v_options;
 }
 
 function init_data() {
@@ -122,27 +101,25 @@ function init_data() {
 }
 
 function generosity_data() {
+  if (!chart_data_res)
+    chart_data_res = chart_data();  
   var rand_data = [];
-  jQuery.each(current_data, function(index, item) {
-     if (index <= 50)
-        rand_data.push([item[0], item[1], item[2], item[4], item[6]]);
+  var filtered_data = jQuery.grep(chart_data_res, function(item) {
+                        return item['Generosity'];
+                      });
+  rand_data.push(["Name Eng", "National Total", "Generosity", "Industry", "Total Amount (million Yuan)"]);
+  jQuery.each(filtered_data, function(index, item) {
+    rand_data.push([get_initals(item["Name Eng"]), (item["Total Amount (million Yuan)"] / national_total) * 100, get_float_from_string(item['Generosity']), 
+                    item["Industry"], item["Total Amount (million Yuan)"]]);
   });
   var data = google.visualization.arrayToDataTable(rand_data);
   return data;
 }
 
-function donation_data() {
-  if (!chart_data_res)
-    chart_data_res = chart_data();
-  console.log(chart_data_res);
-  var rand_data = [];
-  rand_data.push(["Name Eng", "National Total", "Total Amount (million Yuan)", "Industry", "Total Amount (million Yuan)"]);
-  jQuery.each(chart_data_res, function(index, item) {
-    console.log(item["Total Amount (million Yuan)"]);
-     rand_data.push([item["Name Eng"], (item["Total Amount (million Yuan)"] / national_total) * 100, item["Total Amount (million Yuan)"], item["Industry"], item["Total Amount (million Yuan)"]]);
-  });
-  var data = google.visualization.arrayToDataTable(rand_data);
-  return data;
+function get_float_from_string(str){
+  if (str)
+    return parseFloat(str.replace('%', ''));
+  return 0;
 }
 
 function industry_list(){
@@ -184,7 +161,7 @@ function focus_data() {
 
 function get_focus(item){
   var i = 0;
-  var focuses = ["Education", "Environment","Healthcare", "Poverty, Welfare", "Disaster Relief", "Culture"];
+  var focuses = ["Education", "Environment", "Healthcare", "Poverty, Welfare", "Disaster Relief", "Culture"];
   jQuery.each(focuses, function(index, focus) {     
     if (item[focus] > 0)
       i++;
@@ -216,23 +193,13 @@ function months_data() {
 }
 
 function age_data() {
+  if (!chart_data_res)
+    chart_data_res = chart_data();
   var rand_data = [];
-  jQuery.each(current_data, function(index, item) {
-      if (index == 0)      
-        rand_data.push([item[0], item[3], item[2], item[4], '']);
-      else
-        rand_data.push([item[0], item[3], item[2], item[4], 2]);
-  });
-  var data = google.visualization.arrayToDataTable(rand_data);
-  return data;
-}
-
-function alphabetical_data() {
-  var rand_data = [];
-  rand_data.push(['Name', 'Letter', 'Total Amount', 'Industry', 'Total Amount']);
-  jQuery.each(current_data, function(index, item) {
-     if (index > 0)
-       rand_data.push([item[0], char_to_int(item[0]), item[6], item[4], item[6]]);
+  rand_data.push(["Name Eng", "Age", "National Total", "Industry", "Size"]);
+  jQuery.each(chart_data_res, function(index, item) {
+    if (item["Age"] > 0)
+      rand_data.push([get_initals(item["Name Eng"]), item["Age"], (item["Total Amount (million Yuan)"] / national_total) * 100, item["Industry"], 2]);
   });
   var data = google.visualization.arrayToDataTable(rand_data);
   return data;
@@ -249,17 +216,20 @@ function age_options(){
           }
         },  
         vAxis: {
-          title: 'Generosity %',
+          title: 'National Total %',
           gridlineColor: 'transparent',
-          baselineColor: 'black'
+          baselineColor: 'black',
+          baseline: -0.05,
+          ticks: [{v: -0.05, f: ''},{v: 0, f: '0.00'},{v: 0.1, f: '0.1'},
+                {v: 0.2, f: '0.2'},{v: 0.3, f: '0.3'},{v: 0.4, f: '0.4'},{v: 0.5, f: '0.5'}]
         },
         hAxis: {
           title: 'Age',
           gridlineColor: 'transparent',
           baselineColor: 'black',
-          baseline: 20,
-          ticks: [{v: 20, f: ''},{v: 30, f: '30'},{v: 40, f: '40'},
-                  {v: 50, f: '50'},{v: 60, f: '60'},{v: 70, f: '70'},{v: 85, f: ''}]
+          baseline: 30,
+          ticks: [{v: 30, f: '30'},{v: 40, f: '40'},
+                  {v: 50, f: '50'},{v: 60, f: '60'},{v: 70, f: '70'},{v: 80, f: '80'}]
         },
         colors: map_colors(),
         chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
@@ -278,45 +248,6 @@ function age_options(){
       };
 }
 
-function donation_options(){
-  return {
-        bubble: {
-          textStyle: {
-            fontSize: 12,
-            fontName: 'Roboto',
-            color: '#fff',
-            bold: true,
-          }
-        },  
-        vAxis: {
-          title: 'Total Amount',
-          gridlineColor: 'transparent',
-          baselineColor: 'black',
-          baseline: 1,
-          ticks: [{v: 1, f: ''},{v: 5, f: ''},{v: 10, f: ''},{v: 100, f: '100 m'},
-                  {v: 200, f: '200 m'},{v: 400, f: '400 m'},{v: 430, f: ''}]
-        },
-        hAxis: {
-          title: 'National Total %',
-          gridlineColor: 'transparent',
-          baselineColor: 'black'
-        },
-        colors: map_colors(),
-        chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
-        legend: {
-          alignment: 'center',
-          position: 'top'
-        },
-        animation:{
-          duration: 2000,
-          easing: 'out'
-        },
-        backgroundColor: { fill:'transparent' },
-        'tooltip' : {
-          trigger: 'none'
-        }
-      };
-}
 
 function generosity_options() {
     return {
@@ -331,12 +262,18 @@ function generosity_options() {
       vAxis: {
         title: 'Generosity %',
         gridlineColor: 'transparent',
-        baselineColor: 'black'
+        baselineColor: 'black',
+        baseline: -0.7,
+        ticks: [{v: -0.7, f: ''},{v: 0, f: '0'},{v: 1, f: '1'},
+                {v: 2, f: '2'},{v: 3, f: '3'},{v: 4, f: '4'},{v: 5, f: '5'},{v: 6, f: '6'},{v: 7, f: ''}]
       },
       hAxis: {        
         title: 'National Total %',
         gridlineColor: 'transparent',
-        baselineColor: 'black'
+        baselineColor: 'black',        
+        baseline: -0.005,
+        ticks: [{v: -0.005, f: ''},{v: 0, f: '0.00'},{v: 0.1, f: '0.1'},
+                {v: 0.2, f: '0.2'},{v: 0.3, f: '0.3'},{v: 0.4, f: '0.4'},{v: 0.5, f: '0.5'}]
       },
       colors: map_colors(),
       chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
@@ -376,8 +313,8 @@ function industry_options(){
           title: 'Total Amount',
           gridlineColor: 'transparent',
           baselineColor: 'black',
-          baseline: 0,
-          ticks: [{v: 0, f: ''},{v: 5, f: '5 m'},{v: 10, f: ''},{v: 20, f: ''},{v: 30, f: ''},{v: 50, f: '50 m'},{v: 100, f: '100 m'},
+          baseline: -10,
+          ticks: [{v: -10, f: ''},{v: 0, f: ''},{v: 5, f: '5 m'},{v: 10, f: ''},{v: 20, f: ''},{v: 30, f: ''},{v: 50, f: '50 m'},{v: 100, f: '100 m'},
                   {v: 200, f: '200 m'},{v: 300, f: '300 m'},{v: 400, f: '400 m'},{v: 500, f: '500 m'}]
         },
         hAxis: {
@@ -489,50 +426,8 @@ function focus_options(){
       };  
 }
 
-function alphabetical_options(){
- return {
-        bubble: {
-          textStyle: {
-            fontSize: 12,
-            fontName: 'Roboto',
-            color: '#fff',
-            bold: true,
-          }
-        },  
-        vAxis: {
-          title: 'Total Amount',
-          gridlineColor: 'transparent',
-          baselineColor: 'black',
-          ticks: [{v: 1, f: ''},{v: 5, f: ''},{v: 10, f: ''},{v: 100, f: '100 m'},{v: 500, f: '500 m'},
-                  {v: 1000, f: '1 b'},{v: 2000, f: '2 b'},{v: 2500, f: '2.5 b'}]
-        },
-        hAxis: {
-          title: '',
-          gridlineColor: 'transparent',
-          baselineColor: 'black',
-          ticks: used_letters()
-        },
-        colors: ['#368DB9', '#A51C30', '#FAAE53', '#52854C', '#293352'],
-        chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
-        legend: {
-          alignment: 'center',
-          position: 'top'
-        },
-        animation:{
-          duration: 2000,
-          easing: 'out'
-        },
-        backgroundColor: { fill:'transparent' },
-        'tooltip' : {
-          trigger: 'none'
-        }
-      };
-}
-
 function draw_age_charts(){
   var options = age_options();
-  if (!current_data)
-    current_data = init_data();
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(age_data(), options);
@@ -542,8 +437,6 @@ function draw_age_charts(){
 
 function draw_generousity_chart(){
   var options = generosity_options();
-  if (!current_data)
-    current_data = init_data();
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(generosity_data(), options);
@@ -551,21 +444,8 @@ function draw_generousity_chart(){
   fix_chart(window);
 }
 
-function draw_donation_chart(){
-  var options = donation_options();
-  if (!current_data)
-    current_data = init_data();
-  if (!current_chart)
-    current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
-  current_chart.draw(donation_data(), options);
-  init_chart_onclick();
-  fix_chart(window);
-}
-
 function draw_industry_chart(){
   var options = industry_options();
-  if (!current_data)
-    current_data = init_data();
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(industry_data(), options);
@@ -586,22 +466,9 @@ function draw_months_chart(){
 
 function draw_focus_chart(){
   var options = focus_options();
-  if (!current_data)
-    current_data = init_data();
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));  
   current_chart.draw(focus_data(), options);  
-  init_chart_onclick();
-  fix_chart(window);
-}
-
-function draw_alphabetical_chart() {
-  var options = alphabetical_options();
-  if (!current_data)
-    current_data = init_data();
-  if (!current_chart)
-    current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
-  current_chart.draw(alphabetical_data(), options);
   init_chart_onclick();
   fix_chart(window);
 }
@@ -615,9 +482,6 @@ function draw_charts(chart_type){
       case 'generosity':
         draw_generousity_chart();
       break;
-      case 'donation':
-        draw_donation_chart();
-      break;  
       case 'industry':
         draw_industry_chart();
       break;  
@@ -626,9 +490,6 @@ function draw_charts(chart_type){
       break;
       case 'focus':
         draw_focus_chart();
-      break;
-      case 'alphabetical':
-        draw_alphabetical_chart();
       break;
     }  
 }
@@ -723,9 +584,6 @@ function get_chart_route(){
       case 'generosity':
         return draw_generousity_chart;
       break;
-      case 'donation':
-        return draw_donation_chart;
-      break;  
       case 'industry':
         return draw_industry_chart;
       break;  
@@ -735,11 +593,8 @@ function get_chart_route(){
       case 'focus':
         return draw_focus_chart;
       break;
-      case 'alphabetical':
-        return draw_alphabetical_chart;
-      break;
       default:
-        return draw_donation_chart;
+        return draw_generousity_chart;
       break;
   }  
 
@@ -769,9 +624,6 @@ function make_routing(){
       case 'generosity':
         draw_generousity_chart();
       break;
-      case 'donation':
-        draw_donation_chart();
-      break;  
       case 'industry':
         draw_industry_chart();
       break;  
@@ -781,12 +633,9 @@ function make_routing(){
       case 'focus':
         draw_focus_chart();
       break;
-      case 'alphabetical':
-        draw_alphabetical_chart();
-      break;
       default:
-        history.pushState('', '', get_base_url() + '?donation');
-        draw_donation_chart();
+        history.pushState('', '', get_base_url() + '?generosity');
+        draw_generousity_chart();
       break;
   }  
 }
