@@ -71,51 +71,72 @@ function maps_helper(){
 
 			return res;
 		},
-
+		fetch_province_data: function (province, property){
+			return $.grep(map_initial_data, function(e){ return e['Province'] == province; })[0][property];
+		},
+		fetch_location_data: function (province){
+			return $.grep(region_data, function(e){ return e['Province'] == province; })[0];
+		},
+		get_plot_size: function (val){
+			if (!val)
+				return 0;
+			if (val <= 10)
+				return 15;
+			if (val <= 100)
+				return 25;
+			return 50;
+		},
+		get_plot_color:	function (val){
+			if (!val)
+				return '#fff';
+			if (val <= 10)
+				return '#89ff72';
+			if (val <= 100)
+				return '#fffd72';
+			return '#ff5454';
+		},
 		plots_philantropists: function (){
-
-			function fetch_province_data(province, property){
-				return $.grep(map_initial_data, function(e){ return e['Province'] == province; })[0][property];
-			}
-
-			function fetch_location_data(province){
-				return $.grep(region_data, function(e){ return e['Province'] == province; })[0];
-			}
-
-			function get_plot_size(val){
-				if (!val)
-					return 0;
-				if (val <= 10)
-					return 15;
-				if (val <= 100)
-					return 25;
-				return 50;
-			}
-
-			function get_plot_color(val){
-				if (!val)
-					return '#fff';
-				if (val <= 10)
-					return '#89ff72';
-				if (val <= 100)
-					return '#fffd72';
-				return '#ff5454';
-			}
-
+			var that = this;
 			var res = {};
 			$.each(map_initial_data, function(index, item){
 				var info_name = item['Province'] + '_Info';
-				var val = fetch_province_data(item['Province'], 'Total amount received');
+				var val = that.fetch_province_data(item['Province'], 'Total giving amount');
 				if (val) {
-					var loc = fetch_location_data(item['Province']);
+					var loc = that.fetch_location_data(item['Province']);
 					if (loc)
 						res[info_name] = {
 							value: val,
 				            latitude: loc['Latitude'],
 				            longitude: loc['Longitude'],
-				            size: get_plot_size(val),
+				            size: that.get_plot_size(val),
 				            attrs: {
-				            	fill: get_plot_color(val)
+				            	fill: that.get_plot_color(val)
+				            },
+				            href: "javascript:void(0);",
+				            tooltip: {
+				                content: '<b>' + item['Province'] + ':</b> ' + val
+				            }
+						}
+				}
+			});
+			return res;			
+		},
+		plots_donations: function(){
+			var that = this;
+			var res = {};
+			$.each(map_initial_data, function(index, item){
+				var info_name = item['Province'] + '_Info';
+				var val = that.fetch_province_data(item['Province'], 'Total amount received');
+				if (val) {
+					var loc = that.fetch_location_data(item['Province']);
+					if (loc)
+						res[info_name] = {
+							value: val,
+				            latitude: loc['Latitude'],
+				            longitude: loc['Longitude'],
+				            size: that.get_plot_size(val),
+				            attrs: {
+				            	fill: that.get_plot_color(val)
 				            },
 				            href: "javascript:void(0);",
 				            tooltip: {
@@ -125,510 +146,107 @@ function maps_helper(){
 				}
 			});
 			return res;
-			// return {
-		 //        "Xinjiang_Info": {
-		 //            value:  fetch_province_data('Xinjiang', 'Total amount received'),
-		 //            latitude: 560.5,
-		 //            longitude: 85.5,
-		 //            size: 15,
-		 //            attrs: {
-		 //            	fill: "#89ff72"
-		 //            },
-		 //            href: "javascript:void(0);",
-		 //            tooltip: {
-		 //                content: "<b>Xinjiang:</b> " + fetch_province_data('Xinjiang', 'Total amount received')
-		 //            }
-		 //        },
-		 //        "Guandong_Info": {
-		 //            value: "21",
-		 //            latitude: 435.5,
-		 //            longitude: 450.5,
-		 //            size: 50,
-		 //            attrs: {
-		 //            	fill: "#ff5454"
-		 //            },
-		 //            href: "javascript:void(0);",
-		 //            tooltip: {
-		 //                content: "<b>Guandong:</b> 21"
-		 //            }
-		 //        },
-		 //        "Beijing_Info": {
-		 //            value: "16",
-		 //            latitude: 455.5,
-		 //            longitude: 190.5,
-		 //            size: 25,
-		 //            attrs: {
-		 //            	fill: "#fffd72"
-		 //            },
-		 //            href: "javascript:void(0);",
-		 //            tooltip: {
-		 //                content: "<b>Beijing:</b> 16"
-		 //            }
-		 //        },
-		 //        "Zhejiang_Info": {
-		 //            value: "11",
-		 //            latitude: 520.5,
-		 //            longitude: 341.5,
-		 //            size: 25,
-		 //            attrs: {
-		 //            	fill: "#fffd72"
-		 //            },
-		 //            href: "javascript:void(0);",
-		 //            tooltip: {
-		 //                content: "<b>Zhejiang:</b> 11"
-		 //            }
-		 //        },
-		 //        "Fujian_Info": {
-		 //            value: "8",
-		 //            latitude: 496.5,
-		 //            longitude: 398.5,
-		 //            size: 15,
-		 //            attrs: {
-		 //                fill: "#89ff72"
-		 //        	},
-		 //            href: "javascript:void(0);",
-		 //            tooltip: {
-		 //                content: "<b>Fujian:</b> 8"
-		 //            }
-		 //        }
-		 //    };
-		},
-		plots_donations: function(){
-			return {
-				"Xinjiang_Info": {
-		            value: "9",
-		            latitude: 152.5,
-		            longitude: 167.5,
-		            size: 15,
-		            attrs: {
-		            	fill: "#89ff72"
-		            },
-		            href: "javascript:void(0);",
-		            tooltip: {
-		                content: "<b>Xinjiang:</b> 1"
-		            }
-		        },
-		        "Guandong_Info": {
-		            value: "7",
-		            latitude: 100.5,
-		            longitude: 410.5,
-		            size: 15,
-		            attrs: {
-		            	fill: "#89ff72"
-		            },
-		            href: "javascript:void(0);",
-		            tooltip: {
-		                content: "<b>Guandong:</b> 21"
-		            }
-		        },
-		        "Sichuan_Info": {
-		            value: "18",
-		            latitude: 306.5,
-		            longitude: 315.5,
-		            size: 25,
-		            attrs: {
-		            	fill: "#fffd72"
-		            },
-		            href: "javascript:void(0);",
-		            tooltip: {
-		                content: "<b>Sichuan:</b> 18"
-		            }
-		        },
-		        "Fujian_Info": {
-		            value: "8",
-		            latitude: 496.5,
-		            longitude: 398.5,
-		            size: 15,
-		            attrs: {
-		                fill: "#89ff72"
-		        	},
-		            href: "javascript:void(0);",
-		            tooltip: {
-		                content: "<b>Fujian:</b> 8"
-		            }
-		        }
-			};
 		},
 
 		plots_movements: function (){
-			return {
-				"Xinjiang_Info": {
-		            value: "9",
-		            latitude: 152.5,
-		            longitude: 167.5,
-		            size: 15,
-		            attrs: {
-		            	fill: "#89ff72"
-		            },
-		            href: "javascript:void(0);",
-		            tooltip: {
-		                content: "<b>Xinjiang:</b> 1"
-		            }
-		        },
-		        "Guandong_Info": {
-		            value: "7",
-		            latitude: 100.5,
-		            longitude: 410.5,
-		            size: 15,
-		            attrs: {
-		            	fill: "#89ff72"
-		            },
-		            href: "javascript:void(0);",
-		            tooltip: {
-		                content: "<b>Guandong:</b> 21"
-		            }
-		        },
-		        "Sichuan_Info": {
-		            value: "18",
-		            latitude: 306.5,
-		            longitude: 315.5,
-		            size: 25,
-		            attrs: {
-		            	fill: "#fffd72"
-		            },
-		            href: "javascript:void(0);",
-		            tooltip: {
-		                content: "<b>Sichuan:</b> 18"
-		            }
-		        }
-			};
+			var that = this;
+			var res = {};
+			$.each(map_initial_data, function(index, item){
+				var info_name = item['Province'] + '_Info';
+				var val = that.fetch_province_data(item['Province'], 'Total giving amount');
+				if (val) {
+					var loc = that.fetch_location_data(item['Province']);
+					if (loc)
+						res[info_name] = {
+							value: val,
+				            latitude: loc['Latitude'],
+				            longitude: loc['Longitude'],
+				            size: that.get_plot_size(val),
+				            attrs: {
+				            	fill: that.get_plot_color(val)
+				            },
+				            href: "javascript:void(0);",
+				            tooltip: {
+				                content: '<b>' + item['Province'] + ':</b> ' + val
+				            }
+						}
+				}
+			});
+			return res;
 		},
 
 		links_movements: function (){
-			return {
-		        'beijingguandong' : {
-		            factor : 0.2, 
-		            between : [{latitude : 435.5, longitude : 450.5}, {latitude : 455.5, longitude : 190.5}], 
-		            attrs : {
-		            	stroke: "#89ff72",
-		                "stroke-width" : 2
-		            }, 
-		            tooltip: {content : "Beijing - Guandong"}
-		    	}
-			};	
+			var that = this;
+			var res = {};
+
+			$.each(map_initial_data, function(index, map_item){
+				var loc_from = that.fetch_location_data(map_item['Province']); 
+				if (loc_from){
+					$.each(region_data, function(ind, region_item){
+						var region_name = region_item['Province'];
+						if (map_item[region_name] && map_item[region_name] > 0){
+							var link_name = map_item['Province'] + '_' + region_name;
+							var loc_to = that.fetch_location_data(region_item['Province']);
+							res[link_name] = {
+					            factor : 0.2, 
+					            between : [{latitude : loc_from['Latitude'], longitude : loc_from['Longitude']}, 
+					            		   {latitude : loc_to['Latitude'], longitude : loc_to['Longitude']}], 
+					            attrs : {
+					            	stroke: "#89ff72",
+					                "stroke-width" : 2
+					            }, 
+					            tooltip: { content : map_item['Province'] + " - " + region_name }
+					    	}
+						}
+					});
+				}
+			});
+			return res;
 		},
 
 		areas_philantropists: function (){
-			return {
-					"Xinjiang":{
-						tooltip: {content : "<b>Xinjiang</b>"}				
-					},
-					"Guandong":{
-						tooltip: {content : "<b>Guandong</b>"}				
-					},
-					"Beijing": {
-						tooltip: {content : "<b>Beijing</b>"},
-						attrs : {
-							fill : "#8996A0", 
-							stroke: "#FFFFFF"
-						}	
-					},
-					"Zhejiang": {
-						tooltip: {content : "<b>Zhejiang</b>"}	
-					},
-					"Fujian": {
-						tooltip: {content : "<b>Fujian</b>"}	
-					},
-					"Tibet": {
-						tooltip: {content : "<b>Tibet</b>"}
-					},
-					"Qinghai": {
-						tooltip: {content : "<b>Qinghai</b>"}
-					},
-					"Gansu": {
-						tooltip: {content : "<b>Gansu</b>"}
-					},
-					"Sichuan": {
-						tooltip: {content : "<b>Sichuan</b>"}
-					},
-					"Yunnan": {
-						tooltip: {content : "<b>Yunnan</b>"}
-					},
-					"Guizhou": {
-						tooltip: {content : "<b>Guizhou</b>"}
-					},
-					"Guangxi": {
-						tooltip: {content : "<b>Guangxi</b>"}
-					},
-					"Hainan": {
-						tooltip: {content : "<b>Hainan</b>"}
-					},
-					"Hunan": {
-						tooltip: {content : "<b>Hunan</b>"}
-					},
-					"Jiangxi": {
-						tooltip: {content : "<b>Jiangxi</b>"}
-					},
-					"Hubei": {
-						tooltip: {content : "<b>Hubei</b>"}
-					},
-					"Chongqing": {
-						tooltip: {content : "<b>Chongqing</b>"}
-					},
-					"Anhui": {
-						tooltip: {content : "<b>Anhui</b>"}
-					},
-					"Jiangsu": {
-						tooltip: {content : "<b>Jiangsu</b>"}
-					},
-					"Shandong": {
-						tooltip: {content : "<b>Shandong</b>"}
-					},
-					"Henan": {
-						tooltip: {content : "<b>Henan</b>"}
-					},
-					"Shanxi": {
-						tooltip: {content : "<b>Shanxi</b>"}
-					},
-					"Shaanxi": {
-						tooltip: {content : "<b>Shaanxi</b>"}
-					},
-					"Ningxia": {
-						tooltip: {content : "<b>Ningxia</b>"}
-					},
-					"Ningxia": {
-						tooltip: {content : "<b>Ningxia</b>"}
-					},
-					"Inner Mongolia":{
-						tooltip: {content : "<b>Inner Mongolia</b>"}
-					},
-					"Heilongjiang":{
-						tooltip: {content : "<b>Heilongjiang</b>"}
-					},
-					"Jilin":{
-						tooltip: {content : "<b>Jilin</b>"}
-					},
-					"Liaoning":{
-						tooltip: {content : "<b>Liaoning</b>"}
-					},
-					"Hebei":{
-						tooltip: {content : "<b>Hebei</b>"}
-					},
-					"Tianjin":{
-						tooltip: {content : "<b>Tianjin</b>"}
-					},
-					"Shanghai":{
-						tooltip: {content : "<b>Shanghai</b>"}
-					},
-					"Taiwan":{
-						tooltip: {content : "<b>Taiwan</b>"}				
-					}
-				};
+			var areas = {};
+			$.each(region_data, function(ind, region_item){
+				var region_name = region_item['Province'];
+				areas[region_name] = {
+					tooltip: {content : '<b>' + region_name + '</b>'},
+					attrs : {
+						fill : "#8996A0", 
+						stroke: "#FFFFFF"
+					}	
+				}
+			});
+			return areas;
 		},
 
 		areas_donations: function (){
-			return {
-					"Xinjiang":{
-						tooltip: {content : "<b>Xinjiang</b>"}				
-					},
-					"Guandong":{
-						tooltip: {content : "<b>Guandong</b>"}				
-					},
-					"Beijing": {
-						tooltip: {content : "<b>Beijing</b>"},
-						attrs : {
-							fill : "#8996A0", 
-							stroke: "#FFFFFF"
-						}	
-					},
-					"Zhejiang": {
-						tooltip: {content : "<b>Zhejiang</b>"}	
-					},
-					"Fujian": {
-						tooltip: {content : "<b>Fujian</b>"}	
-					},
-					"Tibet": {
-						tooltip: {content : "<b>Tibet</b>"}
-					},
-					"Qinghai": {
-						tooltip: {content : "<b>Qinghai</b>"}
-					},
-					"Gansu": {
-						tooltip: {content : "<b>Gansu</b>"}
-					},
-					"Sichuan": {
-						tooltip: {content : "<b>Sichuan</b>"}
-					},
-					"Yunnan": {
-						tooltip: {content : "<b>Yunnan</b>"}
-					},
-					"Guizhou": {
-						tooltip: {content : "<b>Guizhou</b>"}
-					},
-					"Guangxi": {
-						tooltip: {content : "<b>Guangxi</b>"}
-					},
-					"Hainan": {
-						tooltip: {content : "<b>Hainan</b>"}
-					},
-					"Hunan": {
-						tooltip: {content : "<b>Hunan</b>"}
-					},
-					"Jiangxi": {
-						tooltip: {content : "<b>Jiangxi</b>"}
-					},
-					"Hubei": {
-						tooltip: {content : "<b>Hubei</b>"}
-					},
-					"Chongqing": {
-						tooltip: {content : "<b>Chongqing</b>"}
-					},
-					"Anhui": {
-						tooltip: {content : "<b>Anhui</b>"}
-					},
-					"Jiangsu": {
-						tooltip: {content : "<b>Jiangsu</b>"}
-					},
-					"Shandong": {
-						tooltip: {content : "<b>Shandong</b>"}
-					},
-					"Henan": {
-						tooltip: {content : "<b>Henan</b>"}
-					},
-					"Shanxi": {
-						tooltip: {content : "<b>Shanxi</b>"}
-					},
-					"Shaanxi": {
-						tooltip: {content : "<b>Shaanxi</b>"}
-					},
-					"Ningxia": {
-						tooltip: {content : "<b>Ningxia</b>"}
-					},
-					"Ningxia": {
-						tooltip: {content : "<b>Ningxia</b>"}
-					},
-					"Inner Mongolia":{
-						tooltip: {content : "<b>Inner Mongolia</b>"}
-					},
-					"Heilongjiang":{
-						tooltip: {content : "<b>Heilongjiang</b>"}
-					},
-					"Jilin":{
-						tooltip: {content : "<b>Jilin</b>"}
-					},
-					"Liaoning":{
-						tooltip: {content : "<b>Liaoning</b>"}
-					},
-					"Hebei":{
-						tooltip: {content : "<b>Hebei</b>"}
-					},
-					"Tianjin":{
-						tooltip: {content : "<b>Tianjin</b>"}
-					},
-					"Shanghai":{
-						tooltip: {content : "<b>Shanghai</b>"}
-					},
-					"Taiwan":{
-						tooltip: {content : "<b>Taiwan</b>"}				
-					}
-				};
+			var areas = {};
+			$.each(region_data, function(ind, region_item){
+				var region_name = region_item['Province'];
+				areas[region_name] = {
+					tooltip: {content : '<b>' + region_name + '</b>'},
+					attrs : {
+						fill : "#8996A0", 
+						stroke: "#FFFFFF"
+					}	
+				}
+			});
+			return areas;
 		},
 
 		areas_movements: function (){
-			return {
-					"Xinjiang":{
-						tooltip: {content : "<b>Xinjiang</b>"}				
-					},
-					"Guandong":{
-						tooltip: {content : "<b>Guandong</b>"}				
-					},
-					"Beijing": {
-						tooltip: {content : "<b>Beijing</b>"},
-						attrs: {
-				        	fill: "#89ff72"
-				        }
-					},
-					"Zhejiang": {
-						tooltip: {content : "<b>Zhejiang</b>"}	
-					},
-					"Fujian": {
-						tooltip: {content : "<b>Fujian</b>"}	
-					},
-					"Tibet": {
-						tooltip: {content : "<b>Tibet</b>"}
-					},
-					"Qinghai": {
-						tooltip: {content : "<b>Qinghai</b>"}
-					},
-					"Gansu": {
-						tooltip: {content : "<b>Gansu</b>"}
-					},
-					"Sichuan": {
-						tooltip: {content : "<b>Sichuan</b>"}
-					},
-					"Yunnan": {
-						tooltip: {content : "<b>Yunnan</b>"}
-					},
-					"Guizhou": {
-						tooltip: {content : "<b>Guizhou</b>"}
-					},
-					"Guangxi": {
-						tooltip: {content : "<b>Guangxi</b>"}
-					},
-					"Hainan": {
-						tooltip: {content : "<b>Hainan</b>"}
-					},
-					"Hunan": {
-						tooltip: {content : "<b>Hunan</b>"}
-					},
-					"Jiangxi": {
-						tooltip: {content : "<b>Jiangxi</b>"}
-					},
-					"Hubei": {
-						tooltip: {content : "<b>Hubei</b>"}
-					},
-					"Chongqing": {
-						tooltip: {content : "<b>Chongqing</b>"}
-					},
-					"Anhui": {
-						tooltip: {content : "<b>Anhui</b>"}
-					},
-					"Jiangsu": {
-						tooltip: {content : "<b>Jiangsu</b>"}
-					},
-					"Shandong": {
-						tooltip: {content : "<b>Shandong</b>"}
-					},
-					"Henan": {
-						tooltip: {content : "<b>Henan</b>"}
-					},
-					"Shanxi": {
-						tooltip: {content : "<b>Shanxi</b>"}
-					},
-					"Shaanxi": {
-						tooltip: {content : "<b>Shaanxi</b>"}
-					},
-					"Ningxia": {
-						tooltip: {content : "<b>Ningxia</b>"}
-					},
-					"Ningxia": {
-						tooltip: {content : "<b>Ningxia</b>"}
-					},
-					"Inner Mongolia":{
-						tooltip: {content : "<b>Inner Mongolia</b>"}
-					},
-					"Heilongjiang":{
-						tooltip: {content : "<b>Heilongjiang</b>"}
-					},
-					"Jilin":{
-						tooltip: {content : "<b>Jilin</b>"}
-					},
-					"Liaoning":{
-						tooltip: {content : "<b>Liaoning</b>"}
-					},
-					"Hebei":{
-						tooltip: {content : "<b>Hebei</b>"}
-					},
-					"Tianjin":{
-						tooltip: {content : "<b>Tianjin</b>"}
-					},
-					"Shanghai":{
-						tooltip: {content : "<b>Shanghai</b>"}
-					},
-					"Taiwan":{
-						tooltip: {content : "<b>Taiwan</b>"}				
-					}
-				};
+			var areas = {};
+			$.each(region_data, function(ind, region_item){
+				var region_name = region_item['Province'];
+				areas[region_name] = {
+					tooltip: {content : '<b>' + region_name + '</b>'},
+					attrs : {
+						fill : "#8996A0", 
+						stroke: "#FFFFFF"
+					}	
+				}
+			});
+			return areas;			
 		}
 	};
 
