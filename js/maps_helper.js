@@ -1,5 +1,9 @@
 function maps_helper(){
 
+	var map_initial_data = map_chart_data();
+	var region_data = region_location();
+
+
 	var mapsHelper = {	
 
 		diff_plots: function(current_plots, new_plots) {
@@ -69,73 +73,125 @@ function maps_helper(){
 		},
 
 		plots_philantropists: function (){
-			return {
-		        "Xinjiang_Info": {
-		            value: "1",
-		            latitude: 122.5,
-		            longitude: 167.5,
-		            size: 15,
-		            attrs: {
-		            	fill: "#89ff72"
-		            },
-		            href: "javascript:void(0);",
-		            tooltip: {
-		                content: "<b>Xinjiang:</b> 1"
-		            }
-		        },
-		        "Guandong_Info": {
-		            value: "21",
-		            latitude: 435.5,
-		            longitude: 450.5,
-		            size: 50,
-		            attrs: {
-		            	fill: "#ff5454"
-		            },
-		            href: "javascript:void(0);",
-		            tooltip: {
-		                content: "<b>Guandong:</b> 21"
-		            }
-		        },
-		        "Beijing_Info": {
-		            value: "16",
-		            latitude: 455.5,
-		            longitude: 190.5,
-		            size: 25,
-		            attrs: {
-		            	fill: "#fffd72"
-		            },
-		            href: "javascript:void(0);",
-		            tooltip: {
-		                content: "<b>Beijing:</b> 16"
-		            }
-		        },
-		        "Zhejiang_Info": {
-		            value: "11",
-		            latitude: 520.5,
-		            longitude: 341.5,
-		            size: 25,
-		            attrs: {
-		            	fill: "#fffd72"
-		            },
-		            href: "javascript:void(0);",
-		            tooltip: {
-		                content: "<b>Zhejiang:</b> 11"
-		            }
-		        },
-		        "Fujian_Info": {
-		            value: "8",
-		            latitude: 496.5,
-		            longitude: 398.5,
-		            size: 15,
-		            attrs: {
-		                fill: "#89ff72"
-		        	},
-		            href: "javascript:void(0);",
-		            tooltip: {
-		                content: "<b>Fujian:</b> 8"
-		            }
-		        }
-		    };
+
+			function fetch_province_data(province, property){
+				return $.grep(map_initial_data, function(e){ return e['Province'] == province; })[0][property];
+			}
+
+			function fetch_location_data(province){
+				return $.grep(region_data, function(e){ return e['Province'] == province; })[0];
+			}
+
+			function get_plot_size(val){
+				if (!val)
+					return 0;
+				if (val <= 10)
+					return 15;
+				if (val <= 100)
+					return 25;
+				return 50;
+			}
+
+			function get_plot_color(val){
+				if (!val)
+					return '#fff';
+				if (val <= 10)
+					return '#89ff72';
+				if (val <= 100)
+					return '#fffd72';
+				return '#ff5454';
+			}
+
+			var res = {};
+			$.each(map_initial_data, function(index, item){
+				var info_name = item['Province'] + '_Info';
+				var val = fetch_province_data(item['Province'], 'Total amount received');
+				if (val) {
+					var loc = fetch_location_data(item['Province']);
+					if (loc)
+						res[info_name] = {
+							value: val,
+				            latitude: loc['Latitude'],
+				            longitude: loc['Longitude'],
+				            size: get_plot_size(val),
+				            attrs: {
+				            	fill: get_plot_color(val)
+				            },
+				            href: "javascript:void(0);",
+				            tooltip: {
+				                content: '<b>' + item['Province'] + ':</b> ' + val
+				            }
+						}
+				}
+			});
+			return res;
+			// return {
+		 //        "Xinjiang_Info": {
+		 //            value:  fetch_province_data('Xinjiang', 'Total amount received'),
+		 //            latitude: 560.5,
+		 //            longitude: 85.5,
+		 //            size: 15,
+		 //            attrs: {
+		 //            	fill: "#89ff72"
+		 //            },
+		 //            href: "javascript:void(0);",
+		 //            tooltip: {
+		 //                content: "<b>Xinjiang:</b> " + fetch_province_data('Xinjiang', 'Total amount received')
+		 //            }
+		 //        },
+		 //        "Guandong_Info": {
+		 //            value: "21",
+		 //            latitude: 435.5,
+		 //            longitude: 450.5,
+		 //            size: 50,
+		 //            attrs: {
+		 //            	fill: "#ff5454"
+		 //            },
+		 //            href: "javascript:void(0);",
+		 //            tooltip: {
+		 //                content: "<b>Guandong:</b> 21"
+		 //            }
+		 //        },
+		 //        "Beijing_Info": {
+		 //            value: "16",
+		 //            latitude: 455.5,
+		 //            longitude: 190.5,
+		 //            size: 25,
+		 //            attrs: {
+		 //            	fill: "#fffd72"
+		 //            },
+		 //            href: "javascript:void(0);",
+		 //            tooltip: {
+		 //                content: "<b>Beijing:</b> 16"
+		 //            }
+		 //        },
+		 //        "Zhejiang_Info": {
+		 //            value: "11",
+		 //            latitude: 520.5,
+		 //            longitude: 341.5,
+		 //            size: 25,
+		 //            attrs: {
+		 //            	fill: "#fffd72"
+		 //            },
+		 //            href: "javascript:void(0);",
+		 //            tooltip: {
+		 //                content: "<b>Zhejiang:</b> 11"
+		 //            }
+		 //        },
+		 //        "Fujian_Info": {
+		 //            value: "8",
+		 //            latitude: 496.5,
+		 //            longitude: 398.5,
+		 //            size: 15,
+		 //            attrs: {
+		 //                fill: "#89ff72"
+		 //        	},
+		 //            href: "javascript:void(0);",
+		 //            tooltip: {
+		 //                content: "<b>Fujian:</b> 8"
+		 //            }
+		 //        }
+		 //    };
 		},
 		plots_donations: function(){
 			return {
