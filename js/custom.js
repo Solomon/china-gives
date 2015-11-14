@@ -473,7 +473,7 @@ function init_chart_onclick(){
   if (!is_click_inited){
     google.visualization.events.addListener(current_chart, 'click', function(e) {
       var id = e.targetID;
-      if (str_starts(id, 'bubble') && get_param() != 'months') {
+      if (str_starts(id, 'bubble') && get_param() != 'months') {        
         id = arr_last(id.split('#'));
         var chart_container = $('#charts-container');
         if (($('#page-top').hasClass('fix-charts') || will_fix(window)) && !is_chart_closed) {
