@@ -106,7 +106,7 @@ function load_map_movement_data() {
 	var opt = {
 		animDuration: 600,
 		newLinks: diff_links.new_links,
-		deletedLinks: diff_links.deleted_links
+		deletedLinks: []
 	};
 	$(".mapcontainer").trigger('update', [updatedOptions, diff_res.new_plots, diff_res.deleted_plots, opt]);
 }
@@ -137,11 +137,38 @@ function init_map(plots) {
 					attrsHover : {
 						fill : "#000"
 					}
-				}
-			}
+				},
+				eventHandlers: {
+                    mouseover: function (e, id, mapElem, textElem, elemOptions) {
+                    	focus_map_link(e, id, mapElem, textElem, elemOptions);
+                    }
+                }
+			},
+			defaultPlot: {
+                eventHandlers: {
+                    mouseover: function (e, id, mapElem, textElem, elemOptions) {
+                        focus_map_link(e, id, mapElem, textElem, elemOptions);
+                    }
+                }
+            },
+            defaultLink: {
+            	eventHandlers: {
+                    mouseover: function (e, id, mapElem, textElem, elemOptions) {
+                        focus_map_link(e, id, mapElem, textElem, elemOptions);
+                    }
+                }
+            }
 		},
 		plots: current_map_data.plots,    
 		areas: current_map_data.areas
 	});	
 	$('.maps svg')[0].setAttribute("preserveAspectRatio","xMidYMid");
+}
+
+function focus_map_link(e, id, mapElem, textElem, elemOptions){
+	var region_id = id.replace('_Info', '');           	
+	if (region_id){
+		$('.mapcontainer path[data-id^="link_"]').attr('stroke-opacity', '0.30').attr('stroke-width', 2);  
+		$('.mapcontainer path[data-id^="link_' + region_id + '_"]').attr('stroke-opacity', '0.75').attr('stroke-width', 3);
+	}
 }

@@ -81,10 +81,10 @@ function maps_helper(){
 			if (!val)
 				return 0;
 			if (val <= 10)
-				return 15;
+				return 8;
 			if (val <= 100)
-				return 25;
-			return 50;
+				return 8 + val / 6;
+			return 25 + val / 50;
 		},
 		get_plot_color:	function (val){
 			if (!val)
@@ -185,16 +185,20 @@ function maps_helper(){
 					$.each(region_data, function(ind, region_item){
 						var region_name = region_item['Province'];
 						if (map_item[region_name] && map_item[region_name] > 0){
-							var link_name = map_item['Province'] + '_' + region_name;
+							var link_name = 'link_' + map_item['Province'] + '_' + region_name;
 							var loc_to = that.fetch_location_data(region_item['Province']);
 							res[link_name] = {
 					            factor : 0.2, 
 					            between : [{latitude : loc_from['Latitude'], longitude : loc_from['Longitude']}, 
 					            		   {latitude : loc_to['Latitude'], longitude : loc_to['Longitude']}], 
 					            attrs : {
-					            	stroke: "#89ff72",
+					            	stroke: "rgba(137, 255, 114, 0.30)",
 					                "stroke-width" : 2
 					            }, 
+					            attrsHover : {
+					            	stroke: "rgba(137, 255, 114, 0.75)",
+					                "stroke-width" : 3
+					            },
 					            tooltip: { content : map_item['Province'] + " - " + region_name }
 					    	}
 						}
@@ -213,7 +217,8 @@ function maps_helper(){
 					attrs : {
 						fill : "#8996A0", 
 						stroke: "#FFFFFF"
-					}	
+					},
+					title : region_name	
 				}
 			});
 			return areas;
@@ -228,7 +233,8 @@ function maps_helper(){
 					attrs : {
 						fill : "#8996A0", 
 						stroke: "#FFFFFF"
-					}	
+					},
+					title : region_name	
 				}
 			});
 			return areas;
@@ -243,7 +249,8 @@ function maps_helper(){
 					attrs : {
 						fill : "#8996A0", 
 						stroke: "#FFFFFF"
-					}	
+					},
+					title : region_name	
 				}
 			});
 			return areas;			
