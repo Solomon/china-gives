@@ -2744,161 +2744,193 @@ function region_location(){
     var regions = [
         {
             "Province": "Anhui",
+            "Province CN": "安徽",
             "Latitude": 475.5,
             "Longitude": 307.5
         },
         {
             "Province": "Beijing",
+            "Province CN": "北京",
             "Latitude": 455.5,
             "Longitude": 190.5
         },
         {
             "Province": "Chongqing",
+            "Province CN": "重庆",
             "Latitude": 360.5,
             "Longitude": 340.5
         },
         {
             "Province": "Fujian",
+            "Province CN": "福建",
             "Latitude": 496.5,
             "Longitude": 398.5
         },
         {
             "Province": "Sichuan",
+            "Province CN": "四川",
             "Latitude": 300.5,
             "Longitude": 330.5
         },
         {
             "Province": "Gansu",
+            "Province CN": "甘肃",
             "Latitude": 325.5,
             "Longitude": 260.5
         },
         {
             "Province": "Qinghai",
+            "Province CN": "青海",
             "Latitude": 235.5,
             "Longitude": 245.5
         },
         {
             "Province": "Tibet",
+            "Province CN": "西藏",
             "Latitude": 150.5,
             "Longitude": 305.5
         },
         {
-            "Province": "Xinjiang",            
+            "Province": "Xinjiang",     
+            "Province CN": "新疆",       
             "Latitude": 122.5,
             "Longitude": 167.5
         },
         {
             "Province": "Yunnan",            
+            "Province CN": "云南",
             "Latitude": 280.5,
             "Longitude": 415.5
         },
         {
-            "Province": "Guangxi",            
+            "Province": "Guangxi",      
+            "Province CN": "广西",      
             "Latitude": 370.5,
             "Longitude": 425.5
         },
         {
-            "Province": "Guangdong",            
+            "Province": "Guangdong",  
+            "Province CN": "广东",          
             "Latitude": 435.5,
             "Longitude": 450.5
         },
         {
-            "Province": "Guizhou",            
+            "Province": "Guizhou",     
+            "Province CN": "贵州",       
             "Latitude": 350.5,
             "Longitude": 385.5
         },
         {
-            "Province": "Hainan",            
+            "Province": "Hainan",  
+            "Province CN": "海南",          
             "Latitude": 385.5,
             "Longitude": 495.5
         },
         {
-            "Province": "Hunan",            
+            "Province": "Hunan",   
+            "Province CN": "湖南",         
             "Latitude": 410.5,
             "Longitude": 375.5
         },
         {
-            "Province": "Jiangxi",            
+            "Province": "Jiangxi",  
+            "Province CN": "江西",          
             "Latitude": 455.5,
             "Longitude": 375.5
         },
         {
-            "Province": "Taiwan",            
+            "Province": "Taiwan",
+            "Province CN": "台湾",            
             "Latitude": 530.5,
             "Longitude": 415.5
         },
         {
-            "Province": "Zhejiang",            
+            "Province": "Zhejiang",
+            "Province CN": "浙江",            
             "Latitude": 520.5,
             "Longitude": 341.5
         },
         {
-            "Province": "Shanghai",            
+            "Province": "Shanghai",    
+            "Province CN": "上海",        
             "Latitude": 524.5,
             "Longitude": 315.5
         },
         {
-            "Province": "Jiangsu",            
+            "Province": "Jiangsu",  
+            "Province CN": "江苏",          
             "Latitude": 510.5,
             "Longitude": 285.5
         },
         {
-            "Province": "Hubei",            
+            "Province": "Hubei",     
+            "Province CN": "湖北",       
             "Latitude": 410.5,
             "Longitude": 320.5
         },
         {
-            "Province": "Henan",            
+            "Province": "Henan",
+            "Province CN": "河南",            
             "Latitude": 425.5,
             "Longitude": 280.5
         },
         {
-            "Province": "Shaanxi",            
+            "Province": "Shaanxi",  
+            "Province CN": "陕西",          
             "Latitude": 375.5,
             "Longitude": 280.5
         },
         {
-            "Province": "Ningxia",            
+            "Province": "Ningxia",  
+            "Province CN": "宁夏",          
             "Latitude": 345.5,
             "Longitude": 235.5
         },
         {
-            "Province": "Inner Mongolia",            
+            "Province": "Inner Mongolia",     
+            "Province CN": "内蒙古",       
             "Latitude": 395.5,
             "Longitude": 175.5
         },
         {
-            "Province": "Shanxi",            
+            "Province": "Shanxi",    
+            "Province CN": "山西",        
             "Latitude": 415.5,
             "Longitude": 235.5
         },
         {
             "Province": "Hebei",            
+            "Province CN": "河北",
             "Latitude": 445.5,
             "Longitude": 225.5
         },
         {
-            "Province": "Shandong",            
+            "Province": "Shandong",   
+            "Province CN": "山东",         
             "Latitude": 485.5,
             "Longitude": 245.5
         },
         {
-            "Province": "Tianjin",            
+            "Province": "Tianjin",  
+            "Province CN": "天津",          
             "Latitude": 470.5,
             "Longitude": 208.5
         },
         {
-            "Province": "Liaoning",            
+            "Province": "Liaoning",  
+            "Province CN": "辽宁",          
             "Latitude": 520.5,
             "Longitude": 180.5
         },
         {
-            "Province": "Jilin",            
+            "Province": "Jilin",   
+            "Province CN": "吉林",         
             "Latitude": 560.5,
             "Longitude": 140.5
         },
         {
-            "Province": "Heilongjiang",            
+            "Province": "Heilongjiang",
+            "Province CN": "黑龙江",            
             "Latitude": 560.5,
             "Longitude": 85.5
         }

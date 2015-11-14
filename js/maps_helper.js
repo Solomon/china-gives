@@ -99,11 +99,12 @@ function maps_helper(){
 			var that = this;
 			var res = {};
 			$.each(map_initial_data, function(index, item){
-				var info_name = item['Province'] + '_Info';
+				var info_name = item['Province'] + '_Info';				
 				var val = that.fetch_province_data(item['Province'], 'Total giving amount');
 				if (val) {
 					var loc = that.fetch_location_data(item['Province']);
-					if (loc)
+					if (loc){
+						var province_name = !is_chinese() ? item['Province'] : loc['Province CN'];
 						res[info_name] = {
 							value: val,
 				            latitude: loc['Latitude'],
@@ -114,9 +115,10 @@ function maps_helper(){
 				            },
 				            href: "javascript:void(0);",
 				            tooltip: {
-				                content: '<b>' + item['Province'] + ':</b> ' + val
+				                content: '<b>' + province_name + ':</b> ' + val
 				            }
 						}
+					}
 				}
 			});
 			return res;			
@@ -129,7 +131,8 @@ function maps_helper(){
 				var val = that.fetch_province_data(item['Province'], 'Total amount received');
 				if (val) {
 					var loc = that.fetch_location_data(item['Province']);
-					if (loc)
+					if (loc){
+						var province_name = !is_chinese() ? item['Province'] : loc['Province CN'];
 						res[info_name] = {
 							value: val,
 				            latitude: loc['Latitude'],
@@ -140,9 +143,10 @@ function maps_helper(){
 				            },
 				            href: "javascript:void(0);",
 				            tooltip: {
-				                content: '<b>' + item['Province'] + ':</b> ' + val
+				                content: '<b>' + province_name + ':</b> ' + val
 				            }
 						}
+					}
 				}
 			});
 			return res;
@@ -156,7 +160,8 @@ function maps_helper(){
 				var val = that.fetch_province_data(item['Province'], 'Total giving amount');
 				if (val) {
 					var loc = that.fetch_location_data(item['Province']);
-					if (loc)
+					if (loc){
+						var province_name = !is_chinese() ? item['Province'] : loc['Province CN'];
 						res[info_name] = {
 							value: val,
 				            latitude: loc['Latitude'],
@@ -167,9 +172,10 @@ function maps_helper(){
 				            },
 				            href: "javascript:void(0);",
 				            tooltip: {
-				                content: '<b>' + item['Province'] + ':</b> ' + val
+				                content: '<b>' + province_name + ':</b> ' + val
 				            }
 						}
+					}
 				}
 			});
 			return res;
@@ -182,11 +188,13 @@ function maps_helper(){
 			$.each(map_initial_data, function(index, map_item){
 				var loc_from = that.fetch_location_data(map_item['Province']); 
 				if (loc_from){
+					var province_name = !is_chinese() ? loc_from['Province'] : loc_from['Province CN'];
 					$.each(region_data, function(ind, region_item){
 						var region_name = region_item['Province'];
 						if (map_item[region_name] && map_item[region_name] > 0){
 							var link_name = 'link_' + map_item['Province'] + '_' + region_name;
 							var loc_to = that.fetch_location_data(region_item['Province']);
+							var province_region_name = !is_chinese() ? loc_to['Province'] : loc_to['Province CN'];
 							res[link_name] = {
 					            factor : 0.2, 
 					            between : [{latitude : loc_from['Latitude'], longitude : loc_from['Longitude']}, 
@@ -199,7 +207,7 @@ function maps_helper(){
 					            	stroke: "rgba(137, 255, 114, 0.75)",
 					                "stroke-width" : 3
 					            },
-					            tooltip: { content : map_item['Province'] + " - " + region_name }
+					            tooltip: { content : province_name + " - " + province_region_name }
 					    	}
 						}
 					});
@@ -212,8 +220,9 @@ function maps_helper(){
 			var areas = {};
 			$.each(region_data, function(ind, region_item){
 				var region_name = region_item['Province'];
+				var province_name = !is_chinese() ? region_item['Province'] : region_item['Province CN'];
 				areas[region_name] = {
-					tooltip: {content : '<b>' + region_name + '</b>'},
+					tooltip: {content : '<b>' + province_name + '</b>'},
 					attrs : {
 						fill : "#8996A0", 
 						stroke: "#FFFFFF"
@@ -228,8 +237,9 @@ function maps_helper(){
 			var areas = {};
 			$.each(region_data, function(ind, region_item){
 				var region_name = region_item['Province'];
+				var province_name = !is_chinese() ? region_item['Province'] : region_item['Province CN'];
 				areas[region_name] = {
-					tooltip: {content : '<b>' + region_name + '</b>'},
+					tooltip: {content : '<b>' + province_name + '</b>'},
 					attrs : {
 						fill : "#8996A0", 
 						stroke: "#FFFFFF"
@@ -244,8 +254,9 @@ function maps_helper(){
 			var areas = {};
 			$.each(region_data, function(ind, region_item){
 				var region_name = region_item['Province'];
+				var province_name = !is_chinese() ? region_item['Province'] : region_item['Province CN'];
 				areas[region_name] = {
-					tooltip: {content : '<b>' + region_name + '</b>'},
+					tooltip: {content : '<b>' + province_name + '</b>'},
 					attrs : {
 						fill : "#8996A0", 
 						stroke: "#FFFFFF"
