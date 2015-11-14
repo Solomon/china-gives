@@ -844,6 +844,36 @@ section#people .container {
     color: #A3B0BA;
 }
 
+.person-box.manufacturing .circle-text:after {
+    background: #368db9; 
+}
+.person-box.real-estate .circle-text:after {
+    background: #a51c30; 
+}
+.person-box.energy .circle-text:after {
+    background: #faae53; 
+}
+.person-box.consumer .circle-text:after {
+    background: #52854c; 
+}
+.person-box.tech-it .circle-text:after {
+    background: #293352; 
+}
+.person-box.finance .circle-text:after {
+    background: #36b9a4; 
+}
+.person-box.education .circle-text:after {
+    background: #a51c75; 
+}
+.person-box.healthcare .circle-text:after {
+    background: #53faae; 
+}
+.person-box.transportation .circle-text:after {
+    background: #857f4c; 
+}
+.person-box.other .circle-text:after {
+    background: #7b8280; 
+}
 
 /* maps */
 
