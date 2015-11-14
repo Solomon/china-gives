@@ -99,7 +99,7 @@ function industry_list(){
 }
 
 function map_colors(){
-  return ['#368DB9', '#A51C30', '#FAAE53', '#52854C', '#293352', '#36B9A4', '#a51c75', '#53faae', '#857f4c', '#7b8280'];
+  return ['#368DB9', '#A51C30', '#FAAE53', '#52854C', '#293352', '#48c4b7', '#861657', '#CED665', '#8C8179', '#80475E'];
 }
 
 function randomize_axis(){
