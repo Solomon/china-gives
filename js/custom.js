@@ -487,7 +487,7 @@ function init_chart_onclick(){
           }, 2000);
         }
         $('.person-box').removeClass('selected');      
-        $('#person-container-' + id + ' .person-box').addClass('selected');
+        $('#person-container-' + id).addClass('selected');
       }
     });
 
