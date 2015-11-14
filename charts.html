@@ -71,29 +71,55 @@ language: en
         <div class="row">
         {% assign a = 0 %}
         {% assign b = 1 %}
-        {% for i in (0..99)%}
+        {% assign i = 0 %}
+        {% for person in site.data.persons%}
+
+            {% assign focuses = "a|b" | split: "|" %}
+            {% if person.['Education'] > 0 %}
+                 {% assign focuses = focuses | push: "Education" %}
+            {% endif %}
+            {% if person.['Environment'] > 0 %}
+                 {% assign focuses = focuses | push: "Environment" %}
+            {% endif %}
+            {% if person.['Healthcare'] > 0 %}
+                 {% assign focuses = focuses | push: "Healthcare" %}
+            {% endif %}
+            {% if person.['Poverty, Welfare'] > 0 %}
+                 {% assign focuses = focuses | push: "Poverty, Welfare" %}
+            {% endif %}
+            {% if person.['Disaster Relief'] > 0 %}
+                 {% assign focuses = focuses | push: "Disaster Relief" %}
+            {% endif %}
+            {% if person.['Culture'] > 0 %}
+                 {% assign focuses = focuses | push: "Culture" %}
+            {% endif %}
+            {% assign focuses = focuses | array_to_sentence_string %}
+            {% assign focuses = focuses | replace: 'a, b, and', '' %}
             <div class="col-sm-3 col-xs-6 mg-top-25 person-box" id="person-container-{{ i }}">
                 <div class="circle">
                     <div class="circle-text">
                         <div>
                             <div>{{ b }}</div>
-                            <h4>Chen Kaixuan</h4>
-                            <div>¥{{ 100 | minus: b }} Milion</div>
+                            <h4>{{ person.['Name Eng'] }}</h4>
+                            <div>¥{{ person.['Total Amount (million Yuan)'] }} Milion</div>
                         </div>
                     </div>
                     <div class="details">
                         <div class="content">
                             <ul class="no-bullets">
-                                <li><span class="text-muted">Age:</span> 52</li>
+                                {% if person.['Age'] > 0 %}
+                                    <li><span class="text-muted">Age:</span> {{ person.['Age'] }}</li>
+                                {% endif %}                                
                                 <li><span class="text-muted">Generosity:</span> 2.4%</li>
-                                <li><span class="text-muted">Location:</span> Beijing</li>
-                                <li><span class="text-muted">Industry:</span> Real Estate</li>
-                                <li><span class="text-muted">Focus:</span> Education, Social Welfare</li>
+                                <li><span class="text-muted">Location:</span> {{ person.['From Province'] }}</li>
+                                <li><span class="text-muted">Industry:</span> {{ person.['Industry'] }}</li>
+                                <li><span class="text-muted">Focus:</span> {{ focuses }}</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>            
+            {% assign i = i + 1 %}
             {% if a == 9%}
                 {% assign a = 0 %}
             {% else %}
