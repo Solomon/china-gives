@@ -82,7 +82,7 @@ function generosity_data() {
   rand_data.push(["Name Eng", "National Total", "Generosity", "Industry", "Total Amount (million Yuan)"]);
   jQuery.each(filtered_data, function(index, item) {
     rand_data.push([get_initals(item["Name Eng"]), (item["Total Amount (million Yuan)"] / national_total) * 100, get_float_from_string(item['Generosity']), 
-                    item["Industry"], item["Total Amount (million Yuan)"]]);
+                    trsl(item["Industry"]), item["Total Amount (million Yuan)"]]);
   });
   var data = google.visualization.arrayToDataTable(rand_data);
   return data;
@@ -95,7 +95,7 @@ function get_float_from_string(str){
 }
 
 function industry_list(){
-  return ['Manufacturing', 'Real Estate', 'Energy', 'Consumer', 'Tech/IT', 'Finance', 'Education', 'Healthcare', 'Transportation', 'Other'];
+  return trsl_arr(['Manufacturing', 'Real Estate', 'Energy', 'Consumer', 'Tech/IT', 'Finance', 'Education', 'Healthcare', 'Transportation', 'Other']);
 }
 
 function map_colors(){
@@ -113,7 +113,8 @@ function industry_data() {
   rand_data.push(["Name Eng", "Industry Int", "Total Amount (million Yuan)", "Industry", "Total Amount (million Yuan)"]);
   var industries = industry_list();
   jQuery.each(chart_data_res, function(index, item) {
-     rand_data.push([get_initals(item["Name Eng"]), industries.indexOf(item["Industry"]) + 1 + randomize_axis(), item["Total Amount (million Yuan)"], item["Industry"], item["Total Amount (million Yuan)"]]);
+     rand_data.push([get_initals(item["Name Eng"]), industries.indexOf(trsl(item["Industry"])) + 1 + randomize_axis(), item["Total Amount (million Yuan)"], trsl(item["Industry"]), 
+                     item["Total Amount (million Yuan)"]]);
   });
   var data = google.visualization.arrayToDataTable(rand_data);
   return data;
@@ -125,7 +126,7 @@ function focus_data() {
   var rand_data = [];
   rand_data.push(["Name Eng", "National Total", "Focus", "Industry", "Total Amount (million Yuan)"]);
   jQuery.each(chart_data_res, function(index, item) {
-     rand_data.push([get_initals(item["Name Eng"]), (item["Total Amount (million Yuan)"] / national_total) * 100, get_focus(item), item["Industry"], item["Total Amount (million Yuan)"]]);
+     rand_data.push([get_initals(item["Name Eng"]), (item["Total Amount (million Yuan)"] / national_total) * 100, get_focus(item), trsl(item["Industry"]), item["Total Amount (million Yuan)"]]);
   });
   var data = google.visualization.arrayToDataTable(rand_data);
   return data;
@@ -142,6 +143,18 @@ function get_focus(item){
 }
 
 function get_initals(name){
+
+  if (is_chinese()){
+    if (!chart_data_res)
+      chart_data_res = chart_data();
+    var this_data = jQuery.grep(chart_data_res, function(item) {
+                      return item["Name Eng"] == name;
+                    });
+    if (this_data.length > 0)
+      return this_data[0]["Name CN"];
+    return name;
+  }
+
   var res = '';
   jQuery.each(name.split(' '), function(index, splitted) {
       if (splitted[0])
@@ -169,7 +182,7 @@ function age_data() {
   rand_data.push(["Name Eng", "Age", "National Total", "Industry", "Size"]);
   jQuery.each(chart_data_res, function(index, item) {
     if (item["Age"] > 0)
-      rand_data.push([get_initals(item["Name Eng"]), item["Age"], (item["Total Amount (million Yuan)"] / national_total) * 100, item["Industry"], 2]);
+      rand_data.push([get_initals(item["Name Eng"]), item["Age"], (item["Total Amount (million Yuan)"] / national_total) * 100, trsl(item["Industry"]), 2]);
   });
   var data = google.visualization.arrayToDataTable(rand_data);
   return data;
@@ -186,7 +199,7 @@ function age_options(){
           }
         },  
         vAxis: {
-          title: 'National Total %',
+          title: trsl('National Total %'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
           baseline: -0.05,
@@ -194,7 +207,7 @@ function age_options(){
                 {v: 0.2, f: '0.2'},{v: 0.3, f: '0.3'},{v: 0.4, f: '0.4'},{v: 0.5, f: '0.5'}]
         },
         hAxis: {
-          title: 'Age',
+          title: trsl('Age'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
           baseline: 30,
@@ -230,7 +243,7 @@ function generosity_options() {
         }
       },  
       vAxis: {
-        title: 'Generosity %',
+        title: trsl('Generosity %'),
         gridlineColor: 'transparent',
         baselineColor: 'black',
         baseline: -0.7,
@@ -238,7 +251,7 @@ function generosity_options() {
                 {v: 2, f: '2'},{v: 3, f: '3'},{v: 4, f: '4'},{v: 5, f: '5'},{v: 6, f: '6'},{v: 7, f: ''}]
       },
       hAxis: {        
-        title: 'National Total %',
+        title: trsl('National Total %'),
         gridlineColor: 'transparent',
         baselineColor: 'black',        
         baseline: -0.005,
@@ -280,7 +293,7 @@ function industry_options(){
           }
         },  
         vAxis: {
-          title: 'Total Amount',
+          title: trsl('Total Amount'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
           baseline: -10,
@@ -288,7 +301,7 @@ function industry_options(){
                   {v: 200, f: '200 m'},{v: 300, f: '300 m'},{v: 400, f: '400 m'},{v: 500, f: '500 m'}]
         },
         hAxis: {
-          title: 'Industry',
+          title: trsl('Industry'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
           ticks: h_ticks
@@ -328,7 +341,7 @@ function months_options(){
                   {v: 2, f: ''}]
         },
         hAxis: {
-          title: 'Months',
+          title: trsl('Chronological'),
           gridlineColor: 'transparent',
           baselineColor: 'transparent',
           ticks: [{v: 0, f: ''}, {v: 1, f: 'Sep 14'}, {v: 2, f: 'Oct 14'},
@@ -364,7 +377,7 @@ function focus_options(){
           }
         },  
         vAxis: {
-          title: 'Focus Areas',
+          title: trsl('Focus Areas'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
           ticks: [{v: 0, f: ''},{v: 1, f: '1'},
@@ -372,7 +385,7 @@ function focus_options(){
                   {v: 4, f: ''}]
         },
         hAxis: {
-          title: 'National Total %',
+          title: trsl('National Total %'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
           ticks: [{v: 0, f: '0.0'}, {v: 0.1, f: '0.1'},
