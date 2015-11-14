@@ -45,7 +45,7 @@ language: en
                   </li>
                   <li role="presentation">
                      <a href="?months" data-chart-name="Donations by months" data-chart-type="months">
-                        <span>Months</span>
+                        <span>Chronological</span>
                      </a>
                   </li>
                 </ul>
@@ -116,8 +116,10 @@ language: en
                                 <ul class="no-bullets">
                                     {% if person.['Age'] > 0 %}
                                         <li><span class="text-muted">Age:</span> {{ person.['Age'] }}</li>
-                                    {% endif %}                                
-                                    <li><span class="text-muted">Generosity:</span> 2.4%</li>
+                                    {% endif %}                               
+                                    {% if person.['Generosity'] != 0 %}                           
+                                        <li><span class="text-muted">Generosity:</span> {{person.['Generosity']}}</li>
+                                    {% endif %}      
                                     <li><span class="text-muted">Location:</span> {{ person.['From Province'] }}</li>
                                     <li><span class="text-muted">Industry:</span> {{ person.['Industry'] }}</li>
                                     <li><span class="text-muted">Focus:</span> {{ focuses }}</li>
@@ -169,8 +171,8 @@ language: en
                     </a>
                   </li>
                   <li role="presentation">
-                    <a href="javascript:void(0);" data-map-name="Donations Flow" data-map-type="movement">
-                        <span>Donations Flow</span>
+                    <a href="javascript:void(0);" data-map-name="捐赠流向" data-map-type="movement">
+                        <span>捐赠流向</span>
                     </a>
                 </ul>
             </div>

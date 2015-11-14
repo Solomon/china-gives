@@ -24,33 +24,28 @@ language: cn
             <div class="col-xs-12">
                 <ul class="nav nav-pills nav-justified chart-options">
                   <li role="presentation">
-                    <a href="?donation" data-chart-name="by Donation Scale" data-chart-type="donation">
-                        <span>Donation Scale</span>
+                    <a href="?generosity" data-chart-name="慷慨指数" data-chart-type="generosity">
+                        <span>慷慨指数</span>
                     </a>
                   </li>
                   <li role="presentation">
-                    <a href="?generosity" data-chart-name="by Generosity Index" data-chart-type="generosity">
-                        <span>Generosity Index</span>
+                    <a href="?industry" data-chart-name="行业" data-chart-type="industry">
+                        <span>行业</span>
                     </a>
                   </li>
                   <li role="presentation">
-                    <a href="?industry" data-chart-name="by Industries" data-chart-type="industry">
-                        <span>Industry</span>
+                    <a href="?focus" data-chart-name="多样性指数" data-chart-type="focus">
+                        <span>多样性指数</span>
                     </a>
                   </li>
                   <li role="presentation">
-                    <a href="?focus" data-chart-name="by Focus Areas" data-chart-type="focus">
-                        <span>Focus</span>
+                    <a href="?age" data-chart-name="年龄" data-chart-type="age">
+                        <span>年龄</span>
                     </a>
                   </li>
                   <li role="presentation">
-                    <a href="?age" data-chart-name="by Age" data-chart-type="age">
-                        <span>Age</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                     <a href="?months" data-chart-name="Donations by months" data-chart-type="months">
-                        <span>Months</span>
+                     <a href="?months" data-chart-name="时间轴" data-chart-type="months">
+                        <span>时间轴</span>
                      </a>
                   </li>
                 </ul>
@@ -68,47 +63,72 @@ language: cn
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Top 100 Philanthropists</h2>
+                <h2 class="section-heading">百位慈善家</h2>
                 <hr class="">
             </div>
         </div>
         
-        <div class="row mg-top-25">
+        <div class="row">
         {% assign a = 0 %}
         {% assign b = 1 %}
-        {% for i in (0..99)%}
-            <div class="col-md-3 col-sm-4 col-xs-6" id="person-container-{{ i }}">
-                <div class="person-info-box">
-                    <div class="container-fluid">
-                        <div class="person-info-box-header">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <h4>{{ b }}. Jack Ma</h4>
-                                </div>
-                                <div class="person-info-box-image col-xs-6">
-                                    <img src="img/people/avatars/{{ a }}.jpg">
-                                </div>
-                                <div class="person-info-box-text col-xs-6">   
-                                    <ul class="no-bullets">
-                                        <li><small class="text-muted">Donations:</small><br><big>$52 million</big></li>
-                                        <li><small class="text-muted">Generosity:</small><br><big>12%</big></li>
-                                    </ul>
-                                </div>
+        {% assign i = 0 %}
+        {% for person in site.data.persons%}
+
+            {% assign focuses = "a|b" | split: "|" %}
+            {% if person.['Education'] > 0 %}
+                 {% assign focuses = focuses | push: "Education" %}
+            {% endif %}
+            {% if person.['Environment'] > 0 %}
+                 {% assign focuses = focuses | push: "Environment" %}
+            {% endif %}
+            {% if person.['Healthcare'] > 0 %}
+                 {% assign focuses = focuses | push: "Healthcare" %}
+            {% endif %}
+            {% if person.['Poverty, Welfare'] > 0 %}
+                 {% assign focuses = focuses | push: "Poverty, Welfare" %}
+            {% endif %}
+            {% if person.['Disaster Relief'] > 0 %}
+                 {% assign focuses = focuses | push: "Disaster Relief" %}
+            {% endif %}
+            {% if person.['Culture'] > 0 %}
+                 {% assign focuses = focuses | push: "Culture" %}
+            {% endif %}
+
+            {% assign focuses = focuses | array_to_sentence_string %}
+            {% assign focuses = focuses | replace: 'a, b,', '' %}
+            {% assign focuses = focuses | replace: 'and', '' %}
+
+            {% assign industry_class = person.['Industry'] | split: &nbsp; %}
+            {% assign industry_class = industry_class | join: '-' %}
+            {% assign industry_class = industry_class | downcase %}
+            {% assign industry_class = industry_class | replace: '/', '-' %}
+                <div class="col-sm-3 col-xs-6 mg-top-25 person-box {{ industry_class }}" id="person-container-{{ i }}">
+                    <div class="circle">
+                        <div class="circle-text">
+                            <div>
+                                <div>{{ b }}</div>
+                                <h4>{{ person.['Name CN'] }}</h4>
+                                <div>¥{{ person.['Total Amount (million Yuan)'] }} Milion</div>
                             </div>
-                        </div>    
-                        <div class="row person-info-box-details">  
-                            <div class="col-xs-12">   
+                        </div>
+                        <div class="details">
+                            <div class="content">
                                 <ul class="no-bullets">
-                                    <li>Age: 52</li>
-                                    <li>Location: Beijing</li>
-                                    <li>Industry: Real Estate</li>
-                                    <li>Focus: Education</li>
+                                    {% if person.['Age'] > 0 %}
+                                        <li><span class="text-muted">年龄</span> {{ person.['Age'] }}</li>
+                                    {% endif %}     
+                                    {% if person.['Generosity'] != 0 %}                           
+                                        <li><span class="text-muted">慷慨指数</span> {{person.['Generosity']}}</li>
+                                    {% endif %}     
+                                    <li><span class="text-muted">位置</span> {{ person.['From Province'] }}</li>
+                                    <li><span class="text-muted">行业</span> {{ person.['Industry'] }}</li>
+                                    <li><span class="text-muted">关注领域</span> {{ focuses }}</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>            
+            {% assign i = i | plus: 1 %} 
             {% if a == 9%}
                 {% assign a = 0 %}
             {% else %}
@@ -126,7 +146,7 @@ language: cn
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Maps</h2>
+                <h2 class="section-heading">Donations Produced</h2>
                 <hr class="light">
             </div>
         </div>        
@@ -141,18 +161,18 @@ language: cn
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <ul class="nav nav-pills nav-justified chart-options map-chart">
                   <li role="presentation" class="active">
-                    <a href="javascript:void(0);" data-map-name="" data-map-type="philanthropists">
-                        <span>Philanthropists</span>
+                    <a href="javascript:void(0);" data-map-name="Donations Produced" data-map-type="philanthropists">
+                        <span>Donations Produced</span>
                     </a>
                   </li>
                   <li role="presentation">
-                    <a href="javascript:void(0);" data-map-name="" data-map-type="donations">
-                        <span>Donations</span>
+                    <a href="javascript:void(0);" data-map-name="Donations Received" data-map-type="donations">
+                        <span>Donations Received</span>
                     </a>
                   </li>
                   <li role="presentation">
-                    <a href="javascript:void(0);" data-map-name="" data-map-type="movement">
-                        <span>Money Movement</span>
+                    <a href="javascript:void(0);" data-map-name="Donations Flow" data-map-type="movement">
+                        <span>Donations Flow</span>
                     </a>
                 </ul>
             </div>
