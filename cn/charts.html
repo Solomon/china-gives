@@ -77,22 +77,22 @@ language: cn
 
             {% assign focuses = "a|b" | split: "|" %}
             {% if person.['Education'] > 0 %}
-                 {% assign focuses = focuses | push: "Education" %}
+                 {% assign focuses = focuses | push: "教育" %}
             {% endif %}
             {% if person.['Environment'] > 0 %}
-                 {% assign focuses = focuses | push: "Environment" %}
+                 {% assign focuses = focuses | push: "环保" %}
             {% endif %}
             {% if person.['Healthcare'] > 0 %}
-                 {% assign focuses = focuses | push: "Healthcare" %}
+                 {% assign focuses = focuses | push: "医疗" %}
             {% endif %}
             {% if person.['Social Welfare'] > 0 %}
-                 {% assign focuses = focuses | push: "Social Welfare" %}
+                 {% assign focuses = focuses | push: "社会福利" %}
             {% endif %}
             {% if person.['Disaster Relief'] > 0 %}
-                 {% assign focuses = focuses | push: "Disaster Relief" %}
+                 {% assign focuses = focuses | push: "赈灾" %}
             {% endif %}
             {% if person.['Culture'] > 0 %}
-                 {% assign focuses = focuses | push: "Culture" %}
+                 {% assign focuses = focuses | push: "文化" %}
             {% endif %}
 
             {% assign focuses = focuses | array_to_sentence_string %}
@@ -117,8 +117,7 @@ language: cn
                                     {% assign mod_amount = person.['Total Amount (million Yuan)'] | minus: base_hun %}
                                     {% if mod_amount == 0%}                                        
                                         <div>{{ base_amount }}亿元</div>
-                                    {% endif %}    
-                                    {% if mod_amount < 10 %}
+                                    {% elsif mod_amount < 10 %}
                                         <div>{{ base_amount }}.0{{ mod_amount }}亿元</div>
                                     {% endif %}    
                                     {% if mod_amount >= 10 %}
@@ -137,9 +136,9 @@ language: cn
                                         <li><span class="text-muted">慷慨指数</span> {{person.['Generosity']}}</li>
                                     {% endif %}     
                                     {% if person.['From Province'] != 0 %}  
-                                        <li><span class="text-muted">位置</span> {{ person.['From Province'] }}</li>
+                                        <li><span class="text-muted">位置</span> {{ person.['Province CN'] }}</li>
                                     {% endif %} 
-                                    <li><span class="text-muted">行业</span> {{ person.['Industry'] }}</li>
+                                    <li><span class="text-muted">行业</span> {{ person.['Industry CN'] }}</li>
                                     <li><span class="text-muted">关注领域</span> {{ focuses }}</li>
                                 </ul>
                             </div>
