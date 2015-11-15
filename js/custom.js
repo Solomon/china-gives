@@ -507,7 +507,6 @@ function init_chart_onclick(){
         id = arr_last(id.split('#'));
         var chart_container = $('#charts-container');
         var attr = 'data-' + get_param();
-        console.log('['+ attr + '="' + id + '"]');
         var elem = $('['+ attr + '="' + id + '"]');
         if ($(elem).length > 0) {
           if (($('#page-top').hasClass('fix-charts') || will_fix(window)) && !is_chart_closed) {

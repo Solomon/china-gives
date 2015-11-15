@@ -112,6 +112,7 @@ language: cn
                 <div class="col-sm-3 col-xs-6 mg-top-25 person-box {{ industry_class }}" {% if person.['Age'] > 0  %} data-age="{{ age_number }}" {% endif %}  
                     {% if person.['Generosity'] != 0 %} data-generosity="{{ generosity_number }}" {% endif %}   
                     {% if person.['Industry'] != 0 %} data-industry="{{ industry_number }}" {% endif %} 
+                    {% if focuses != '' %} data-focus="{{ focus_number }}" {% endif %}
                     id="person-container-{{ person.['Ranking'] }}">
                     <div class="circle">
                         <div class="circle-text">
