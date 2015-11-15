@@ -73,6 +73,12 @@ language: cn
         {% assign a = 0 %}
         {% assign b = 1 %}
         {% assign i = 0 %}
+
+        {% assign focus_number = 0 %}
+        {% assign generosity_number = 0 %}
+        {% assign industry_number = 0 %}
+        {% assign age_number = 0 %}
+
         {% for person in site.data.persons%}
 
             {% assign focuses = "a|b" | split: "|" %}
@@ -103,7 +109,10 @@ language: cn
             {% assign industry_class = industry_class | join: '-' %}
             {% assign industry_class = industry_class | downcase %}
             {% assign industry_class = industry_class | replace: '/', '-' %}
-                <div class="col-sm-3 col-xs-6 mg-top-25 person-box {{ industry_class }}" id="person-container-{{ i }}">
+                <div class="col-sm-3 col-xs-6 mg-top-25 person-box {{ industry_class }}" {% if person.['Age'] > 0  %} data-age="{{ age_number }}" {% endif %}  
+                    {% if person.['Generosity'] != 0 %} data-generosity="{{ generosity_number }}" {% endif %}   
+                    {% if person.['Industry'] != 0 %} data-industry="{{ industry_number }}" {% endif %} 
+                    id="person-container-{{ person.['Ranking'] }}">
                     <div class="circle">
                         <div class="circle-text">
                             <div>
@@ -152,6 +161,18 @@ language: cn
                 {% assign a = a | plus: 1 %} 
             {% endif %}
             {% assign b = b | plus: 1 %}
+            {% if focuses != '' %}
+                {% assign focus_number = focus_number | plus: 1  %}
+            {% endif %}   
+            {% if person.['Generosity'] != 0 %}
+                {% assign generosity_number = generosity_number | plus: 1  %}
+            {% endif %} 
+            {% if person.['Industry'] != 0 %}
+                {% assign industry_number = industry_number | plus: 1  %}
+            {% endif %} 
+            {% if person.['Age'] > 0 %}
+                {% assign age_number = age_number | plus: 1  %}
+            {% endif %} 
         {% endfor %}
 
         </div>

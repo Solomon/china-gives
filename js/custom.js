@@ -98,8 +98,21 @@ function industry_list(){
   return trsl_arr(['Manufacturing', 'Real Estate', 'Energy', 'Consumer', 'Tech/IT', 'Finance', 'Education', 'Healthcare', 'Transportation', 'Other']);
 }
 
-function map_colors(){
-  return ['#368DB9', '#A51C30', '#FAAE53', '#52854C', '#293352', '#48c4b7', '#861657', '#CED665', '#8C8179', '#80475E'];
+function map_colors(ch_data){
+  var def_colors = [['Manufacturing', '#368DB9'], ['Real Estate', '#A51C30'], ['Energy', '#FAAE53'], ['Consumer', '#52854C'], ['Tech/IT','#293352'], 
+                    ['Finance', '#48c4b7'], ['Education', '#861657'], ['Healthcare', '#CED665'], ['Transportation', '#8C8179'], ['Other', '#80475E']];
+  var res_colors = [];                  
+  var res_ind = [];
+  jQuery.each(ch_data.Gf, function(index, item) {
+    if ($.inArray(item.c[3].v, res_ind) < 0){
+      var item_color = jQuery.grep(def_colors, function(col) {
+                        return col[0] == item.c[3].v;
+                      });
+      res_colors.push(item_color[0][1]);
+      res_ind.push(item.c[3].v);
+   }
+  });
+  return res_colors;
 }
 
 function randomize_axis(){
@@ -188,7 +201,7 @@ function age_data() {
   return data;
 }
 
-function age_options(){
+function age_options(ch_data){
   return {
         bubble: {
           textStyle: {
@@ -214,7 +227,7 @@ function age_options(){
           ticks: [{v: 30, f: '30'},{v: 40, f: '40'},
                   {v: 50, f: '50'},{v: 60, f: '60'},{v: 70, f: '70'},{v: 80, f: '80'}]
         },
-        colors: map_colors(),
+        colors: map_colors(ch_data),
         chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
         legend: {
           alignment: 'center',
@@ -232,7 +245,7 @@ function age_options(){
 }
 
 
-function generosity_options() {
+function generosity_options(ch_data) {
     return {
       bubble: {
         textStyle: {
@@ -258,7 +271,7 @@ function generosity_options() {
         ticks: [{v: -0.005, f: ''},{v: 0, f: '0.00'},{v: 0.1, f: '0.1'},
                 {v: 0.2, f: '0.2'},{v: 0.3, f: '0.3'},{v: 0.4, f: '0.4'},{v: 0.5, f: '0.5'}]
       },
-      colors: map_colors(),
+      colors: map_colors(ch_data),
       chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
       legend: {
         alignment: 'center',
@@ -275,7 +288,7 @@ function generosity_options() {
     };
 }
 
-function industry_options(){
+function industry_options(ch_data){
   var h_ticks = [];
   var industries = industry_list();  
   h_ticks.push({v: 0, f: ''});
@@ -306,7 +319,7 @@ function industry_options(){
           baselineColor: 'black',
           ticks: h_ticks
         },
-        colors: map_colors(),
+        colors: map_colors(ch_data),
         chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
         legend: {
           alignment: 'center',
@@ -366,7 +379,7 @@ function months_options(){
       };
 }
 
-function focus_options(){
+function focus_options(ch_data){
   return {
         bubble: {
           textStyle: {
@@ -392,7 +405,7 @@ function focus_options(){
                   {v: 0.2, f: '0.2'},{v: 0.3, f: '0.3'},
                   {v: 0.4, f: '0.4'},{v: 0.5, f: '0.5'}]
         },
-        colors: map_colors(),
+        colors: map_colors(ch_data),
         chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
         legend: {
           alignment: 'center',
@@ -410,28 +423,31 @@ function focus_options(){
 }
 
 function draw_age_charts(){
-  var options = age_options();
+  var ch_data = age_data();
+  var options = age_options(ch_data);
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
-  current_chart.draw(age_data(), options);
+  current_chart.draw(ch_data, options);
   init_chart_onclick();
   fix_chart(window);
 }
 
 function draw_generousity_chart(){
-  var options = generosity_options();
+  var ch_data = generosity_data();
+  var options = generosity_options(ch_data);
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
-  current_chart.draw(generosity_data(), options);
+  current_chart.draw(ch_data, options);
   init_chart_onclick();
   fix_chart(window);
 }
 
 function draw_industry_chart(){
-  var options = industry_options();
+  var ch_data = industry_data();
+  var options = industry_options(ch_data);
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
-  current_chart.draw(industry_data(), options);
+  current_chart.draw(ch_data, options);
   init_chart_onclick();
   fix_chart(window);
 }
@@ -446,10 +462,11 @@ function draw_months_chart(){
 }
 
 function draw_focus_chart(){
-  var options = focus_options();
+  var ch_data = focus_data();
+  var options = focus_options(ch_data);
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));  
-  current_chart.draw(focus_data(), options);  
+  current_chart.draw(ch_data, options);  
   init_chart_onclick();
   fix_chart(window);
 }
@@ -489,18 +506,23 @@ function init_chart_onclick(){
       if (str_starts(id, 'bubble') && get_param() != 'months') {        
         id = arr_last(id.split('#'));
         var chart_container = $('#charts-container');
-        if (($('#page-top').hasClass('fix-charts') || will_fix(window)) && !is_chart_closed) {
-          $('html, body').animate({
-            scrollTop: $('#person-container-' + id).offset().top - 430
-          }, 2000);
+        var attr = 'data-' + get_param();
+        console.log('['+ attr + '="' + id + '"]');
+        var elem = $('['+ attr + '="' + id + '"]');
+        if ($(elem).length > 0) {
+          if (($('#page-top').hasClass('fix-charts') || will_fix(window)) && !is_chart_closed) {
+            $('html, body').animate({
+              scrollTop: elem.offset().top - 430
+            }, 2000);
+          }
+          else {
+            $('html, body').animate({
+              scrollTop: elem.offset().top - 70
+            }, 2000);
+          }
+          $('.person-box').removeClass('selected');      
+          elem.addClass('selected');
         }
-        else {
-          $('html, body').animate({
-            scrollTop: $('#person-container-' + id).offset().top - 70
-          }, 2000);
-        }
-        $('.person-box').removeClass('selected');      
-        $('#person-container-' + id).addClass('selected');
       }
     });
 
