@@ -3,7 +3,7 @@
 
   {% include head.html %}
 
-  <body id="page-top" class="charts-page">
+  <body id="page-top">
 
     {% include header-charts.html %}
 
@@ -11,31 +11,24 @@
 
     {% include footer.html %}
 
-    <!-- jQuery -->
-    <script src="{{ "/js/jquery.js" | prepend: site.baseurl }}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ "/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="{{ "/js/jquery.easing.min.js" | prepend: site.baseurl }}"></script>
-    <script src="{{ "/js/jquery.fittext.js" | prepend: site.baseurl }}"></script>
-    <script src="{{ "/js/wow.min.js" | prepend: site.baseurl }}"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="{{ "/js/creative.js" | prepend: site.baseurl }}"></script>
-
-    <script src="{{ "/js/translate.js" | prepend: site.baseurl }}"></script>
+    {% include shared-js.html %}
 
     <script src="{{ "/js/chart-data.js" | prepend: site.baseurl }}"></script>
 
+    <!-- Add map data and generators on maps page -->    
+    {% if page.type == 'maps' %}
     <script src="{{ "/js/raphael-min.js" | prepend: site.baseurl }}"></script>
     <script src="{{ "/js/jquery.mapael.js" | prepend: site.baseurl }}"></script>
     <script src="{{ "/js/china_map.js" | prepend: site.baseurl }}"></script>
+    {% endif %}
     
     <script src="{{ "/js/custom.js" | prepend: site.baseurl }}"></script>
+    
+    <!-- Init maps on maps page -->    
+    {% if page.type == 'maps' %}
     <script src="{{ "/js/maps_helper.js" | prepend: site.baseurl }}"></script>
     <script src="{{ "/js/maps_init.js" | prepend: site.baseurl }}"></script>
+    {% endif %}
 
   </body>
 

@@ -11,19 +11,7 @@
 
     {% include footer.html %}
 
-    <!-- jQuery -->
-    <script src="{{ "/js/jquery.js" | prepend: site.baseurl }}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ "/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="{{ "/js/jquery.easing.min.js" | prepend: site.baseurl }}"></script>
-    <script src="{{ "/js/jquery.fittext.js" | prepend: site.baseurl }}"></script>
-    <script src="{{ "/js/wow.min.js" | prepend: site.baseurl }}"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="{{ "/js/creative.js" | prepend: site.baseurl }}"></script>
+    {% include shared-js.html %}
 
     <script src="{{ "/js/custom.js" | prepend: site.baseurl }}"></script>
 

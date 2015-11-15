@@ -3,7 +3,7 @@ layout: charts
 title: 统计数据 | 中国慈善--艾什民主治理与创新中心
 excerpt: 2015年中国前100名慈善家数据。哈佛肯尼迪学院艾什民主治理与创新中心研究。
 language: cn
-
+type: charts
 ---
 
 <section id="charts" class="charts">
@@ -26,7 +26,7 @@ language: cn
                 <ul class="nav nav-pills nav-justified chart-options">
                   <li role="presentation">
                     <a href="?generosity" data-chart-name="慷慨指数" data-chart-type="generosity">
-                        <span>慷慨指数</span>
+                        <span>慷慨指数 <small data-toggle="tooltip" title="慷慨指数通过用慈善家捐赠总额除以其持有的上市公司股份价值，衡量在考虑他/她财务实力的情况下，其捐赠的慷慨程度。"><i class="fa fa-question-circle"></i></small></span>
                     </a>
                   </li>
                   <li role="presentation">
@@ -46,7 +46,7 @@ language: cn
                   </li>
                   <li role="presentation">
                      <a href="?months" data-chart-name="时间轴" data-chart-type="months">
-                        <span>时间轴 <small data-toggle="tooltip" title="A total of 54 million yuan of donations with unspecified dates is not included in this chart"><i class="fa fa-question-circle"></i></small></span>
+                        <span>时间轴 <small data-toggle="tooltip" title="总共有5,400万元捐赠时间不定，故未计入此表。"><i class="fa fa-question-circle"></i></small></span>
                      </a>
                   </li>
                 </ul>
@@ -200,43 +200,5 @@ language: cn
 
         </div>
 
-    </div>
-</section>
-
-<section id="maps" class="bg-dark maps">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">捐赠来源</h2>
-                <hr class="light">
-            </div>
-        </div>        
-        <div class="row mapcontainer mg-top-25">
-            <div class="col-lg-12 text-center map" id="map">
-                <div class="chart-loader">
-                    <i class="fa fa-spinner fa-2x fa-spin"></i>
-                </div>   
-            </div>
-        </div>
-        <div class="row mg-top-50">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <ul class="nav nav-pills nav-justified chart-options map-chart">
-                  <li role="presentation" class="active">
-                    <a href="javascript:void(0);" data-map-name="捐赠来源" data-map-type="philanthropists">
-                        <span>捐赠来源</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="javascript:void(0);" data-map-name="捐赠去向" data-map-type="donations">
-                        <span>捐赠去向</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="javascript:void(0);" data-map-name="资金流向" data-map-type="movement">
-                        <span>资金流向</span>
-                    </a>
-                </ul>
-            </div>
-        </div>
     </div>
 </section>

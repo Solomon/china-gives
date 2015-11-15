@@ -3,7 +3,7 @@ layout: charts
 title: Statistics | Philanthropy in China - The Ash Center for Democratic Governance and Innovation
 excerpt: Statistical data on top 100 Chinese philanthropists in 2015. Research by The Ash Center for Democratic Governance and Innovation, Harvard Kennedy School
 language: en
-
+type: charts
 ---
 
 <section id="charts" class="charts">
@@ -26,7 +26,7 @@ language: en
                 <ul class="nav nav-pills nav-justified chart-options">
                   <li role="presentation">
                     <a href="?generosity" data-chart-name="by Generosity Index" data-chart-type="generosity">
-                        <span>Generosity Index</span>
+                        <span>Generosity Index <small data-toggle="tooltip" title="Generosity Index is a novel concept that measures how generous a philanthropist is by dividing his/her donation by the value of shares one holds in public companies, a proxy to his/her financial might"><i class="fa fa-question-circle"></i></small></span>
                     </a>
                   </li>
                   <li role="presentation">
@@ -186,43 +186,5 @@ language: en
 
         </div>
 
-    </div>
-</section>
-
-<section id="maps" class="bg-dark maps">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Donation Origins</h2>
-                <hr class="light">
-            </div>
-        </div>        
-        <div class="row mapcontainer mg-top-25">
-            <div class="col-lg-12 text-center map" id="map">
-                <div class="chart-loader">
-                    <i class="fa fa-spinner fa-2x fa-spin"></i>
-                </div>   
-            </div>
-        </div>
-        <div class="row mg-top-50">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <ul class="nav nav-pills nav-justified chart-options map-chart">
-                  <li role="presentation" class="active">
-                    <a href="javascript:void(0);" data-map-name="Donation Origins" data-map-type="philanthropists">
-                        <span>Donation Origins</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="javascript:void(0);" data-map-name="Donation Destinations" data-map-type="donations">
-                        <span>Donation Destinations</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="javascript:void(0);" data-map-name="Donation Flow" data-map-type="movement">
-                        <span>Donation Flow</span>
-                    </a>
-                </ul>
-            </div>
-        </div>
     </div>
 </section>
