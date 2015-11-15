@@ -200,11 +200,11 @@ function maps_helper(){
 					            between : [{latitude : loc_from['Latitude'], longitude : loc_from['Longitude']}, 
 					            		   {latitude : loc_to['Latitude'], longitude : loc_to['Longitude']}], 
 					            attrs : {
-					            	stroke: "rgba(137, 255, 114, 0.30)",
+					            	stroke: "rgba(255, 255, 255, 0.15)",
 					                "stroke-width" : 2
 					            }, 
 					            attrsHover : {
-					            	stroke: "rgba(137, 255, 114, 0.75)",
+					            	stroke: "rgba(143, 253, 155, 0.75)",
 					                "stroke-width" : 3
 					            },
 					            tooltip: { content : province_name + " - " + province_region_name }

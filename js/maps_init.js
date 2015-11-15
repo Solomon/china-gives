@@ -168,8 +168,8 @@ function init_map(plots) {
 function focus_map_link(e, id, mapElem, textElem, elemOptions){
 	var region_id = id.replace('_Info', '');           	
 	if (region_id){
-		$('.mapcontainer path[data-id^="link_"]').attr('stroke-opacity', '0.30').attr('stroke-width', 2);  
-		$('.mapcontainer path[data-id^="link_' + region_id + '_"]').attr('stroke-opacity', '0.75').attr('stroke-width', 3);
-		$('.mapcontainer path[data-id^="link_"][data-id$="_' + region_id + '"]').attr('stroke-opacity', '0.75').attr('stroke-width', 3);
+		$('.mapcontainer path[data-id^="link_"]').attr('stroke-opacity', '0.15').attr('stroke-width', 2).attr('stroke','#FFFFFF');  
+		$('.mapcontainer path[data-id^="link_' + region_id + '_"]').attr('stroke-opacity', '0.75').attr('stroke-width', 3).attr('stroke','#8FFD9B');
+		$('.mapcontainer path[data-id^="link_"][data-id$="_' + region_id + '"]').attr('stroke-opacity', '0.75').attr('stroke-width', 3).attr('stroke','#8FFD9B');
 	}
 }
