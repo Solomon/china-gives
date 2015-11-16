@@ -104,12 +104,12 @@ function map_colors(ch_data){
   var res_colors = [];                  
   var res_ind = [];
   jQuery.each(ch_data.Gf, function(index, item) {
-    if ($.inArray(item.c[3].v, res_ind) < 0){
+    if ($.inArray(trsl(item.c[3].v), res_ind) < 0){
       var item_color = jQuery.grep(def_colors, function(col) {
-                        return col[0] == item.c[3].v;
+                        return trsl(col[0]) == trsl(item.c[3].v);
                       });
       res_colors.push(item_color[0][1]);
-      res_ind.push(item.c[3].v);
+      res_ind.push(trsl(item.c[3].v));
    }
   });
   return res_colors;

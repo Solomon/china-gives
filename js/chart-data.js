@@ -2933,6 +2933,18 @@ function region_location(){
             "Province CN": "黑龙江",            
             "Latitude": 560.5,
             "Longitude": 85.5
+        },
+        {
+            "Province": "Nepal",
+            "Province CN": "尼泊尔",            
+            "Latitude": 0,
+            "Longitude": 0
+        },
+        {
+            "Province": "US",
+            "Province CN": "美国",            
+            "Latitude": 0,
+            "Longitude": 0
         }
     ];
 
