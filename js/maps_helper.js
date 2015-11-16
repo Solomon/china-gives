@@ -224,6 +224,7 @@ function maps_helper(){
 							var link_name = 'link_' + map_item['Province'] + '_' + region_name;
 							var loc_to = that.fetch_location_data(region_item['Province']);
 							var province_region_name = !is_chinese() ? loc_to['Province'] : loc_to['Province CN'];
+							var receiving_amount = that.fetch_province_data(map_item['Province'], region_item['Province']);
 							if (loc_to['Latitude'] > 0){
 								res[link_name] = {
 						            factor : 0.2, 
@@ -238,7 +239,7 @@ function maps_helper(){
 						                "stroke-width" : 3
 						            },
 						            tooltip: { 
-						            	content : province_name + " - " + province_region_name 
+						            	content : province_name + " - " + receiving_amount + ' - ' + province_region_name 
 						            }
 						    	}
 						    }	
