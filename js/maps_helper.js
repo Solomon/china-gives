@@ -171,7 +171,7 @@ function maps_helper(){
 						var province_name = !is_chinese() ? item['Province'] : loc['Province CN'];
 
 						var tooltip_text = '<b>' + province_name + ' giving</b> <br>';
-						var receiving_text = '<b>' + province_name + ' received</b> <br>';
+						var receiving_text = '<br><b>' + province_name + ' received</b> <br>';
 						var giving = false;
 						var receiving = false;
 						$.each(region_data, function(ind, region_item){
