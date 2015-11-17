@@ -321,6 +321,10 @@ section.bg-image.overview div.background-image {
 
 /* Generous section */
 
+.service-box {
+    margin: 25px auto 0;
+}
+
 .service-box img.person {
     max-width: 100%;
     margin: 20px 0;
