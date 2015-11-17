@@ -45,6 +45,37 @@ type: charts
                     </a>
                   </li>
                   <li role="presentation">
+                    <a href="?education" data-chart-name="教育" data-chart-type="education">
+                        <span>教育</span>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a href="?environment" data-chart-name="环保" data-chart-type="environment">
+                        <span>环保</span>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a href="?healthcare" data-chart-name="医疗" data-chart-type="healthcare">
+                        <span>医疗</span>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a href="?social" data-chart-name="社会福利" data-chart-type="social">
+                        <span>社会福利</span>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a href="?disaster" data-chart-name="赈灾" data-chart-type="disaster">
+                        <span>赈灾</span>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a href="?culture" data-chart-name="文化" data-chart-type="culture">
+                        <span>文化</span>
+                    </a>
+                  </li>
+
+                  <li role="presentation">
                      <a href="?months" data-chart-name="时间轴" data-chart-type="months">
                         <span>时间轴 <small data-toggle="tooltip" title="总共有5,400万元捐赠时间不明，故未计入此表。"><i class="fa fa-info-circle"></i></small></span>
                      </a>
@@ -78,6 +109,13 @@ type: charts
         {% assign generosity_number = 0 %}
         {% assign industry_number = 0 %}
         {% assign age_number = 0 %}
+
+        {% assign education_number = 0 %}
+        {% assign environment_number = 0 %}
+        {% assign healthcare_number = 0 %}
+        {% assign social_number = 0 %}
+        {% assign disaster_number = 0 %}
+        {% assign culture_number = 0 %}
 
         {% for person in site.data.persons%}
 
@@ -113,6 +151,14 @@ type: charts
                     {% if person.['Generosity'] != 0 %} data-generosity="{{ generosity_number }}" {% endif %}   
                     {% if person.['Industry'] != 0 %} data-industry="{{ industry_number }}" {% endif %} 
                     {% if focuses != '' %} data-focus="{{ focus_number }}" {% endif %}
+
+                    {% if person.['Education'] != 0 %} data-education="{{ education_number }}" {% endif %} 
+                    {% if person.['Environment'] != 0 %} data-environment="{{ environment_number }}" {% endif %} 
+                    {% if person.['Healthcare'] != 0 %} data-healthcare="{{ healthcare_number }}" {% endif %} 
+                    {% if person.['Social Welfare'] != 0 %} data-social="{{ social_number }}" {% endif %} 
+                    {% if person.['Disaster Relief'] != 0 %} data-disaster="{{ disaster_number }}" {% endif %} 
+                    {% if person.['Culture'] != 0 %} data-culture="{{ culture_number }}" {% endif %} 
+
                     id="person-container-{{ person.['Ranking'] }}">
                     <div class="circle">
                         <div class="circle-text">
@@ -174,6 +220,26 @@ type: charts
             {% if person.['Age'] > 0 %}
                 {% assign age_number = age_number | plus: 1  %}
             {% endif %} 
+
+            {% if person.['Education'] > 0 %}
+                 {% assign education_number = education_number | plus: 1  %}
+            {% endif %}
+            {% if person.['Environment'] > 0 %}
+                 {% assign environment_number = environment_number | plus: 1  %}
+            {% endif %}
+            {% if person.['Healthcare'] > 0 %}
+                 {% assign healthcare_number = healthcare_number | plus: 1  %}
+            {% endif %}
+            {% if person.['Social Welfare'] > 0 %}
+                 {% assign social_number = social_number | plus: 1  %}
+            {% endif %}
+            {% if person.['Disaster Relief'] > 0 %}
+                 {% assign disaster_number = disaster_number | plus: 1  %}
+            {% endif %}
+            {% if person.['Culture'] > 0 %}
+                 {% assign culture_number = culture_number | plus: 1  %}
+            {% endif %}
+
         {% endfor %}
                 <div class="col-sm-3 col-xs-6 mg-top-25 person-box other" id="">
                     <div class="circle">
