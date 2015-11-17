@@ -201,6 +201,21 @@ function age_data() {
   return data;
 }
 
+function focus_type_data(type){
+  if (!chart_data_res)
+    chart_data_res = chart_data();  
+  var rand_data = [];
+  var filtered_data = jQuery.grep(chart_data_res, function(item) {
+                        return item[type];
+                      });
+  rand_data.push(["Name Eng", "National Total", "Focus Funds", "Industry", "Total Amount (million Yuan)"]);
+  jQuery.each(filtered_data, function(index, item) {
+    rand_data.push([get_initals(item["Name Eng"]), (item["Total Amount (million Yuan)"] / national_total) * 100, item[type], 
+                    trsl(item["Industry"]), item["Total Amount (million Yuan)"]]);
+  });
+  return rand_data
+}
+
 function age_options(ch_data){
   return {
         bubble: {
@@ -422,6 +437,85 @@ function focus_options(ch_data){
       };  
 }
 
+function focus_type_options(ch_data, data, type){
+  var ticks = focus_type_ticks(type);
+  return {
+        bubble: {
+          textStyle: {
+            fontSize: 12,
+            fontName: 'Roboto',
+            color: '#fff',
+            bold: true,
+          }
+        },  
+        vAxis: {
+          title: trsl('Focus Funds'),
+          gridlineColor: 'transparent',
+          baselineColor: 'black',
+          baseline: ticks[0].v,
+          ticks: ticks
+          // ticks: [{v: -20, f: ''},{v: 0, f: '0'},{v: 100, f: '100'},
+          //         {v: 200, f: '200'},{v: 300, f: '300'},
+          //         {v: 400, f: '400'}]
+        },
+        hAxis: {
+          title: trsl('National Total %'),
+          gridlineColor: 'transparent',
+          baselineColor: 'black',
+          ticks: [{v: 0, f: '0.0'}, {v: 0.1, f: '0.1'},
+                  {v: 0.2, f: '0.2'},{v: 0.3, f: '0.3'},
+                  {v: 0.4, f: '0.4'},{v: 0.5, f: '0.5'}]
+        },
+        colors: map_colors(ch_data),
+        chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
+        legend: {
+          alignment: 'center',
+          position: 'top'
+        },
+        animation:{
+          duration: 2000,
+          easing: 'out'
+        },
+        backgroundColor: { fill:'transparent' },
+        'tooltip' : {
+          trigger: 'none'
+        }
+      };  
+}
+
+function focus_type_ticks(type){  
+  switch (type) {      
+      case 'Education':
+        return [{v: -20, f: ''},{v: 0, f: '0'},{v: 100, f: '100'},
+                {v: 200, f: '200'},{v: 300, f: '300'}, {v: 400, f: '400'}];
+      break;
+      case 'Environment':
+        return [{v: -5, f: ''},{v: 0, f: '0'},{v: 10, f: '10'},
+                {v: 20, f: '20'},{v: 30, f: '30'}, {v: 40, f: '40'}];
+      break;      
+      case 'Healthcare':
+        return [{v: -20, f: ''},{v: 0, f: '0'},{v: 50, f: '50'},
+                {v: 100, f: '100'},{v: 150, f: '150'}, {v: 200, f: '200'}];
+      break;
+      case 'Social Welfare':
+        return [{v: -20, f: ''},{v: 0, f: '0'},{v: 100, f: '100'},
+                {v: 200, f: '200'},{v: 300, f: '300'}, {v: 400, f: '400'}, {v: 500, f: '500'}];
+      break;
+      case 'Disaster Relief':
+        return [{v: -10, f: ''},{v: 0, f: '0'},{v: 10, f: '10'},
+                {v: 20, f: '20'},{v: 30, f: '30'}, {v: 40, f: '40'}, {v: 50, f: '50'}, {v: 60, f: '60'}, {v: 70, f: '70'}];
+      break;
+      case 'Culture':
+        return [{v: -10, f: ''},{v: 0, f: '0'},{v: 10, f: '10'},
+                {v: 20, f: '20'},{v: 30, f: '30'}, {v: 40, f: '40'}, {v: 50, f: '50'}, {v: 60, f: '60'}, {v: 70, f: '70'}];
+      break;
+      default:
+        return [{v: -20, f: ''},{v: 0, f: '0'},{v: 100, f: '100'},
+                {v: 200, f: '200'},{v: 300, f: '300'}, {v: 400, f: '400'}];;
+      break;
+  }  
+}
+
 function draw_age_charts(){
   var ch_data = age_data();
   var options = age_options(ch_data);
@@ -471,6 +565,17 @@ function draw_focus_chart(){
   fix_chart(window);
 }
 
+function draw_focus_type_chart(type){
+  var data = focus_type_data(type);
+  var ch_data = google.visualization.arrayToDataTable(data);
+  var options = focus_type_options(ch_data, data, type);
+  if (!current_chart)
+    current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));  
+  current_chart.draw(ch_data, options);  
+  init_chart_onclick();
+  fix_chart(window);
+}
+
 function draw_charts(chart_type){
     activate_link(chart_type);
     switch (chart_type){
@@ -488,6 +593,24 @@ function draw_charts(chart_type){
       break;
       case 'focus':
         draw_focus_chart();
+      break;
+      case 'education':
+        draw_focus_type_chart('Education');
+      break;
+      case 'environment':
+        draw_focus_type_chart('Environment');
+      break;
+      case 'social':
+        draw_focus_type_chart('Social Welfare');
+      break;
+      case 'healthcare':
+        draw_focus_type_chart('Healthcare');
+      break;
+      case 'disaster':
+        draw_focus_type_chart('Disaster Relief');
+      break;
+      case 'culture':
+        draw_focus_type_chart('Culture');
       break;
     }  
 }
@@ -595,6 +718,24 @@ function get_chart_route(){
       case 'focus':
         return draw_focus_chart;
       break;
+      case 'education':
+        return draw_focus_type_chart('Education');
+      break;
+      case 'environment':
+        return draw_focus_type_chart('Environment');
+      break;
+      case 'social':
+        return draw_focus_type_chart('Social Welfare');
+      break;
+      case 'healthcare':
+        return draw_focus_type_chart('Healthcare');
+      break;
+      case 'disaster':
+        return draw_focus_type_chart('Disaster Relief');
+      break;
+      case 'culture':
+        return draw_focus_type_chart('Culture');
+      break;
       default:
         return draw_generousity_chart;
       break;
@@ -634,6 +775,24 @@ function make_routing(){
       break;
       case 'focus':
         draw_focus_chart();
+      break;
+      case 'education':
+        draw_focus_type_chart('Education');
+      break;
+      case 'environment':
+        draw_focus_type_chart('Environment');
+      break;
+      case 'social':
+        draw_focus_type_chart('Social Welfare');
+      break;
+      case 'healthcare':
+        draw_focus_type_chart('Healthcare');
+      break;
+      case 'disaster':
+        draw_focus_type_chart('Disaster Relief');
+      break;
+      case 'culture':
+        draw_focus_type_chart('Culture');
       break;
       default:
         history.pushState('', '', get_base_url() + '?generosity');
