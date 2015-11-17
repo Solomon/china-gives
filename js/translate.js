@@ -25,10 +25,18 @@ function trsl_arr(par) {
     return arr;
 }
 
+function trsl_int(n){	
+	if (!is_chinese())
+		return n + '';
+	n = parseInt(n.replace('¥', '').replace('m', ''));
+	if (n < 100)
+		return n + '00万元';
+	return (parseFloat(n) / 100).toFixed(2) + '亿元';
+}
+
 function is_chinese(){
 	return window.location.href.indexOf('/cn/') >= 0;
 }
-
 
 function word_list(){
 	var words = [
@@ -117,52 +125,80 @@ function word_list(){
 			cn: '时间轴'
 		},
 		{
+			en: 'Total Donations',
+			cn: '总捐赠额'
+		},
+		{
+			en: 'Culture Donations',
+			cn: '文化捐赠总额'
+		},
+		{
+			en: 'Social Welfare Donations',
+			cn: '社会福利捐赠总额'
+		},
+		{
+			en: 'Disaster Relief Donations',
+			cn: '救灾捐赠总额'
+		},
+		{
+			en: 'Environment Donations',
+			cn: '环保捐赠总额'
+		},
+		{
+			en: 'Education Donations',
+			cn: '教育捐赠总额'
+		},
+		{
+			en: 'Healthcare Donations',
+			cn: '医疗捐赠总额'
+		},
+		{
 			en: 'Sep 14',
-			cn: '14年9月'
+			cn: '2014年9月'
 		},
 		{
 			en: 'Oct 14',
-			cn: '14年10月'
+			cn: '2014年10月'
 		},
 		{
 			en: 'Nov 14',
-			cn: '14年11月'
+			cn: '2014年11月'
 		},
 		{
 			en: 'Dec 14',
-			cn: '14年12月'
+			cn: '2014年12月'
 		},
 		{
 			en: 'Jan 15',
-			cn: '15年1月'
+			cn: '2015年1月'
 		},
 		{
 			en: 'Feb 15',
-			cn: '15年2月'
+			cn: '2015年2月'
 		},
 		{
 			en: 'Mar 15',
-			cn: '15年3月'
+			cn: '2015年3月'
 		},
 		{
 			en: 'Apr 15',
-			cn: '15年4月'
+			cn: '2015年4月'
 		},
 		{
 			en: 'May 15',
-			cn: '15年5月'
+			cn: '2015年5月'
 		},
 		{
 			en: 'Jun 15',
-			cn: '15年6月'
+			cn: '2015年6月'
 		},
 		{
 			en: 'Jul 15',
-			cn: '15年7月'
+			cn: '2015年7月'
 		},
 		{
 			en: 'Aug 15',
-			cn: '15年8月'
+			cn: '2015年8月'
 		}
 	];
 

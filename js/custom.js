@@ -182,7 +182,7 @@ function months_data() {
   var rand_data = [];
   rand_data.push(['test', 'test1', 'test2', 'test3', 'Total Amount']);
   jQuery.each(chart_data_months_res, function(index, item) {    
-      rand_data.push([item['Amount'] + '', index + 1, 1, 1, item['Amount']]);
+      rand_data.push([trsl_int('¥' + item['Amount'] + ' m'), index + 1, 1, 1, item['Amount']]);
   });
   var data = google.visualization.arrayToDataTable(rand_data);
   return data;
@@ -208,9 +208,9 @@ function focus_type_data(type){
   var filtered_data = jQuery.grep(chart_data_res, function(item) {
                         return item[type];
                       });
-  rand_data.push(["Name Eng", "National Total", "Focus Funds", "Industry", "Total Amount (million Yuan)"]);
+  rand_data.push(["Name Eng", "Total Donations", trsl('Donations in ' + type), "Industry", "Total Amount (million Yuan)"]);
   jQuery.each(filtered_data, function(index, item) {
-    rand_data.push([get_initals(item["Name Eng"]), (item["Total Amount (million Yuan)"] / national_total) * 100, item[type], 
+    rand_data.push([get_initals(item["Name Eng"]), item["Total Amount (million Yuan)"], item[type],
                     trsl(item["Industry"]), item["Total Amount (million Yuan)"]]);
   });
   return rand_data
@@ -372,10 +372,10 @@ function months_options(){
           title: trsl('Chronological'),
           gridlineColor: 'transparent',
           baselineColor: 'transparent',
-          ticks: [{v: 0, f: ''}, {v: 1, f: 'Sep 14'}, {v: 2, f: 'Oct 14'},
-                  {v: 3, f: 'Nov 14'},{v: 4, f: 'Dec 14'},{v: 5, f: 'Jan 15'},{v: 6, f: 'Feb 15'},
-                  {v: 7, f: 'Mar 15'},{v: 8, f: 'Apr 15'},{v: 9, f: 'May 15'},{v: 10, f: 'Jun 15'},
-                  {v: 11, f: 'Jul 15'},{v: 12, f: 'Aug 15'},{v: 13, f: ''}]
+          ticks: [{v: 0, f: ''}, {v: 1, f: trsl('Sep 14')}, {v: 2, f: trsl('Oct 14')},
+                  {v: 3, f: trsl('Nov 14')},{v: 4, f: trsl('Dec 14')},{v: 5, f: trsl('Jan 15')},{v: 6, f: trsl('Feb 15')},
+                  {v: 7, f: trsl('Mar 15')},{v: 8, f: trsl('Apr 15')},{v: 9, f: trsl('May 15')},{v: 10, f: trsl('Jun 15')},
+                  {v: 11, f: trsl('Jul 15')},{v: 12, f: trsl('Aug 15')},{v: 13, f: ''}]
         },
         chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
         legend: {
@@ -445,26 +445,22 @@ function focus_type_options(ch_data, data, type){
             fontSize: 12,
             fontName: 'Roboto',
             color: '#fff',
-            bold: true,
+            bold: true
           }
         },  
-        vAxis: {
-          title: trsl('Focus Funds'),
+        vAxis: {          
+          title: trsl('Total Donations'),    
           gridlineColor: 'transparent',
           baselineColor: 'black',
-          baseline: ticks[0].v,
-          ticks: ticks
-          // ticks: [{v: -20, f: ''},{v: 0, f: '0'},{v: 100, f: '100'},
-          //         {v: 200, f: '200'},{v: 300, f: '300'},
-          //         {v: 400, f: '400'}]
+          baseline: ticks.v[0].v,
+          ticks: ticks.v      
         },
-        hAxis: {
-          title: trsl('National Total %'),
+        hAxis: {      
+          title: trsl(type + ' Donations'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
-          ticks: [{v: 0, f: '0.0'}, {v: 0.1, f: '0.1'},
-                  {v: 0.2, f: '0.2'},{v: 0.3, f: '0.3'},
-                  {v: 0.4, f: '0.4'},{v: 0.5, f: '0.5'}]
+          baseline: ticks.h[0].v,
+          ticks: ticks.h          
         },
         colors: map_colors(ch_data),
         chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
@@ -486,31 +482,58 @@ function focus_type_options(ch_data, data, type){
 function focus_type_ticks(type){  
   switch (type) {      
       case 'Education':
-        return [{v: -20, f: ''},{v: 0, f: '0'},{v: 100, f: '100'},
-                {v: 200, f: '200'},{v: 300, f: '300'}, {v: 400, f: '400'}];
+        return {
+                  v: [{v: -10, f: ''},{v: 0, f: '0'},{v: 100, f: '100'},
+                      {v: 200, f: '200'},{v: 300, f: '300'}, {v: 400, f: '400'}],
+                  h: [{v: 0, f: '0'},{v: 100, f: '100'},
+                      {v: 200, f: '200'},{v: 300, f: '300'}, {v: 400, f: '400'}]
+               };
       break;
       case 'Environment':
-        return [{v: -5, f: ''},{v: 0, f: '0'},{v: 10, f: '10'},
-                {v: 20, f: '20'},{v: 30, f: '30'}, {v: 40, f: '40'}];
+        return {
+                v: [{v: -5, f: ''},{v: 0, f: '0'},{v: 10, f: '10'},
+                    {v: 20, f: '20'},{v: 30, f: '30'}],
+                h:
+                  [{v: 0, f: '0'},{v: 10, f: '10'},
+                   {v: 20, f: '20'},{v: 30, f: '30'}, {v: 40, f: '40'},
+                   {v: 50, f: '50'}, {v: 60, f: '60'}, {v: 70, f: '70'}]
+               };
       break;      
       case 'Healthcare':
-        return [{v: -20, f: ''},{v: 0, f: '0'},{v: 50, f: '50'},
-                {v: 100, f: '100'},{v: 150, f: '150'}, {v: 200, f: '200'}];
+        return  {
+                  v: [{v: -5, f: ''},{v: 0, f: '0'},{v: 50, f: '50'},
+                      {v: 100, f: '100'},{v: 150, f: '150'}],
+                  h: [{v: 0, f: '0'},{v: 50, f: '50'},
+                      {v: 100, f: '100'},{v: 150, f: '150'}]
+                };
       break;
       case 'Social Welfare':
-        return [{v: -20, f: ''},{v: 0, f: '0'},{v: 100, f: '100'},
-                {v: 200, f: '200'},{v: 300, f: '300'}, {v: 400, f: '400'}, {v: 500, f: '500'}];
+        return {
+                  v: [{v: -10, f: ''},{v: 0, f: '0'},{v: 100, f: '100'},
+                      {v: 200, f: '200'},{v: 300, f: '300'},{v: 400, f: '400'}, {v: 500, f: '500'}],
+                  h: [{v: 0, f: '0'},{v: 100, f: '100'},
+                      {v: 200, f: '200'},{v: 300, f: '300'}, {v: 400, f: '400'}, {v: 500, f: '500'}]
+               };
       break;
       case 'Disaster Relief':
-        return [{v: -10, f: ''},{v: 0, f: '0'},{v: 10, f: '10'},
-                {v: 20, f: '20'},{v: 30, f: '30'}, {v: 40, f: '40'}, {v: 50, f: '50'}, {v: 60, f: '60'}, {v: 70, f: '70'}];
+        return {
+                  v: [{v: -10, f: ''},{v: 0, f: '0'},{v: 10, f: '10'},
+                      {v: 20, f: '20'},{v: 30, f: '30'},{v: 40, f: '40'}, {v: 50, f: '50'}, {v: 60, f: '60'}],
+                  h: [{v: 0, f: '0'},{v: 50, f: '50'},
+                      {v: 100, f: '100'}, {v: 200, f: '200'}, {v: 300, f: '300'}, {v: 400, f: '400'}]
+               };
       break;
       case 'Culture':
-        return [{v: -10, f: ''},{v: 0, f: '0'},{v: 10, f: '10'},
-                {v: 20, f: '20'},{v: 30, f: '30'}, {v: 40, f: '40'}, {v: 50, f: '50'}, {v: 60, f: '60'}, {v: 70, f: '70'}];
+        return {
+                  v: [{v: -10, f: ''},{v: 0, f: '0'},{v: 10, f: '10'},
+                      {v: 20, f: '20'},{v: 30, f: '30'},{v: 40, f: '40'}, {v: 50, f: '50'}, {v: 60, f: '60'}],
+                  h: [{v: 0, f: '0'},{v: 10, f: '10'},
+                      {v: 20, f: '20'},{v: 30, f: '30'}, {v: 40, f: '40'}, {v: 50, f: '50'}, 
+                      {v: 60, f: '60'}, {v: 70, f: '70'}, {v: 80, f: '80'}, {v: 90, f: '90'}]
+              };
       break;
       default:
-        return [{v: -20, f: ''},{v: 0, f: '0'},{v: 100, f: '100'},
+        return [{v: 0, f: '0'},{v: 100, f: '100'},
                 {v: 200, f: '200'},{v: 300, f: '300'}, {v: 400, f: '400'}];;
       break;
   }  

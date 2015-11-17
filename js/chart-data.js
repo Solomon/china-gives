@@ -1466,7 +1466,7 @@ function chart_data(){
     "Generosity": "0.00%",
     "Industry": "Energy",
     "Education": 0,
-    "Environment": 1,//1000,
+    "Environment": 0,
     "Healthcare": 0,
     "Social Welfare": 1,
     "Disaster Relief": 0,
