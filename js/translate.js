@@ -1,4 +1,5 @@
 var words_in_list;
+var chart_data_for_trsl;
 
 function trsl(str) {
 	if (!is_chinese())
@@ -7,14 +8,37 @@ function trsl(str) {
 	if (!words_in_list)
 		words_in_list = word_list();
 
+	var mlny = false;
+	if (str.indexOf(' (Million Yuan)') >= 0){
+		str = str.replace(' (Million Yuan)', '');
+		mlny = true;
+	}
+
 	var word = jQuery.grep(words_in_list, function(item) {
                         return item.en == str;
                       });
 	if (word.length > 0)
 	{
-		return word[0].cn;
+		var res = word[0].cn;
+		if (mlny)
+			res += '（100万元）';
+		return res;
 	}
     return str;
+}
+
+function trsl_leader(str) {
+	if (!is_chinese())
+		return str;
+
+	if (!chart_data_for_trsl)
+		chart_data_for_trsl = chart_data();
+	var pers = jQuery.grep(chart_data_for_trsl, function(item) {
+                        return item['Name Eng'] == str;
+                      });
+	if (pers.length > 0)
+		return pers[0]['Name CN'];
+	return str;
 }
 
 function trsl_arr(par) {
@@ -28,7 +52,7 @@ function trsl_arr(par) {
 function trsl_int(n){	
 	if (!is_chinese())
 		return n + '';
-	n = parseInt(n.replace('¥', '').replace('m', ''));
+	n = parseInt(n.replace('¥', '').replace('m', '').replace('mln', '').replace('Million', ''));
 	if (n < 100)
 		return n + '00万元';
 	return (parseFloat(n) / 100).toFixed(2) + '亿元';
