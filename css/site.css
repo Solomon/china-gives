@@ -23,9 +23,12 @@ section img {
     margin-top: 25px;
 }
 
-
 .mg-top-50 {
     margin-top: 50px;
+}
+
+.mg-top-100 {
+    margin-top: 100px;
 }
 
 ul.no-bullets {
@@ -339,7 +342,7 @@ section.overview .key-findings {
 }
 
 section.bg-image.overview div.background-image {
-    background-image: url(../img/home/shanghai.jpg);
+    background-image: url(../img/home/overview.jpg);
 }
 
 /* Generous section */
@@ -423,7 +426,6 @@ section.bg-image.overview div.background-image {
     }
 
 }
-
 
 .bg-image.top-industry div.background-image {
     background-image: url(../img/home/construction.jpg);

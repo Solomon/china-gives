@@ -24,13 +24,6 @@ function arr_last(arr){
   return arr[arr.length - 1];
 }
 
-function equalHeightCols() {
-  var rowHeight = $('#equalcols').height();
-  $('#equalcols [class*="col-"]').css({
-      'height': rowHeight + 'px'
-  });   
-}
-
 function resize_charts() {
   make_routing();   
 }
@@ -703,7 +696,6 @@ $(function (){
     fix_chart(this);
     auto_hide_fixed_charts();
   });
-  equalHeightCols();
   $('#charts-container .chart-options a').click(function (event){    
     var chart_type = $(this).data('chart-type');
     draw_charts(chart_type);
