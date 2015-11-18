@@ -410,6 +410,14 @@ section.charts {
     padding-bottom: 0;
 }
 
+@media(min-width:768px) {
+    
+    section.charts {
+        min-height: 100%;
+    }
+
+}
+
 section.charts .container-fluid.charts-container {
     overflow-x: hidden;
 }
@@ -462,11 +470,16 @@ section.charts .container-fluid.charts-container {
     text-decoration: none;
 }
 
-.fix-charts section#people {
+/*.fix-charts section#people {
     margin-top: 350px;
-}
+}*/
 
 #series_chart_div {
+    width: 100%; 
+    height: calc(100vh - 225px);
+}
+
+.fix-charts #series_chart_div {
     width: 100%; 
     height: 300px;
 }
