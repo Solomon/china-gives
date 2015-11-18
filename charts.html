@@ -32,15 +32,15 @@ type: charts
                     </a>
                   </li>
                   <li role="presentation">
-                    <a href="?industry" data-chart-name="by Industries" data-chart-type="industry">
-                        <span>Industry</span>
+                    <a href="?focus" data-chart-name="by Focus Areas" data-chart-type="focus">
+                        <span>Diversity Index</span>
                     </a>
                   </li>
                   <li role="presentation">
-                    <a href="?focus" data-chart-name="by Focus Areas" data-chart-type="focus">
-                        <span>Focus</span>
+                    <a href="?industry" data-chart-name="by Industries" data-chart-type="industry">
+                        <span>Industry</span>
                     </a>
-                  </li>
+                  </li>                  
                   <li role="presentation">
                     <a href="?age" data-chart-name="by Age" data-chart-type="age">
                         <span>Age</span>
@@ -172,15 +172,9 @@ type: charts
                         <div class="details">
                             <div class="content">
                                 <ul class="no-bullets">
-                                    {% if person.['Age'] > 0 %}
-                                        <li><span class="text-muted">Age:</span> {{ person.['Age'] }}</li>
-                                    {% endif %}                               
-                                    {% if person.['Generosity'] != 0 %}                           
-                                        <li><span class="text-muted">Generosity:</span> {{person.['Generosity']}}</li>
-                                    {% endif %}      
-                                    {% if person.['From Province'] != 0 %}  
-                                        <li><span class="text-muted">Province:</span> {{ person.['From Province'] }}</li>
-                                    {% endif %} 
+                                    <li><span class="text-muted">Age:</span> {% if person.['Age'] > 0 %} {{ person.['Age'] }} {% else %} N.A. {% endif %}</li>
+                                    <li><span class="text-muted">Generosity:</span> {% if person.['Generosity'] != 0 %} {{person.['Generosity']}} {% else %} N.A. {% endif %}</li>
+                                    <li><span class="text-muted">Province:</span> {% if person.['From Province'] != 0 %} {{ person.['From Province'] }} {% else %} N.A. {% endif %}</li>
                                     <li><span class="text-muted">Industry:</span> {{ person.['Industry'] }}</li>
                                     <li><span class="text-muted">Focus:</span> {{ focuses }}</li>
                                 </ul>

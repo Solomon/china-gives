@@ -85,9 +85,9 @@ function generosity_data() {
   var filtered_data = jQuery.grep(chart_data_res, function(item) {
                         return item['Generosity'];
                       });
-  rand_data.push(["Name Eng", "National Total", "Generosity", "Industry", "Total Amount (million Yuan)"]);
+  rand_data.push(["Name Eng", "Total Amount (million Yuan)", "Generosity", "Industry", "Total Amount (million Yuan)"]);
   jQuery.each(filtered_data, function(index, item) {
-    rand_data.push([get_initals(item["Name Eng"]), (item["Total Amount (million Yuan)"] / national_total) * 100, get_float_from_string(item['Generosity']), 
+    rand_data.push([get_initals(item["Name Eng"]), item["Total Amount (million Yuan)"], get_float_from_string(item['Generosity']), 
                     trsl(item["Industry"]), item["Total Amount (million Yuan)"]]);
   });
   var data = google.visualization.arrayToDataTable(rand_data);
@@ -143,9 +143,9 @@ function focus_data() {
   if (!chart_data_res)
     chart_data_res = chart_data();
   var rand_data = [];
-  rand_data.push(["Name Eng", "National Total", "Focus", "Industry", "Total Amount (million Yuan)"]);
+  rand_data.push(["Name Eng", "Total Amount (million Yuan)", "Focus", "Industry", "Total Amount (million Yuan)"]);
   jQuery.each(chart_data_res, function(index, item) {
-     rand_data.push([get_initals(item["Name Eng"]), (item["Total Amount (million Yuan)"] / national_total) * 100, get_focus(item), trsl(item["Industry"]), item["Total Amount (million Yuan)"]]);
+     rand_data.push([get_initals(item["Name Eng"]), item["Total Amount (million Yuan)"], get_focus(item), trsl(item["Industry"]), item["Total Amount (million Yuan)"]]);
   });
   var data = google.visualization.arrayToDataTable(rand_data);
   return data;
@@ -285,12 +285,11 @@ function generosity_options(ch_data) {
                 {v: 2, f: '2'},{v: 3, f: '3'},{v: 4, f: '4'},{v: 5, f: '5'},{v: 6, f: '6'},{v: 7, f: ''}]
       },
       hAxis: {        
-        title: trsl('National Total %'),
+        title: trsl('Total Amount (Million Yuan)'),
         gridlineColor: 'transparent',
-        baselineColor: 'black',        
-        baseline: -0.005,
-        ticks: [{v: -0.005, f: ''},{v: 0, f: '0.00'},{v: 0.1, f: '0.1'},
-                {v: 0.2, f: '0.2'},{v: 0.3, f: '0.3'},{v: 0.4, f: '0.4'},{v: 0.5, f: '0.5'}]
+        baselineColor: 'black',   
+        ticks: [{v: 0, f: ''}, {v: 100, f: '100'},
+                {v: 200, f: '200'},{v: 300, f: '300'},{v: 400, f: '400'},{v: 500, f: '500'}]
       },
       colors: map_colors(ch_data),
       chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
@@ -327,12 +326,12 @@ function industry_options(ch_data){
           }
         },  
         vAxis: {
-          title: trsl('Total Amount'),
+          title: trsl('Total Amount (Million Yuan)'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
           baseline: -10,
-          ticks: [{v: -10, f: ''},{v: 0, f: ''},{v: 5, f: '5 m'},{v: 10, f: ''},{v: 20, f: ''},{v: 30, f: ''},{v: 50, f: '50 m'},{v: 100, f: '100 m'},
-                  {v: 200, f: '200 m'},{v: 300, f: '300 m'},{v: 400, f: '400 m'},{v: 500, f: '500 m'}]
+          ticks: [{v: -10, f: ''},{v: 0, f: ''},{v: 5, f: '5'},{v: 10, f: ''},{v: 20, f: ''},{v: 30, f: ''},{v: 50, f: '50'},{v: 100, f: '100'},
+                  {v: 200, f: '200'},{v: 300, f: '300'},{v: 400, f: '400'},{v: 500, f: '500'}]
         },
         hAxis: {
           title: trsl('Industry'),
@@ -423,12 +422,11 @@ function focus_options(ch_data){
                   {v: 4, f: ''}]
         },
         hAxis: {
-          title: trsl('National Total %'),
+          title: trsl('Total Amount (Million Yuan)'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
-          ticks: [{v: 0, f: '0.0'}, {v: 0.1, f: '0.1'},
-                  {v: 0.2, f: '0.2'},{v: 0.3, f: '0.3'},
-                  {v: 0.4, f: '0.4'},{v: 0.5, f: '0.5'}]
+          ticks: [{v: 0, f: ''}, {v: 100, f: '100'},
+                  {v: 200, f: '200'},{v: 300, f: '300'},{v: 400, f: '400'},{v: 500, f: '500'}]
         },
         colors: map_colors(ch_data),
         chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
@@ -459,14 +457,14 @@ function focus_type_options(ch_data, data, type){
           }
         },  
         vAxis: {          
-          title: trsl('Total Donations'),    
+          title: trsl('Total Donations (Million Yuan)'),    
           gridlineColor: 'transparent',
           baselineColor: 'black',
           baseline: ticks.v[0].v,
           ticks: ticks.v      
         },
         hAxis: {      
-          title: trsl(type + ' Donations'),
+          title: trsl(type + ' Donations (Million Yuan)'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
           baseline: ticks.h[0].v,
