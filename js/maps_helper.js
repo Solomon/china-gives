@@ -336,8 +336,7 @@ function maps_helper(){
 					attrs : {
 						fill : "#8996A0", 
 						stroke: "#FFFFFF"
-					},
-					title : region_name	
+					}
 				}
 			});
 			return areas;			

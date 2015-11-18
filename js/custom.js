@@ -35,11 +35,11 @@ function map_height() {
 }
 
 function must_fix(that){
-  return $(that).scrollTop() > 40 && $(window).height() >= 600;
+  return $(that).scrollTop() > 40 && $(window).height() >= 600 && $(window).width() >= 768;
 }
 
 function will_fix(that){
-  return $(that).scrollTop() <= 40 && $(window).height() >= 600;
+  return $(that).scrollTop() <= 40 && $(window).height() >= 600 && $(window).width() >= 768;
 }
 
 
@@ -205,7 +205,7 @@ function age_data() {
   rand_data.push(["Name Eng", "Age", "National Total", "Industry", "Size"]);
   jQuery.each(chart_data_res, function(index, item) {
     if (item["Age"] > 0)
-      rand_data.push([get_initals(item["Name Eng"]), item["Age"], (item["Total Amount (million Yuan)"] / national_total) * 100, trsl(item["Industry"]), 2]);
+      rand_data.push([get_initals(item["Name Eng"]), item["Age"], item["Total Amount (million Yuan)"], trsl(item["Industry"]), 2]);
   });
   var data = google.visualization.arrayToDataTable(rand_data);
   return data;
@@ -237,12 +237,12 @@ function age_options(ch_data){
           }
         },  
         vAxis: {
-          title: trsl('National Total %'),
+          title: trsl('Total Amount'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
-          baseline: -0.05,
-          ticks: [{v: -0.05, f: ''},{v: 0, f: '0.00'},{v: 0.1, f: '0.1'},
-                {v: 0.2, f: '0.2'},{v: 0.3, f: '0.3'},{v: 0.4, f: '0.4'},{v: 0.5, f: '0.5'}]
+          baseline: -20,
+          ticks: [{v: -20, f: ''}, {v: 0, f: ''}, {v: 100, f: trsl_int('¥100 m')},
+                  {v: 200, f: trsl_int('¥200 m')},{v: 300, f: trsl_int('¥300 m')},{v: 400, f: trsl_int('¥400 m')},{v: 500, f: trsl_int('¥500 m')}]
         },
         hAxis: {
           title: trsl('Age'),
@@ -281,19 +281,19 @@ function generosity_options(ch_data) {
         }
       },  
       vAxis: {
-        title: trsl('Generosity %'),
+        title: trsl('Generosity'),
         gridlineColor: 'transparent',
         baselineColor: 'black',
         baseline: -0.7,
-        ticks: [{v: -0.7, f: ''},{v: 0, f: '0'},{v: 1, f: '1'},
-                {v: 2, f: '2'},{v: 3, f: '3'},{v: 4, f: '4'},{v: 5, f: '5'},{v: 6, f: '6'},{v: 7, f: ''}]
+        ticks: [{v: -0.7, f: ''},{v: 0, f: '0'},{v: 1, f: '1%'},
+                {v: 2, f: '2%'},{v: 3, f: '3%'},{v: 4, f: '4%'},{v: 5, f: '5%'},{v: 6, f: '6%'},{v: 7, f: ''}]
       },
       hAxis: {        
-        title: trsl('Total Amount (Million Yuan)'),
+        title: trsl('Total Amount'),
         gridlineColor: 'transparent',
         baselineColor: 'black',   
-        ticks: [{v: 0, f: ''}, {v: 100, f: '100'},
-                {v: 200, f: '200'},{v: 300, f: '300'},{v: 400, f: '400'},{v: 500, f: '500'}]
+        ticks: [{v: 0, f: ''}, {v: 100, f: trsl_int('¥100 m')},
+                {v: 200, f: trsl_int('¥200 m')},{v: 300, f: trsl_int('¥300 m')},{v: 400, f: trsl_int('¥400 m')},{v: 500, f: trsl_int('¥500 m')}]
       },
       colors: map_colors(ch_data),
       chartArea:{left:80,top:30,width: c_c_w - 160,height: c_c_h - 80},
@@ -330,12 +330,12 @@ function industry_options(ch_data){
           }
         },  
         vAxis: {
-          title: trsl('Total Amount (Million Yuan)'),
+          title: trsl('Total Amount'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
           baseline: -10,
-          ticks: [{v: -10, f: ''},{v: 0, f: ''},{v: 5, f: '5'},{v: 10, f: ''},{v: 20, f: ''},{v: 30, f: ''},{v: 50, f: '50'},{v: 100, f: '100'},
-                  {v: 200, f: '200'},{v: 300, f: '300'},{v: 400, f: '400'},{v: 500, f: '500'}]
+          ticks: [{v: -10, f: ''},{v: 0, f: ''},{v: 5, f: trsl_int('¥5 m')},{v: 10, f: ''},{v: 20, f: ''},{v: 30, f: ''},{v: 50, f: trsl_int('¥50 m')},{v: 100, f: trsl_int('¥100 m')},
+                  {v: 200, f: trsl_int('¥200 m')},{v: 300, f: trsl_int('¥300 m')},{v: 400, f: trsl_int('¥400 m')},{v: 500, f: trsl_int('¥500 m')}]
         },
         hAxis: {
           title: trsl('Industry'),
@@ -370,6 +370,11 @@ function months_options(){
             bold: true,
           }
         },  
+        colorAxis: {
+          legend: {
+            position: 'none'
+          }
+        },
         sizeAxis: {
           minSize: 23,
           maxSize: 45
@@ -382,7 +387,7 @@ function months_options(){
                   {v: 2, f: ''}]
         },
         hAxis: {
-          title: trsl('Chronological'),
+          title: '',
           gridlineColor: 'transparent',
           baselineColor: 'transparent',
           ticks: [{v: 0, f: ''}, {v: 1, f: trsl('Sep 14')}, {v: 2, f: trsl('Oct 14')},
@@ -426,11 +431,11 @@ function focus_options(ch_data){
                   {v: 4, f: '4'},{v: 5, f: ''}]
         },
         hAxis: {
-          title: trsl('Total Amount (Million Yuan)'),
+          title: trsl('Total Amount'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
-          ticks: [{v: 0, f: ''}, {v: 100, f: '100'},
-                  {v: 200, f: '200'},{v: 300, f: '300'},{v: 400, f: '400'},{v: 500, f: '500'}]
+          ticks: [{v: 0, f: ''}, {v: 100, f: trsl_int('¥100 m')},
+                  {v: 200, f: trsl_int('¥200 m')},{v: 300, f: trsl_int('¥300 m')},{v: 400, f: trsl_int('¥400 m')},{v: 500, f: trsl_int('¥500 m')}]
         },
         colors: map_colors(ch_data),
         chartArea:{left:80,top:30,width: c_c_w - 160,height: c_c_h - 80},
@@ -461,14 +466,14 @@ function focus_type_options(ch_data, data, type){
           }
         },  
         vAxis: {          
-          title: trsl(type + ' Donations (Million Yuan)'),    
+          title: trsl(type + ' Donations'),    
           gridlineColor: 'transparent',
           baselineColor: 'black',
           baseline: ticks.v[0].v,
           ticks: ticks.v      
         },
         hAxis: {      
-          title: trsl('Total Donations (Million Yuan)'),
+          title: trsl('Total Donations'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
           baseline: ticks.h[0].v,
@@ -495,41 +500,41 @@ function focus_type_ticks(type){
   switch (type) {      
       case 'Education':
         return {
-                  v: [{v: -10, f: ''},{v: 0, f: '0'},{v: 100, f: '100'},
-                      {v: 200, f: '200'},{v: 300, f: '300'}, {v: 400, f: '400'}],
-                  h: [{v: 0, f: '0'},{v: 100, f: '100'},
-                      {v: 200, f: '200'},{v: 300, f: '300'}, {v: 400, f: '400'}]
+                  v: [{v: -10, f: ''},{v: 0, f: ''},{v: 100, f: trsl_int('¥100 m')},
+                      {v: 200, f: trsl_int('¥200 m')},{v: 300, f: trsl_int('¥300 m')}, {v: 400, f: trsl_int('¥400 m')}],
+                  h: [{v: 0, f: '0'},{v: 100, f: trsl_int('¥100 m')},
+                      {v: 200, f: trsl_int('¥200 m')},{v: 300, f: trsl_int('¥300 m')}, {v: 400, f: trsl_int('¥400 m')}]
                };
       break;
       case 'Environment':
         return {
-                v: [{v: -5, f: ''},{v: 0, f: '0'},{v: 10, f: '10'},
-                    {v: 20, f: '20'},{v: 30, f: '30'}],
+                v: [{v: -5, f: ''},{v: 0, f: ''},{v: 10, f: trsl_int('¥10 m')},
+                    {v: 20, f: trsl_int('¥20 m')},{v: 30, f: trsl_int('¥30 m')}],
                 h:
-                  [{v: 0, f: '0'},{v: 25, f: '25'},
-                   {v: 50, f: '50'},{v: 75, f: '75'}, {v: 100, f: '100'},
-                   {v: 125, f: '125'}, {v: 150, f: '150'}]
+                  [{v: 0, f: '0'},{v: 25, f: trsl_int('¥25 m')},
+                   {v: 50, f: trsl_int('¥50 m')},{v: 75, f: trsl_int('¥75 m')}, {v: 100, f: trsl_int('¥100 m')},
+                   {v: 125, f: trsl_int('¥125 m')}, {v: 150, f: trsl_int('¥150 m')}]
                };
       break;      
       case 'Healthcare':
         return  {
-                  v: [{v: -5, f: ''},{v: 0, f: '0'},{v: 50, f: '50'},
-                      {v: 100, f: '100'},{v: 150, f: '150'}],
-                  h: [{v: 0, f: '0'},{v: 50, f: '50'},
-                      {v: 100, f: '100'},{v: 150, f: '150'}]
+                  v: [{v: -5, f: ''},{v: 0, f: ''},{v: 50, f: trsl_int('¥50 m')},
+                      {v: 100, f: trsl_int('¥100 m')},{v: 150, f: trsl_int('¥150 m')}],
+                  h: [{v: 0, f: '0'},{v: 50, f: trsl_int('¥50 m')},
+                      {v: 100, f: trsl_int('¥100 m')},{v: 150, f: trsl_int('¥150 m')}]
                 };
       break;
       case 'Social Welfare':
         return {
-                  v: [{v: -10, f: ''},{v: 0, f: '0'},{v: 100, f: '100'},
-                      {v: 200, f: '200'},{v: 300, f: '300'},{v: 400, f: '400'}, {v: 500, f: '500'}],
-                  h: [{v: 0, f: '0'},{v: 100, f: '100'},
-                      {v: 200, f: '200'},{v: 300, f: '300'}, {v: 400, f: '400'}, {v: 500, f: '500'}]
+                  v: [{v: -10, f: ''},{v: 0, f: ''},{v: 100, f: trsl_int('¥100 m')},
+                      {v: 200, f: trsl_int('¥200 m')},{v: 300, f: trsl_int('¥300 m')},{v: 400, f: trsl_int('¥400 m')}, {v: 500, f: trsl_int('¥500 m')}],
+                  h: [{v: 0, f: '0'},{v: 100, f: trsl_int('¥100 m')},
+                      {v: 200, f: trsl_int('¥200 m')},{v: 300, f: trsl_int('¥300 m')}, {v: 400, f: trsl_int('¥400 m')}, {v: 500, f: trsl_int('¥500 m')}]
                };
       break;
       case 'Disaster Relief':
         return {
-                  v: [{v: -10, f: ''},{v: 0, f: '0'},{v: 10, f: '10'},
+                  v: [{v: -10, f: ''},{v: 0, f: ''},{v: 10, f: '10'},
                       {v: 20, f: '20'},{v: 30, f: '30'},{v: 40, f: '40'}, {v: 50, f: '50'}, {v: 60, f: '60'}],
                   h: [{v: 0, f: '0'},{v: 50, f: '50'},
                       {v: 100, f: '100'}, {v: 200, f: '200'}, {v: 300, f: '300'}, {v: 400, f: '400'}]
@@ -537,7 +542,7 @@ function focus_type_ticks(type){
       break;
       case 'Culture':
         return {
-                  v: [{v: -10, f: ''},{v: 0, f: '0'},{v: 10, f: '10'},
+                  v: [{v: -10, f: ''},{v: 0, f: ''},{v: 10, f: '10'},
                       {v: 20, f: '20'},{v: 30, f: '30'},{v: 40, f: '40'}, {v: 50, f: '50'}, {v: 60, f: '60'}],
                   h: [{v: 0, f: '0'},{v: 10, f: '10'},
                       {v: 20, f: '20'},{v: 30, f: '30'}, {v: 40, f: '40'}, {v: 50, f: '50'}, 
@@ -691,14 +696,15 @@ function init_chart_onclick(){
     google.visualization.events.addListener(current_chart, 'onmouseover', function(e) {
       var attr = 'data-' + get_param();
       var row = e.row;
-      if (row){     
+      console.log(e);
+      if (row || row == 0){     
         var elem = $('['+ attr + '="' + row + '"]');
         if (elem.length > 0){ 
           var person_name = elem.find('.card-name-container').data('name');
           var tooltip = $('#chart-tooltip');
           if (tooltip.length <= 0){
-            tooltip = $('<div id="chart-tooltip" class="mapTooltip"><b>' + person_name + '</b></div>');
-            $('body').append(tooltip);
+            tooltip = $('<div id="chart-tooltip" class="chartTooltip"><b>' + person_name + '</b></div>');
+            $('.chart-wrapper').append(tooltip);
           }
           tooltip.find('b').html(person_name);
           tooltip.css('left', currentMousePos.x + 15);
