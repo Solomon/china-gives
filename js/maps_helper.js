@@ -204,7 +204,7 @@ function maps_helper(){
 					            },
 					            href: "javascript:void(0);",
 					            tooltip: {
-					                content: tooltip_text + (receiving ? receiving_text : '' )
+					                content: tooltip_text + (receiving ? receiving_text : '')
 					            }
 							}
 						}
