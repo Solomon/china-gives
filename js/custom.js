@@ -361,6 +361,10 @@ function months_options(){
             bold: true,
           }
         },  
+        sizeAxis: {
+          minSize: 23,
+          maxSize: 45
+        },
         vAxis: {
           title: '',
           gridlineColor: 'transparent',
