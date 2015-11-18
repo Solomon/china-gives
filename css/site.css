@@ -82,6 +82,8 @@ a:hover, a:focus {
     background-color: #fff;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
+    -ms-transition: all .35s;
+    -o-transition: all .35s;
     transition: all .35s;
 }
 
@@ -176,6 +178,27 @@ a:hover, a:focus {
 }
 
 /* Navbar */
+
+.navbar.affix-top a.scroll-to-top {
+    display: none;
+}
+
+.navbar.affix  a.scroll-to-top {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(255,255,255,.75);
+    padding: 6px 10px;
+    color: #333;
+    opacity: 0.5;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.navbar a.scroll-to-top:hover {
+    opacity: 1;
+}
 
 .navbar-logo {
     background-image: url(../img/logo/HKSlogo_ash_test.png);
@@ -320,6 +343,10 @@ section.bg-image.overview div.background-image {
 }
 
 /* Generous section */
+
+.service-box {
+    margin: 25px auto 0;
+}
 
 .service-box img.person {
     max-width: 100%;
