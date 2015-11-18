@@ -109,6 +109,37 @@ function load_map_movement_data() {
 		deletedLinks: []
 	};
 	$(".mapcontainer").trigger('update', [updatedOptions, diff_res.new_plots, diff_res.deleted_plots, opt]);
+	
+	var svg = $('.mapcontainer svg');
+	$('.mapcontainer path[data-id^="link_"]').each(function(index, element) {
+		element = $(element);
+		var dummy_path = document.createElementNS('http://www.w3.org/2000/svg','path');
+	    dummy_path.setAttribute('fill','none');
+	    dummy_path.setAttribute('opacity','0');
+	    dummy_path.setAttribute('style','-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 1;');
+	    dummy_path.setAttribute('stroke','#ffffff');
+	    dummy_path.setAttribute('stroke-opacity', 0);	    
+	    dummy_path.setAttribute('data-id', 'dummy_' + element.attr('data-id'));
+	    dummy_path.setAttribute('stroke-width', 10);
+	    dummy_path.setAttribute('d', element.attr('d'));
+		svg.append(dummy_path);		
+		$(dummy_path).on('mouseover', function(event) {
+			$('.mapcontainer path[data-id^="link_"]').attr('stroke-opacity', '0.15').attr('stroke-width', 2).attr('stroke','#FFFFFF');
+			element.attr('stroke-opacity', '0.75').attr('stroke-width', 3).attr('stroke','#8FFD9B');
+			element.trigger('mouseover');
+        }).on('mouseleave', function(event){
+        	element.attr('stroke-opacity', '0.15').attr('stroke-width', 2).attr('stroke','#FFFFFF');         	
+			element.trigger('mouseleave');			
+        	var to_el = $(event.relatedTarget);
+         	var region_id = to_el.attr('data-id');	
+			if (region_id){
+				region_id = region_id.replace('_Info', '');
+			 	$('.mapcontainer path[data-id^="link_"]').attr('stroke-opacity', '0.15').attr('stroke-width', 2).attr('stroke','#FFFFFF');  
+			 	$('.mapcontainer path[data-id^="link_' + region_id + '_"]').attr('stroke-opacity', '0.75').attr('stroke-width', 3).attr('stroke','#8FFD9B');
+			 	$('.mapcontainer path[data-id^="link_"][data-id$="_' + region_id + '"]').attr('stroke-opacity', '0.75').attr('stroke-width', 3).attr('stroke','#8FFD9B');
+			}	
+        });					   
+	});
 }
 
 function init_map(plots) {
@@ -153,10 +184,11 @@ function init_map(plots) {
             },
             defaultLink: {
             	eventHandlers: {
-                    mouseover: function (e, id, mapElem, textElem, elemOptions) {
-                        focus_map_link(e, id, mapElem, textElem, elemOptions);
-                    }
-                }
+                     mouseleave: function (e, id, mapElem, textElem, elemOptions) {
+                     },
+                     mouseover: function (e, id, mapElem, textElem, elemOptions) {
+                     }
+                 }
             }
 		},
 		plots: current_map_data.plots,    
@@ -170,6 +202,6 @@ function focus_map_link(e, id, mapElem, textElem, elemOptions){
 	if (region_id){
 		$('.mapcontainer path[data-id^="link_"]').attr('stroke-opacity', '0.15').attr('stroke-width', 2).attr('stroke','#FFFFFF');  
 		$('.mapcontainer path[data-id^="link_' + region_id + '_"]').attr('stroke-opacity', '0.75').attr('stroke-width', 3).attr('stroke','#8FFD9B');
-		$('.mapcontainer path[data-id^="link_"][data-id$="_' + region_id + '"]').attr('stroke-opacity', '0.75').attr('stroke-width', 3).attr('stroke','#8FFD9B');
+		$('.mapcontainer path[data-id^="link_"][data-id$="_' + region_id + '"]').attr('stroke-opacity', '0.75').attr('stroke-width', 3).attr('stroke','#8FFD9B');	
 	}
 }

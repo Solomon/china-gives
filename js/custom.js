@@ -431,7 +431,7 @@ function focus_options(ch_data){
           baselineColor: 'black',
           ticks: [{v: 0, f: ''},{v: 1, f: '1'},
                   {v: 2, f: '2'},{v: 3, f: '3'},
-                  {v: 4, f: ''}]
+                  {v: 4, f: '4'},{v: 5, f: ''}]
         },
         hAxis: {
           title: trsl('Total Amount (Million Yuan)'),
@@ -514,9 +514,9 @@ function focus_type_ticks(type){
                 v: [{v: -5, f: ''},{v: 0, f: '0'},{v: 10, f: '10'},
                     {v: 20, f: '20'},{v: 30, f: '30'}],
                 h:
-                  [{v: 0, f: '0'},{v: 10, f: '10'},
-                   {v: 20, f: '20'},{v: 30, f: '30'}, {v: 40, f: '40'},
-                   {v: 50, f: '50'}, {v: 60, f: '60'}, {v: 70, f: '70'}]
+                  [{v: 0, f: '0'},{v: 25, f: '25'},
+                   {v: 50, f: '50'},{v: 75, f: '75'}, {v: 100, f: '100'},
+                   {v: 125, f: '125'}, {v: 150, f: '150'}]
                };
       break;      
       case 'Healthcare':
