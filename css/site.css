@@ -441,18 +441,6 @@ section.charts {
     
     section.charts {
         min-height: 100%;
-        -webkit-transition: all 1.5s ease-out;
-        -moz-transition: all 1.5s ease-out;
-        -o-transition: all 1.5s ease-out;
-        transition: all 1.5s ease-out;
-    }
-
-    .fix-charts section.charts {
-        min-height: 600px;
-        -webkit-transition: all 1.5s ease-out;
-        -moz-transition: all 1.5s ease-out;
-        -o-transition: all 1.5s ease-out;
-        transition: all 1.5s ease-out;
     }
 
 }
