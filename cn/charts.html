@@ -187,15 +187,9 @@ type: charts
                         <div class="details">
                             <div class="content">
                                 <ul class="no-bullets">
-                                    {% if person.['Age'] > 0 %}
-                                        <li><span class="text-muted">年龄</span> {{ person.['Age'] }}</li>
-                                    {% endif %}     
-                                    {% if person.['Generosity'] != 0 %}                           
-                                        <li><span class="text-muted">慷慨指数</span> {{person.['Generosity']}}</li>
-                                    {% endif %}     
-                                    {% if person.['From Province'] != 0 %}  
-                                        <li><span class="text-muted">位置</span> {{ person.['Province CN'] }}</li>
-                                    {% endif %} 
+                                    <li><span class="text-muted">年龄</span> {% if person.['Age'] > 0 %} {{ person.['Age'] }} {% else %} N.A. {% endif %}</li>
+                                    <li><span class="text-muted">慷慨指数</span>{% if person.['Generosity'] != 0 %} {{person.['Generosity']}} {% else %} N.A. {% endif %}</li>
+                                    <li><span class="text-muted">位置</span>{% if person.['From Province'] != 0 %} {{ person.['Province CN'] }} {% else %} N.A. {% endif %}</li>
                                     <li><span class="text-muted">行业</span> {{ person.['Industry CN'] }}</li>
                                     <li><span class="text-muted">关注领域</span> {{ focuses }}</li>
                                 </ul>

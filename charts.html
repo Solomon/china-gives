@@ -172,15 +172,9 @@ type: charts
                         <div class="details">
                             <div class="content">
                                 <ul class="no-bullets">
-                                    {% if person.['Age'] > 0 %}
-                                        <li><span class="text-muted">Age:</span> {{ person.['Age'] }}</li>
-                                    {% endif %}                               
-                                    {% if person.['Generosity'] != 0 %}                           
-                                        <li><span class="text-muted">Generosity:</span> {{person.['Generosity']}}</li>
-                                    {% endif %}      
-                                    {% if person.['From Province'] != 0 %}  
-                                        <li><span class="text-muted">Province:</span> {{ person.['From Province'] }}</li>
-                                    {% endif %} 
+                                    <li><span class="text-muted">Age:</span> {% if person.['Age'] > 0 %} {{ person.['Age'] }} {% else %} N.A. {% endif %}</li>
+                                    <li><span class="text-muted">Generosity:</span> {% if person.['Generosity'] != 0 %} {{person.['Generosity']}} {% else %} N.A. {% endif %}</li>
+                                    <li><span class="text-muted">Province:</span> {% if person.['From Province'] != 0 %} {{ person.['From Province'] }} {% else %} N.A. {% endif %}</li>
                                     <li><span class="text-muted">Industry:</span> {{ person.['Industry'] }}</li>
                                     <li><span class="text-muted">Focus:</span> {{ focuses }}</li>
                                 </ul>
