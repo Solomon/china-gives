@@ -44,9 +44,15 @@ function will_fix(that){
 function fix_chart(that){
   var wrap = $("#page-top");
   if (must_fix(that)) {
-    wrap.addClass("fix-charts");
+    if (!wrap.hasClass("fix-charts")){
+      wrap.addClass("fix-charts");
+      make_routing();
+    }
   } else {
-    wrap.removeClass("fix-charts");
+    if (wrap.hasClass("fix-charts")){
+      wrap.removeClass("fix-charts");
+      make_routing();
+    }
   }
   if (is_chart_closed) {
     var chart_container = $('#charts-container');
