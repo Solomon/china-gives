@@ -287,9 +287,8 @@ function generosity_options(ch_data) {
       hAxis: {        
         title: trsl('Total Amount (Million Yuan)'),
         gridlineColor: 'transparent',
-        baselineColor: 'black',        
-        baseline: -10,
-        ticks: [{v: -10, f: ''}, {v: 0, f: ''}, {v: 100, f: '100'},
+        baselineColor: 'black',   
+        ticks: [{v: 0, f: ''}, {v: 100, f: '100'},
                 {v: 200, f: '200'},{v: 300, f: '300'},{v: 400, f: '400'},{v: 500, f: '500'}]
       },
       colors: map_colors(ch_data),
@@ -426,8 +425,7 @@ function focus_options(ch_data){
           title: trsl('Total Amount (Million Yuan)'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
-          baseline: -10,
-          ticks: [{v: -10, f: ''}, {v: 0, f: ''}, {v: 100, f: '100'},
+          ticks: [{v: 0, f: ''}, {v: 100, f: '100'},
                   {v: 200, f: '200'},{v: 300, f: '300'},{v: 400, f: '400'},{v: 500, f: '500'}]
         },
         colors: map_colors(ch_data),
