@@ -276,7 +276,7 @@ a.scroll-to-top {
 /* Header (used only on main page) */
 
 header {
-    background-image: url(../img/home/temple_of_heaven.jpg);
+    background-image: url(../img/home/home.jpg);
 }
 
 header .header-content .header-content-inner p {
@@ -355,12 +355,12 @@ section.bg-image.overview div.background-image {
 
 /* Location */
 
-section.bg-image {
+.bg-image {
     position: relative;
     overflow: hidden;
 }
 
-section.bg-image div.background-image {
+.bg-image div.background-image {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -382,38 +382,65 @@ section.bg-image div.background-image {
 
 }
 
-section.bg-image:hover div.background-image.zoomable {
+.bg-image:hover div.background-image.zoomable {
     transform: scale(1.1, 1.1);
     -ms-transform: scale(1.1, 1.1);
     -webkit-transform: scale(1.1, 1.1);
 }
 
-section.bg-image.location div.background-image {
+.bg-image.location div.background-image {
     background-image: url(../img/home/east_pacific.jpg);
 }
 
 /* Industry, sector */
 
-@media (max-width: 768px) {
+.inside {
+  padding: 100px 0;
+}
 
-    .row#equalcols [class*="col-"] {
-        height: auto !important;
+/* columns of same height styles */
+@media (min-width: 768px) {
+
+    .row-height {
+      display: table;
+      table-layout: fixed;
+      height: 100%;
+      width: 100%;
+    }
+    .col-height {
+      display: table-cell;
+      float: none;
+      height: 100%;
+    }
+    .col-top {
+      vertical-align: top;
+    }
+    .col-middle {
+      vertical-align: middle;
+    }
+    .col-bottom {
+      vertical-align: bottom;
     }
 
 }
 
-section.bg-image.top-industry div.background-image {
+
+.bg-image.top-industry div.background-image {
     background-image: url(../img/home/construction.jpg);
 }
 
-section.bg-image.hot-sector div.background-image {
+.bg-image.hot-sector div.background-image {
     background-image: url(../img/home/university.jpg);
 }
 
 /* Government */
 
-section.bg-image.government div.background-image {
+.bg-image.government div.background-image {
     background-image: url(../img/home/national_congress.jpg);
+}
+
+.bg-image.private-foundation div.background-image {
+    background-image: url(../img/home/private_foundation.jpg);
 }
 
 /* Gender inequality */
@@ -517,6 +544,14 @@ section.charts .container-fluid.charts-container {
 
 .charts-container .chart-options a.active {
     color: #fff;
+}
+
+.charts-container .chart-options a span small {
+    visibility: hidden;
+}
+
+.charts-container .chart-options a.active span small {
+    visibility: visible;
 }
 
 .charts-container .chart-options a:hover,
