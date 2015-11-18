@@ -822,6 +822,109 @@ section#people .container {
 
 }
 
+/* Big circle colors*/
+
+.person-box .circle-text:after,
+.person-box:hover .circle-text:after,
+.person-box.selected .circle-text:after {
+    -webkit-transition: background-color .5s ease-in-out;
+    -moz-transition: background-color .5s ease-in-out;
+    -o-transition: background-color .5s ease-in-out;
+    transition: background-color .5s ease-in-out;
+ }   
+
+.person-box.manufacturing .circle-text:after {
+    background: rgba(54, 141, 185, .8);
+}
+
+.person-box.real-estate .circle-text:after {
+    background: rgba(165, 28, 48, .8); 
+}
+
+.person-box.energy .circle-text:after {
+    background: rgba(250, 174, 83, .8); 
+}
+
+.person-box.consumer .circle-text:after {
+    background: rgba(82, 133, 76, .8); 
+}
+
+.person-box.tech-it .circle-text:after {
+    background: rgba(41, 51, 82, .8); 
+}
+
+.person-box.finance .circle-text:after {
+    background: rgba(72, 196, 183, .8); 
+}
+
+.person-box.education .circle-text:after {
+    background: rgba(134, 22, 87, .8); 
+}
+
+.person-box.healthcare .circle-text:after {
+    background: rgba(206, 214, 101, .8); 
+}
+
+.person-box.transportation .circle-text:after {
+    background: rgba(140, 129, 121, .8); 
+}
+
+.person-box.other .circle-text:after {
+    background: rgba(128, 71, 94, .8); 
+}
+
+.person-box.manufacturing.selected .circle-text:after,
+.person-box.manufacturing:hover .circle-text:after {
+    background: rgba(54, 141, 185, 1);
+}
+
+.person-box.real-estate.selected .circle-text:after,
+.person-box.real-estate:hover .circle-text:after {
+    background: rgba(165, 28, 48, 1); 
+}
+
+.person-box.energy.selected .circle-text:after,
+.person-box.energy:hover .circle-text:after {
+    background: rgba(250, 174, 83, 1); 
+}
+
+.person-box.consumer.selected .circle-text:after,
+.person-box.consumer:hover .circle-text:after {
+    background: rgba(82, 133, 76, 1); 
+}
+
+.person-box.tech-it.selected .circle-text:after,
+.person-box.tech-it:hover .circle-text:after {
+    background: rgba(41, 51, 82, 1); 
+}
+
+.person-box.finance.selected .circle-text:after,
+.person-box.finance:hover .circle-text:after {
+    background: rgba(72, 196, 183, 1); 
+}
+
+.person-box.education.selected .circle-text:after,
+.person-box.education:hover .circle-text:after {
+    background: rgba(134, 22, 87, 1); 
+}
+
+.person-box.healthcare.selected .circle-text:after,
+.person-box.healthcare:hover .circle-text:after {
+    background: rgba(206, 214, 101, 1); 
+}
+
+.person-box.transportation.selected .circle-text:after,
+.person-box.transportation:hover .circle-text:after {
+    background: rgba(140, 129, 121, 1); 
+}
+
+.person-box.other.selected .circle-text:after,
+.person-box.other:hover .circle-text:after {
+    background: rgba(128, 71, 94, 1); 
+}
+
+/* End big circle colors*/
+
 .circle .details {
     visibility: hidden;
     position: absolute;
@@ -918,37 +1021,6 @@ section#people .container {
 
 .circle .details .content ul .text-muted {
     color: #A3B0BA;
-}
-
-.person-box.manufacturing .circle-text:after {
-    background: #368db9; 
-}
-.person-box.real-estate .circle-text:after {
-    background: #a51c30; 
-}
-.person-box.energy .circle-text:after {
-    background: #faae53; 
-}
-.person-box.consumer .circle-text:after {
-    background: #52854c; 
-}
-.person-box.tech-it .circle-text:after {
-    background: #293352; 
-}
-.person-box.finance .circle-text:after {
-    background: #48c4b7; 
-}
-.person-box.education .circle-text:after {
-    background: #861657; 
-}
-.person-box.healthcare .circle-text:after {
-    background: #CED665; 
-}
-.person-box.transportation .circle-text:after {
-    background: #8C8179; 
-}
-.person-box.other .circle-text:after {
-    background: #80475E; 
 }
 
 /* maps */
