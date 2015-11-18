@@ -124,12 +124,20 @@ function load_map_movement_data() {
 	    dummy_path.setAttribute('d', element.attr('d'));
 		svg.append(dummy_path);		
 		$(dummy_path).on('mouseover', function(event) {
-			$('.mapcontainer path[data-id^="link_"]').attr('stroke-opacity', '0.15').attr('stroke-width', 2).attr('stroke','#FFFFFF');			
+			$('.mapcontainer path[data-id^="link_"]').attr('stroke-opacity', '0.15').attr('stroke-width', 2).attr('stroke','#FFFFFF');
 			element.attr('stroke-opacity', '0.75').attr('stroke-width', 3).attr('stroke','#8FFD9B');
 			element.trigger('mouseover');
         }).on('mouseleave', function(event){
-        	element.attr('stroke-opacity', '0.15').attr('stroke-width', 2).attr('stroke','#FFFFFF');        	
-        	element.trigger('mouseleave');
+        	element.attr('stroke-opacity', '0.15').attr('stroke-width', 2).attr('stroke','#FFFFFF');         	
+			element.trigger('mouseleave');			
+        	var to_el = $(event.relatedTarget);
+         	var region_id = to_el.attr('data-id');	
+			if (region_id){
+				region_id = region_id.replace('_Info', '');
+			 	$('.mapcontainer path[data-id^="link_"]').attr('stroke-opacity', '0.15').attr('stroke-width', 2).attr('stroke','#FFFFFF');  
+			 	$('.mapcontainer path[data-id^="link_' + region_id + '_"]').attr('stroke-opacity', '0.75').attr('stroke-width', 3).attr('stroke','#8FFD9B');
+			 	$('.mapcontainer path[data-id^="link_"][data-id$="_' + region_id + '"]').attr('stroke-opacity', '0.75').attr('stroke-width', 3).attr('stroke','#8FFD9B');
+			}	
         });					   
 	});
 }
@@ -174,13 +182,14 @@ function init_map(plots) {
                     }
                 }
             },
-            // defaultLink: {
-            // 	eventHandlers: {
-            //         mouseover: function (e, id, mapElem, textElem, elemOptions) {
-            //            focus_map_link(e, id, mapElem, textElem, elemOptions);
-            //         }
-            //     }
-            // }
+            defaultLink: {
+            	eventHandlers: {
+                     mouseleave: function (e, id, mapElem, textElem, elemOptions) {
+                     },
+                     mouseover: function (e, id, mapElem, textElem, elemOptions) {
+                     }
+                 }
+            }
 		},
 		plots: current_map_data.plots,    
 		areas: current_map_data.areas
@@ -193,6 +202,6 @@ function focus_map_link(e, id, mapElem, textElem, elemOptions){
 	if (region_id){
 		$('.mapcontainer path[data-id^="link_"]').attr('stroke-opacity', '0.15').attr('stroke-width', 2).attr('stroke','#FFFFFF');  
 		$('.mapcontainer path[data-id^="link_' + region_id + '_"]').attr('stroke-opacity', '0.75').attr('stroke-width', 3).attr('stroke','#8FFD9B');
-		$('.mapcontainer path[data-id^="link_"][data-id$="_' + region_id + '"]').attr('stroke-opacity', '0.75').attr('stroke-width', 3).attr('stroke','#8FFD9B');
+		$('.mapcontainer path[data-id^="link_"][data-id$="_' + region_id + '"]').attr('stroke-opacity', '0.75').attr('stroke-width', 3).attr('stroke','#8FFD9B');	
 	}
 }
