@@ -179,7 +179,7 @@ a:hover, a:focus {
 
 /* Navbar */
 
-.navbar.affix-top a.scroll-to-top {
+a.scroll-to-top {
     display: none;
 }
 
@@ -441,6 +441,18 @@ section.charts {
     
     section.charts {
         min-height: 100%;
+        -webkit-transition: all 1.5s ease-out;
+        -moz-transition: all 1.5s ease-out;
+        -o-transition: all 1.5s ease-out;
+        transition: all 1.5s ease-out;
+    }
+
+    .fix-charts section.charts {
+        min-height: 600px;
+        -webkit-transition: all 1.5s ease-out;
+        -moz-transition: all 1.5s ease-out;
+        -o-transition: all 1.5s ease-out;
+        transition: all 1.5s ease-out;
     }
 
 }
@@ -472,37 +484,12 @@ section.charts .container-fluid.charts-container {
     top: -310px;
 }
 
-.charts-toggle {
-    position: absolute;
-    top: 0;
-    right: 10px;
-    width: 30px;
-    text-align: center;
-    display: none;
-}
-
-.fix-charts .charts-toggle {
-    display: block;
-} 
-
-.charts-toggle > a {
-    color: #808285;
-    font-size: 30px;
-}
-
-.charts-toggle > a:hover,
-.charts-toggle > a:focus,
-.charts-toggle > a:active {
-    color: #BF364A;
-    text-decoration: none;
-}
-
 .chart-wrapper {
-    height: calc(100vh - 225px);
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    transition: all 1s ease;
+    height: calc(100vh - 148px);
+    -webkit-transition: all 1s ease-out;
+    -moz-transition: all 1s ease-out;
+    -o-transition: all 1s ease-out;
+    transition: all 1s ease-out;
     background-color: transparent;
     overflow: hidden;
 }
@@ -513,7 +500,7 @@ section.charts .container-fluid.charts-container {
 
 #series_chart_div {
     width: 100%; 
-    height: calc(100vh - 225px);
+    height: calc(100vh - 148px);
     overflow: hidden;
         background-color: transparent;
 }
@@ -523,53 +510,69 @@ section.charts .container-fluid.charts-container {
     height: 300px;
 }
 
-.chart-options {
-    padding-bottom: 10px;
+.charts-container .chart-options {
+    background-color:  rgba(41, 51, 82, 1);
 }
 
-ul.chart-options li:not(.active) small i {
-    visibility: hidden;
+.fix-charts .charts-container .chart-options {
+    background-color:  rgba(16, 26, 57, .85);
 }
 
-/* In bootstrap.css, this was applied after 768px, we need this from all the way down to ensure chart nav does nor go vertical*/
-  
-.nav-justified.chart-options > li {
-    display: table-cell !important;
-    width: 1% !important;
-}
-.nav-justified.chart-options > li > a {
-    margin-bottom: 0 !important;
-    /* add custom padding*/
-    padding-left: 5px;
-    padding-right: 5px;
+.charts-container .chart-options a {
+    display: inline-block;
+    padding: 14px;
 }
 
-/*end*/
-
-.chart-options>li>a {
-    color: #222;
-    border-radius: 0;
+.charts-container .chart-options a {
+    color: #BAC5C6;
 }
 
-.chart-options>li>a:hover,
-.chart-options>li>a:focus,
-.chart-options>li>a:active {
+.charts-container .chart-options a.active {
+    color: #fff;
+}
+
+.charts-container .chart-options a:hover,
+.charts-container .chart-options a:focus,
+.charts-container .chart-options a:active {
     background-color: transparent;
-    color: #BF364A;
+    color: #fff;
+    text-decoration: none;
 }
 
-.nav-pills.chart-options>li.active>a {
-    color: #BF364A;
+.charts-container .chart-options a.active {
+    color: #fff;
     background-color: transparent;
 }
 
-@media(min-width:768px) {
+.charts-container .chart-options a.active span {
+    box-shadow: 0 2px 0 #fff;
+    padding-bottom: 6px;
+}
 
-    .nav-pills.chart-options>li.active>a>span {
-        box-shadow: 0 2px 0 #BF364A;
-        padding-bottom: 8px;
-    }
+.charts-container .chart-options .charts-toggle {
+    position: absolute;
+    bottom: 3px;
+    right: 10px;
+    width: 30px;
+    text-align: center;
+    display: none;
+}
 
+.fix-charts .charts-container .chart-options .charts-toggle {
+    display: block;
+} 
+
+.charts-container .chart-options a.charts-toggle {
+    color: #BAC5C6;
+    font-size: 30px;
+    padding: 0;
+}
+
+.charts-container .chart-options a.charts-toggle:hover,
+.charts-container .chart-options a.charts-toggle:focus,
+.charts-container .chart-options a.charts-toggle:active {
+    color: #fff;
+    text-decoration: none;
 }
 
 /* People */
@@ -1079,7 +1082,7 @@ section#people .container {
 }
 
 .maps .chart-options>li>a {
-    color: #fff;
+    color: #BAC5C6;
 }
 
 .maps .chart-options>li>a:hover,
@@ -1094,11 +1097,8 @@ section#people .container {
     background-color: transparent;
 }
 
-@media(min-width:768px) {
 
-    .maps .nav-pills.chart-options>li.active>a>span {
-        box-shadow: 0 2px 0 #fff;
-        padding-bottom: 8px;
-    }
-
+.maps .nav-pills.chart-options>li.active>a>span {
+    box-shadow: 0 2px 0 #fff;
+    padding-bottom: 8px;
 }

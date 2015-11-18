@@ -7,14 +7,6 @@ type: charts
 ---
 
 <section id="charts" class="charts">
-    <div class="container" id="charts-header">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">&nbsp;</h2>
-                <hr class="">
-            </div>
-        </div>
-    </div>
     <div class="container-fluid charts-container" id="charts-container">
         <div class="chart-wrapper">
             <div id="series_chart_div">
@@ -22,72 +14,60 @@ type: charts
                     <i class="fa fa-spinner fa-2x fa-spin"></i>
                 </div>
             </div>
-        </div>    
-        <div class="row">
-            <div class="col-xs-12">
-                <ul class="nav nav-pills nav-justified chart-options">
-                  <li role="presentation">
-                    <a href="?generosity" data-chart-name="慷慨指数" data-chart-type="generosity">
-                        <span>慷慨指数 <small data-toggle="tooltip" title="慷慨指数通过用慈善家捐赠总额除以其持有的上市公司股份价值，衡量在考虑他/她财务实力的情况下，其捐赠的慷慨程度。"><i class="fa fa-info-circle"></i></small></span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?focus" data-chart-name="多样性指数" data-chart-type="focus">
-                        <span>多样性指数</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?industry" data-chart-name="行业" data-chart-type="industry">
-                        <span>行业</span>
-                    </a>
-                  </li>                  
-                  <li role="presentation">
-                    <a href="?age" data-chart-name="年龄" data-chart-type="age">
-                        <span>年龄</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?education" data-chart-name="教育" data-chart-type="education">
-                        <span>教育</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?environment" data-chart-name="环保" data-chart-type="environment">
-                        <span>环保</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?healthcare" data-chart-name="医疗" data-chart-type="healthcare">
-                        <span>医疗</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?social" data-chart-name="社会福利" data-chart-type="social">
-                        <span>社会福利</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?disaster" data-chart-name="赈灾" data-chart-type="disaster">
-                        <span>赈灾</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?culture" data-chart-name="文化" data-chart-type="culture">
-                        <span>文化</span>
-                    </a>
-                  </li>
+        </div>
 
-                  <li role="presentation">
-                     <a href="?months" data-chart-name="时间轴" data-chart-type="months">
-                        <span>时间轴 <small data-toggle="tooltip" title="总共有5,400万元捐赠时间不明，故未计入此表。"><i class="fa fa-info-circle"></i></small></span>
-                     </a>
-                  </li>
-                </ul>
-                <div class="charts-toggle">
-                    <a href="javascript:void(0);" id="chart-toggle">
-                        &times;
-                    </a>
-                </div>
+        <div class="row text-center chart-options">
+
+            <div class="col-xs-12">
+
+                <a href="?generosity" class="chart-option active" data-chart-name="慷慨指数" data-chart-type="generosity">
+                    <span>慷慨指数 <small data-toggle="tooltip" title="慷慨指数通过用慈善家捐赠总额除以其持有的上市公司股份价值，衡量在考虑他/她财务实力的情况下，其捐赠的慷慨程度。"><i class="fa fa-info-circle"></i></small></span>
+                </a>
+
+                <a href="?focus" class="chart-option" data-chart-name="多样性指数" data-chart-type="focus">
+                    <span>多样性指数</span>
+                </a>
+
+                <a href="?industry" class="chart-option" data-chart-name="行业" data-chart-type="industry">
+                    <span>行业</span>
+                </a>
+
+                <a href="?age" class="chart-option" data-chart-name="年龄" data-chart-type="age">
+                    <span>年龄</span>
+                </a>
+
+                <a href="?education" class="chart-option" data-chart-name="教育" data-chart-type="education">
+                    <span>教育</span>
+                </a>
+
+                <a href="?environment" class="chart-option" data-chart-name="环保" data-chart-type="environment">
+                    <span>环保</span>
+                </a>
+
+                <a href="?healthcare" class="chart-option" data-chart-name="医疗" data-chart-type="healthcare">
+                    <span>医疗</span>
+                </a>
+
+                <a href="?social" class="chart-option" data-chart-name="社会福利" data-chart-type="social">
+                    <span>社会福利</span>
+                </a>
+
+                <a href="?disaster" class="chart-option" data-chart-name="赈灾" data-chart-type="disaster">
+                    <span>赈灾</span>
+                </a>
+
+                <a href="?culture" class="chart-option" data-chart-name="文化" data-chart-type="culture">
+                    <span>文化</span>
+                </a>
+
+                 <a href="?months" class="chart-option" data-chart-name="时间轴" data-chart-type="months">
+                    <span>时间轴 <small data-toggle="tooltip" title="总共有5,400万元捐赠时间不明，故未计入此表。"><i class="fa fa-info-circle"></i></small></span>
+                 </a>
+
+                <a href="javascript:void(0);" id="chart-toggle" class="charts-toggle">
+                    &times;
+                </a>
+
             </div>
         </div>
     </div>

@@ -8,12 +8,6 @@ type: charts
 
 <section id="charts" class="charts">
     <div class="container" id="charts-header">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">&nbsp;</h2>
-                <hr class="">
-            </div>
-        </div>
     </div>
     <div class="container-fluid charts-container" id="charts-container">
         <div class="chart-wrapper">
@@ -22,72 +16,62 @@ type: charts
                     <i class="fa fa-spinner fa-2x fa-spin"></i>
                 </div>
             </div>
-        </div>    
-        <div class="row">
+        </div>
+
+        <div class="row text-center chart-options">
+
             <div class="col-xs-12">
-                <ul class="nav nav-pills nav-justified chart-options">
-                  <li role="presentation">
-                    <a href="?generosity" data-chart-name="by Generosity Index" data-chart-type="generosity">
-                        <span>Generosity Index <small data-toggle="tooltip" title="Generosity Index is a novel concept that measures how generous a philanthropist is by dividing his/her donation by the value of shares one holds in public companies, a proxy to his/her financial might"><i class="fa fa-info-circle"></i></small></span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?focus" data-chart-name="by Focus Areas" data-chart-type="focus">
-                        <span>Diversity Index</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?industry" data-chart-name="by Industries" data-chart-type="industry">
-                        <span>Industry</span>
-                    </a>
-                  </li>                  
-                  <li role="presentation">
-                    <a href="?age" data-chart-name="by Age" data-chart-type="age">
-                        <span>Age</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?education" data-chart-name="by Education" data-chart-type="education">
-                        <span>Education</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?environment" data-chart-name="by Environment" data-chart-type="environment">
-                        <span>Environment</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?healthcare" data-chart-name="by Healthcare" data-chart-type="healthcare">
-                        <span>Healthcare</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?social" data-chart-name="by Social Welfare" data-chart-type="social">
-                        <span>Social Welfare</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?disaster" data-chart-name="by Disaster Relief" data-chart-type="disaster">
-                        <span>Disaster Relief</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                    <a href="?culture" data-chart-name="by Culture" data-chart-type="culture">
-                        <span>Culture</span>
-                    </a>
-                  </li>
-                  <li role="presentation">
-                     <a href="?months" data-chart-name="Donations by months" data-chart-type="months">
-                        <span>Chronological <small data-toggle="tooltip" title="A total of 54 million yuan of donations with unspecified dates is not included in this chart"><i class="fa fa-info-circle"></i></small></span>
-                     </a>
-                  </li>
-                </ul>
-                <div class="charts-toggle">
-                    <a href="javascript:void(0);" id="chart-toggle">
-                        &times;
-                    </a>
-                </div>
+
+                <a href="?generosity" class="chart-option active" data-chart-name="by Generosity Index" data-chart-type="generosity">
+                    <span>Generosity Index <small data-toggle="tooltip" title="Generosity Index is a novel concept that measures how generous a philanthropist is by dividing his/her donation by the value of shares one holds in public companies, a proxy to his/her financial might"><i class="fa fa-info-circle"></i></small></span>
+                </a>
+
+                <a href="?focus" class="chart-option" data-chart-name="by Focus Areas" data-chart-type="focus">
+                    <span>Diversity Index</span>
+                </a>
+            
+                <a href="?industry" class="chart-option" data-chart-name="by Industries" data-chart-type="industry">
+                    <span>Industry</span>
+                </a>                
+            
+                <a href="?age" class="chart-option" data-chart-name="by Age" data-chart-type="age">
+                    <span>Age</span>
+                </a>
+                            
+                <a href="?education" class="chart-option" data-chart-name="by Education" data-chart-type="education">
+                    <span>Education</span>
+                </a>
+                            
+                <a href="?environment" class="chart-option" data-chart-name="by Environment" data-chart-type="environment">
+                    <span>Environment</span>
+                </a>
+                            
+                <a href="?healthcare" class="chart-option" data-chart-name="by Healthcare" data-chart-type="healthcare">
+                    <span>Healthcare</span>
+                </a>
+            
+                <a href="?social" class="chart-option" data-chart-name="by Social Welfare" data-chart-type="social">
+                    <span>Social Welfare</span>
+                </a>
+
+                <a href="?disaster" class="chart-option" data-chart-name="by Disaster Relief" data-chart-type="disaster">
+                    <span>Disaster Relief</span>
+                </a>
+                    
+                <a href="?culture" class="chart-option" data-chart-name="by Culture" data-chart-type="culture">
+                    <span>Culture</span>
+                </a>
+                     
+                <a href="?months" class="chart-option" data-chart-name="Donations by months" data-chart-type="months">
+                    <span>Chronological <small data-toggle="tooltip" title="A total of 54 million yuan of donations with unspecified dates is not included in this chart"><i class="fa fa-info-circle"></i></small></span>
+                </a>
+
+                <a href="javascript:void(0);" id="chart-toggle" class="charts-toggle">
+                    &times;
+                </a>
+            
             </div>
+
         </div>
     </div>
 </section>

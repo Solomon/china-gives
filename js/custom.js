@@ -6,6 +6,16 @@ var chart_data_months_res;
 var is_click_inited = false;
 var is_chart_closed = false;
 
+var c_c_h;
+var c_c_w;
+
+function get_chart_container_sizes(){
+  c_c_h = $('#series_chart_div').height();
+  c_c_w = $(window).width();
+  console.log(c_c_w);
+  console.log(c_c_h);
+}
+
 function str_starts(full, str){
   return full.slice(0, str.length) == str;
 }
@@ -33,11 +43,11 @@ function map_height() {
 }
 
 function must_fix(that){
-  return $(that).scrollTop() > 116 && $(window).height() >= 600;
+  return $(that).scrollTop() > 40 && $(window).height() >= 600;
 }
 
 function will_fix(that){
-  return $(that).scrollTop() <= 116 && $(window).height() >= 600;
+  return $(that).scrollTop() <= 40 && $(window).height() >= 600;
 }
 
 
@@ -46,11 +56,13 @@ function fix_chart(that){
   if (must_fix(that)) {
     if (!wrap.hasClass("fix-charts")){
       wrap.addClass("fix-charts");
+      get_chart_container_sizes();
       make_routing();
     }
   } else {
     if (wrap.hasClass("fix-charts")){
       wrap.removeClass("fix-charts");
+      get_chart_container_sizes();
       make_routing();
     }
   }
@@ -249,13 +261,13 @@ function age_options(ch_data){
                   {v: 50, f: '50'},{v: 60, f: '60'},{v: 70, f: '70'},{v: 80, f: '80'}]
         },
         colors: map_colors(ch_data),
-        chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
+        chartArea:{left:80,top:30,width: c_c_w - 160,height: c_c_h - 80},
         legend: {
           alignment: 'center',
           position: 'top'
         },
         animation:{
-          duration: 2000,
+          duration: 1000,
           easing: 'out'
         },
         backgroundColor: { fill:'transparent' },
@@ -292,7 +304,7 @@ function generosity_options(ch_data) {
                 {v: 200, f: '200'},{v: 300, f: '300'},{v: 400, f: '400'},{v: 500, f: '500'}]
       },
       colors: map_colors(ch_data),
-      chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
+      chartArea:{left:80,top:30,width: c_c_w - 160,height: c_c_h - 80},
       legend: {
         alignment: 'center',
         position: 'top'
@@ -340,13 +352,13 @@ function industry_options(ch_data){
           ticks: h_ticks
         },
         colors: map_colors(ch_data),
-        chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
+        chartArea:{left:80,top:30,width: c_c_w - 160,height: c_c_h - 80},
         legend: {
           alignment: 'center',
           position: 'top'
         },
         animation:{
-          duration: 2000,
+          duration: 1000,
           easing: 'out'
         },
         backgroundColor: { fill:'transparent' },
@@ -386,13 +398,13 @@ function months_options(){
                   {v: 7, f: trsl('Mar 15')},{v: 8, f: trsl('Apr 15')},{v: 9, f: trsl('May 15')},{v: 10, f: trsl('Jun 15')},
                   {v: 11, f: trsl('Jul 15')},{v: 12, f: trsl('Aug 15')},{v: 13, f: ''}]
         },
-        chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
+        chartArea:{left:80,top:30,width: c_c_w - 160,height: c_c_h - 80},
         legend: {
           alignment: 'center',
           position: 'top'
         },
         animation:{
-          duration: 2000,
+          duration: 1000,
           easing: 'out'
         },
         backgroundColor: { fill:'transparent' },
@@ -429,13 +441,13 @@ function focus_options(ch_data){
                   {v: 200, f: '200'},{v: 300, f: '300'},{v: 400, f: '400'},{v: 500, f: '500'}]
         },
         colors: map_colors(ch_data),
-        chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
+        chartArea:{left:80,top:30,width: c_c_w - 160,height: c_c_h - 80},
         legend: {
           alignment: 'center',
           position: 'top'
         },
         animation:{
-          duration: 2000,
+          duration: 1000,
           easing: 'out'
         },
         backgroundColor: { fill:'transparent' },
@@ -471,13 +483,13 @@ function focus_type_options(ch_data, data, type){
           ticks: ticks.h          
         },
         colors: map_colors(ch_data),
-        chartArea:{left:'10%',top:20,width:'80%',height:'80%'},
+        chartArea:{left:80,top:30,width: c_c_w - 160,height: c_c_h - 80},
         legend: {
           alignment: 'center',
           position: 'top'
         },
         animation:{
-          duration: 2000,
+          duration: 1000,
           easing: 'out'
         },
         backgroundColor: { fill:'transparent' },
@@ -650,7 +662,6 @@ function activate_link(chart_type){
     $('#charts-container .chart-options li').removeClass('active');
     var active_anchor = $('#charts-container .chart-options a[data-chart-type="' + chart_type + '"]');
     active_anchor.parents('li').first().addClass('active');
-    $('#charts-header .section-heading').html(active_anchor.data('chart-name'));
 }
 
 function init_chart_onclick(){
@@ -684,6 +695,9 @@ function init_chart_onclick(){
 }
 
 $(function (){
+
+  get_chart_container_sizes();
+
   var base_url = get_base_url();
   $(window).scroll(function(e) {
     fix_chart(this);
@@ -719,6 +733,7 @@ $(function (){
 });
 
 $(window).on('resize', function(){
+  get_chart_container_sizes();
   resize_charts();
   map_height();
 });
