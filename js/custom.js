@@ -534,19 +534,25 @@ function focus_type_ticks(type){
       break;
       case 'Disaster Relief':
         return {
-                  v: [{v: -10, f: ''},{v: 0, f: ''},{v: 10, f: '10'},
-                      {v: 20, f: '20'},{v: 30, f: '30'},{v: 40, f: '40'}, {v: 50, f: '50'}, {v: 60, f: '60'}],
-                  h: [{v: 0, f: '0'},{v: 50, f: '50'},
-                      {v: 100, f: '100'}, {v: 200, f: '200'}, {v: 300, f: '300'}, {v: 400, f: '400'}]
+                  v: [{v: -10, f: ''},{v: 0, f: ''},{v: 10, f: trsl_int('¥10 m')},
+                      {v: 20, f: trsl_int('¥20 m')},{v: 30, f: trsl_int('¥30 m')},
+                      {v: 40, f: trsl_int('¥40 m')}, {v: 50, f: trsl_int('¥50 m')}, {v: 60, f: trsl_int('¥60 m')}],
+                  h: [{v: 0, f: '0'},{v: 50, f: trsl_int('¥50 m')},
+                      {v: 100, f: trsl_int('¥100 m')}, {v: 200, f: trsl_int('¥200 m')}, 
+                      {v: 300, f: trsl_int('¥300 m')}, {v: 400, f: trsl_int('¥400 m')}]
                };
       break;
       case 'Culture':
         return {
-                  v: [{v: -10, f: ''},{v: 0, f: ''},{v: 10, f: '10'},
-                      {v: 20, f: '20'},{v: 30, f: '30'},{v: 40, f: '40'}, {v: 50, f: '50'}, {v: 60, f: '60'}],
-                  h: [{v: 0, f: '0'},{v: 10, f: '10'},
-                      {v: 20, f: '20'},{v: 30, f: '30'}, {v: 40, f: '40'}, {v: 50, f: '50'}, 
-                      {v: 60, f: '60'}, {v: 70, f: '70'}, {v: 80, f: '80'}, {v: 90, f: '90'}]
+                  v: [{v: -10, f: ''},{v: 0, f: ''},{v: 10, f: trsl_int('¥10 m')},
+                      {v: 20, f: trsl_int('¥20 m')},{v: 30, f: trsl_int('¥30 m')},
+                      {v: 40, f: trsl_int('¥40 m')}, 
+                      {v: 50, f: trsl_int('¥50 m')}, {v: 60, f: trsl_int('¥60 m')}],
+                  h: [{v: 0, f: '0'},{v: 10, f: trsl_int('¥10 m')},
+                      {v: 20, f: trsl_int('¥20 m')},{v: 30, f: trsl_int('¥30 m')}, {v: 40, f: trsl_int('¥40 m')}, 
+                      {v: 50, f: trsl_int('¥50 m')}, 
+                      {v: 60, f: trsl_int('¥60 m')}, {v: 70, f: trsl_int('¥70 m')}, {v: 80, f: trsl_int('¥80 m')}, 
+                      {v: 90, f: trsl_int('¥90 m')}]
               };
       break;
       default:
