@@ -35,11 +35,11 @@ function map_height() {
 }
 
 function must_fix(that){
-  return $(that).scrollTop() > 40 && $(window).height() >= 600;
+  return $(that).scrollTop() > 40 && $(window).height() >= 600 && (window).width() >= 768;
 }
 
 function will_fix(that){
-  return $(that).scrollTop() <= 40 && $(window).height() >= 600;
+  return $(that).scrollTop() <= 40 && $(window).height() >= 600 && (window).width() >= 768;
 }
 
 
