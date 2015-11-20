@@ -13,8 +13,6 @@ var c_c_w;
 function get_chart_container_sizes(){
   c_c_h = $('#series_chart_div').height();
   c_c_w = $(window).width();
-  console.log(c_c_w);
-  console.log(c_c_h);
 }
 
 function str_starts(full, str){
@@ -192,7 +190,7 @@ function months_data() {
   if (!chart_data_months_res)
     chart_data_months_res = chart_month_data();
   var rand_data = [];
-  rand_data.push(['test', 'test1', 'test2', 'test3', 'Total Amount']);
+  rand_data.push(['t1', 't2', 't3', 't4', 'Total Amount']);
   jQuery.each(chart_data_months_res, function(index, item) {    
       rand_data.push([trsl_int('¥' + item['Amount'] + ' m'), index + 1, 1, 1, item['Amount']]);
   });

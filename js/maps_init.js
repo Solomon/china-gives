@@ -7,30 +7,43 @@ $(function(){
 
 	maps_helper = maps_helper();
 
-    $('.maps .chart-options a').click(function (){
+    $('.maps .chart-options a').click(function (e){
 		var type = $(this).data('map-type');
-		$('.maps .chart-options li').removeClass('active');
-		$(this).parents('li').first().addClass('active');
-		$('#maps h2.section-heading').html($(this).data('map-name'));
-		switch (type) {
-	      case 'philanthropists':
-	        load_map_philanthropists_data();
-	      break;
-	      case 'donations':
-	        load_map_donatoin_data();
-	      break;
-	      case 'movement':
-	        load_map_movement_data();
-	      break;  
-	      default:
-	      break;
-  		}  
+		make_maps_routing(type);
+		e.preventDefault();
 	});
 
-	load_map_philanthropists_data();
+	var type = get_param();
+	if (!type)
+		type = 'philanthropists';
+	make_maps_routing(type);	
 
 	map_height();
 });
+
+function make_maps_routing(type){
+	var that = $('.maps .chart-options li a[data-map-type="' + type + '"]')
+	$('.maps .chart-options li').removeClass('active');
+	that.parents('li').first().addClass('active');
+	$('#maps h2.section-heading').html(that.data('map-name'));	
+	var base_url = get_base_url();
+
+	switch (type) {
+      case 'philanthropists':
+        load_map_philanthropists_data();
+      break;
+      case 'donations':
+        load_map_donatoin_data();
+      break;
+      case 'movement':
+        load_map_movement_data();
+      break;  
+      default:
+      	load_map_philanthropists_data();
+      break;
+	}
+	history.pushState('', '', base_url + that.attr('href'));	
+}
 
 function load_map_philanthropists_data(){
     if (!map_inited)
@@ -62,6 +75,8 @@ function load_map_philanthropists_data(){
 }
 
 function load_map_donatoin_data() {
+	if (!map_inited)
+		init_map(maps_helper.plots_donations());
 	var new_data = maps_helper.plots_donations();
 	var new_areas = maps_helper.areas_donations();
 	var new_links = {};
@@ -86,6 +101,8 @@ function load_map_donatoin_data() {
 }
 
 function load_map_movement_data() {
+	if (!map_inited)
+		init_map(maps_helper.plots_movements());
 	var new_data = maps_helper.plots_movements();
 	var new_areas = maps_helper.areas_movements();
 	var new_links = maps_helper.links_movements();
