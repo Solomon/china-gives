@@ -93,13 +93,14 @@ function maps_helper(){
 			return 25 + val / 50;
 		},
 		get_plot_color:	function (val){
-			if (!val)
-				return '#fff';
-			if (val <= 10)
-				return '#89ff72';
-			if (val <= 100)
+			var param = get_param();
+			if (param == 'philanthropists')
+				return '#ff5454';
+			if (param == 'donations')
 				return '#fffd72';
-			return '#ff5454';
+			if (param == 'movement')
+				return '#F08219';
+			return '#fff';
 		},
 		plots_philantropists: function (){
 			var that = this;
@@ -165,6 +166,33 @@ function maps_helper(){
 		plots_movements: function (){
 			var that = this;
 			var res = {};
+			var pre_res = {};
+			$.each(map_initial_data, function(index, item){
+				var info_name = item['Province'] + '_Info';
+				var val = that.fetch_province_data(item['Province'], 'Total amount received');
+				if (val) {
+					var loc = that.fetch_location_data(item['Province']);
+					if (loc && loc['Latitude'] > 0){
+						var province_name = !is_chinese() ? item['Province'] : loc['Province CN'];				
+						val -= that.fetch_province_data(item['Province'], item['Province']);
+						pre_res[info_name] = {
+							value: val,
+				            latitude: loc['Latitude'],
+				            longitude: loc['Longitude'],
+				            size: that.get_plot_size(val),
+				            attrs: {
+				            	fill: '#fffd72'
+				            },
+				            href: "javascript:void(0);",
+				            tooltip: {
+				                content: '<b>' + province_name + '</b> <br>' + 
+				                		 (!is_chinese() ? '<b>Received amount:</b> ' : '<b>受捐数额</b> ' ) + trsl_int('¥' + val + ' m')
+				            }
+						}
+					}
+				}
+			});
+			var receivings = [];
 			$.each(map_initial_data, function(index, item){
 				var info_name = item['Province'] + '_Info';
 				var val = that.fetch_province_data(item['Province'], 'Total giving amount');
@@ -182,6 +210,8 @@ function maps_helper(){
 							var giving_amount = item[region_item['Province']];
 							if (region_item['Province'] != item['Province'] && giving_amount > 0) {
 								giving = true;
+								if ($.inArray(receivings, region_item['Province'] + '_Info') < 0 && that.fetch_location_data(region_item['Province'])['Latitude'] > 0)
+									receivings.push(region_item['Province'] + '_Info');
 								tooltip_text += '<b>' + (!is_chinese() ? region_item['Province'] : region_item['Province CN']) + ':</b> ' + trsl_int('¥' + giving_amount + ' m') + '<br>';
 							}
 							else if (region_item['Province'] == item['Province'] && giving_amount > 0 ){
@@ -190,6 +220,7 @@ function maps_helper(){
 							var receiveing_amount = that.fetch_province_data(region_item['Province'], item['Province']);
 							if (receiveing_amount > 0 && region_item['Province'] != item['Province']){
 								receiving = true;
+								receivings.push(info_name);
 								receiving_text += '<b>' + (!is_chinese() ? region_item['Province'] : region_item['Province CN']) + ':</b> ' + trsl_int('¥' + receiveing_amount + ' m') + '<br>';
 							}
 						});
@@ -200,7 +231,7 @@ function maps_helper(){
 					            longitude: loc['Longitude'],
 					            size: that.get_plot_size(val),
 					            attrs: {
-					            	fill: that.get_plot_color(val)
+					            	fill: !receiving ? '#ff5454' : '#F08219'
 					            },
 					            href: "javascript:void(0);",
 					            tooltip: {
@@ -211,6 +242,12 @@ function maps_helper(){
 					}
 				}
 			});
+
+			$.each(receivings, function (index, item){
+				if (!res[item])
+					res[item] = pre_res[item];
+			});
+			
 			return res;
 		},
 
