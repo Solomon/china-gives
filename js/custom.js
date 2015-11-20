@@ -35,11 +35,11 @@ function map_height() {
 }
 
 function must_fix(that){
-  return $(that).scrollTop() > 40 && $(window).height() >= 600 && (window).width() >= 768;
+  return $(that).scrollTop() > 40 && $(window).height() >= 600 && $(window).width() >= 768;
 }
 
 function will_fix(that){
-  return $(that).scrollTop() <= 40 && $(window).height() >= 600 && (window).width() >= 768;
+  return $(that).scrollTop() <= 40 && $(window).height() >= 600 && $(window).width() >= 768;
 }
 
 
@@ -696,14 +696,15 @@ function init_chart_onclick(){
     google.visualization.events.addListener(current_chart, 'onmouseover', function(e) {
       var attr = 'data-' + get_param();
       var row = e.row;
-      if (row){     
+      console.log(e);
+      if (row || row == 0){     
         var elem = $('['+ attr + '="' + row + '"]');
         if (elem.length > 0){ 
           var person_name = elem.find('.card-name-container').data('name');
           var tooltip = $('#chart-tooltip');
           if (tooltip.length <= 0){
-            tooltip = $('<div id="chart-tooltip" class="mapTooltip"><b>' + person_name + '</b></div>');
-            $('body').append(tooltip);
+            tooltip = $('<div id="chart-tooltip" class="chartTooltip"><b>' + person_name + '</b></div>');
+            $('.chart-wrapper').append(tooltip);
           }
           tooltip.find('b').html(person_name);
           tooltip.css('left', currentMousePos.x + 15);
