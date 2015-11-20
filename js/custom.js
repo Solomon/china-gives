@@ -217,7 +217,7 @@ function focus_type_data(type){
   var rand_data = [];
   var filtered_data = jQuery.grep(chart_data_res, function(item) {
                         return item[type];
-                      });
+                      });focus_type_ticks
   rand_data.push(["Name Eng", "Total Donations", trsl('Donations in ' + type), "Industry", "Total Amount (million Yuan)"]);
   jQuery.each(filtered_data, function(index, item) {
     rand_data.push([get_initals(item["Name Eng"]), item["Total Amount (million Yuan)"], item[type],
@@ -461,14 +461,14 @@ function focus_type_options(ch_data, data, type){
           }
         },  
         vAxis: {          
-          title: trsl('Total Donations (Million Yuan)'),    
+          title: trsl(type + ' Donations (Million Yuan)'),    
           gridlineColor: 'transparent',
           baselineColor: 'black',
           baseline: ticks.v[0].v,
           ticks: ticks.v      
         },
         hAxis: {      
-          title: trsl(type + ' Donations (Million Yuan)'),
+          title: trsl('Total Donations (Million Yuan)'),
           gridlineColor: 'transparent',
           baselineColor: 'black',
           baseline: ticks.h[0].v,
