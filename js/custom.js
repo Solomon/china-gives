@@ -5,6 +5,7 @@ var chart_data_res;
 var chart_data_months_res;
 var is_click_inited = false;
 var is_chart_closed = false;
+var currentMousePos = { x: -1, y: -1 };
 
 var c_c_h;
 var c_c_w;
@@ -555,6 +556,7 @@ function focus_type_ticks(type){
 function draw_age_charts(){
   var ch_data = age_data();
   var options = age_options(ch_data);
+  current_data = ch_data;
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(ch_data, options);
@@ -565,6 +567,7 @@ function draw_age_charts(){
 function draw_generousity_chart(){
   var ch_data = generosity_data();
   var options = generosity_options(ch_data);
+  current_data = ch_data;
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(ch_data, options);
@@ -575,6 +578,7 @@ function draw_generousity_chart(){
 function draw_industry_chart(){
   var ch_data = industry_data();
   var options = industry_options(ch_data);
+  current_data = ch_data;
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
   current_chart.draw(ch_data, options);
@@ -584,9 +588,10 @@ function draw_industry_chart(){
 
 function draw_months_chart(){
   var options = months_options();
+  current_data = months_data();
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
-  current_chart.draw(months_data(), options);
+  current_chart.draw(current_data, options);
   init_chart_onclick();
   fix_chart(window);
 }
@@ -594,6 +599,7 @@ function draw_months_chart(){
 function draw_focus_chart(){
   var ch_data = focus_data();
   var options = focus_options(ch_data);
+  current_data = ch_data;
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));  
   current_chart.draw(ch_data, options);  
@@ -605,6 +611,7 @@ function draw_focus_type_chart(type){
   var data = focus_type_data(type);
   var ch_data = google.visualization.arrayToDataTable(data);
   var options = focus_type_options(ch_data, data, type);
+  current_data = ch_data;
   if (!current_chart)
     current_chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));  
   current_chart.draw(ch_data, options);  
@@ -652,9 +659,9 @@ function draw_charts(chart_type){
 }
 
 function activate_link(chart_type){  
-    $('#charts-container .chart-options li').removeClass('active');
+    $('#charts-container .chart-options a').removeClass('active');
     var active_anchor = $('#charts-container .chart-options a[data-chart-type="' + chart_type + '"]');
-    active_anchor.parents('li').first().addClass('active');
+    active_anchor.addClass('active');
 }
 
 function init_chart_onclick(){
@@ -681,6 +688,30 @@ function init_chart_onclick(){
           elem.addClass('selected');
         }
       }
+    });
+
+    google.visualization.events.addListener(current_chart, 'onmouseover', function(e) {
+      var attr = 'data-' + get_param();
+      var row = e.row;
+      if (row){     
+        var elem = $('['+ attr + '="' + row + '"]');
+        if (elem.length > 0){ 
+          var person_name = elem.find('.card-name-container').data('name');
+          var tooltip = $('#chart-tooltip');
+          if (tooltip.length <= 0){
+            tooltip = $('<div id="chart-tooltip" class="mapTooltip"><b>' + person_name + '</b></div>');
+            $('body').append(tooltip);
+          }
+          tooltip.find('b').html(person_name);
+          tooltip.css('left', currentMousePos.x + 15);
+          tooltip.css('top', currentMousePos.y - 35);
+          tooltip.css('display', 'block');
+        }
+      }
+    });
+
+    google.visualization.events.addListener(current_chart, 'onmouseout', function(e) {
+      $('#chart-tooltip').css('display', 'none');
     });
 
     is_click_inited = true;
@@ -722,6 +753,12 @@ $(function (){
   $('[data-toggle="tooltip"]').tooltip();
   if (!chart_data_res)
     chart_data_res = chart_data();
+
+
+  $(document).mousemove(function(event) {
+      currentMousePos.x = event.pageX;
+      currentMousePos.y = event.pageY;
+  });
 });
 
 $(window).on('resize', function(){

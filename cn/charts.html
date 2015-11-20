@@ -146,7 +146,7 @@ type: charts
                         <div class="circle-text">
                             <div>
                                 <div>{{ b }}</div>
-                                <h4>{{ person.['Name CN'] }} </h4>
+                                <h4 class="card-name-container" data-name="{{ person.['Name CN'] }}">{{ person.['Name CN'] }} </h4>
                                 {% if person.['Total Amount (million Yuan)'] < 100 %}
                                     <div>{{ person.['Total Amount (million Yuan)'] }}00万元</div>
                                 {% else %}
