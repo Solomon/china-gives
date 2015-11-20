@@ -659,7 +659,7 @@ function draw_charts(chart_type){
 }
 
 function activate_link(chart_type){  
-    $('#charts-container .chart-options a').removeClass('active');
+    $('#charts-container .chart-options a.chart-option').removeClass('active');
     var active_anchor = $('#charts-container .chart-options a[data-chart-type="' + chart_type + '"]');
     active_anchor.addClass('active');
 }
@@ -727,7 +727,7 @@ $(function (){
     fix_chart(this);
     auto_hide_fixed_charts();
   });
-  $('#charts-container .chart-options a').click(function (event){    
+  $('#charts-container .chart-options a.chart-option').click(function (event){    
     var chart_type = $(this).data('chart-type');
     draw_charts(chart_type);
     history.pushState('', '', base_url + $(this).attr('href'));
